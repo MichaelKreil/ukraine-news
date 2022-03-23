@@ -1,0 +1,14 @@
+{
+  "name": "ukraine-news",
+  "version": "1.0.0",
+  "description": "Search the front pages of German news media and count how many times the word \"ukrain*\" is used",
+  "main": "bin/scrape.js",
+  "bin": {
+    "ukraine-news": "bin/scrape.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Michael Kreil",
+  "license": "ISC"
+}
