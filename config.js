@@ -32,6 +32,15 @@ const config = {
 		{ country:'us', name:'Star Tribune',        slug:'startribune',    url:'www.startribune.com' },
 		{ country:'us', name:'The Boston Globe',    slug:'bostonglobe',    url:'www.bostonglobe.com' },
 
+		{ country:'uk', name:'BBC',           slug:'bbc',       url:'www.bbc.com' },
+		{ country:'uk', name:'The Guardian',  slug:'guardian',  url:'www.theguardian.com/uk' },
+		{ country:'uk', name:'Daily Mail',    slug:'dailymail', url:'www.dailymail.co.uk/home/index.html' },
+		{ country:'uk', name:'The Sun',       slug:'sun',       url:'www.thesun.co.uk' },
+		{ country:'uk', name:'Metro',         slug:'metro',     url:'metro.co.uk' },
+		{ country:'uk', name:'The Times',     slug:'times',     url:'www.thetimes.co.uk' },
+		{ country:'uk', name:'Mirror',        slug:'mirror',    url:'www.mirror.co.uk' },
+		{ country:'uk', name:'The Telegraph', slug:'telegraph', url:'www.telegraph.co.uk' },
+
 		{ country:'fr', name:'Le Figaro',   slug:'lefigaro',   url:'www.lefigaro.fr' },
 		{ country:'fr', name:'Le Monde',    slug:'lemonde',    url:'www.lemonde.fr' },
 		{ country:'fr', name:'Libération',  slug:'liberation', url:'www.liberation.fr' },
@@ -48,13 +57,30 @@ const config = {
 		{ country:'pl', name:'Super Express',                slug:'se',           url:'www.se.pl' },
 		{ country:'pl', name:'Rzeczpospolita',               slug:'rp',           url:'www.rp.pl' },
 		{ country:'pl', name:'Dziennik Gazeta Prawna',       slug:'dziennik',     url:'www.dziennik.pl' },
-		{ country:'pl', name:'Nasz Dziennik',                slug:'naszdziennik', url:'naszdziennik.pl' },
 		{ country:'pl', name:'Polska Metropolia Warszawska', slug:'polskatimes',  url:'polskatimes.pl' },
 		{ country:'pl', name:'Gazeta Polska Codziennie',     slug:'gpcodziennie', url:'gpcodziennie.pl' },
 	],
-	regex: /ukrain|kiew|selensk|klitschko|odessa|charkiw|cherson|mariupol|luhansk|maidan|tschernihiw|donezk|tschernobyl|kreml|putin|russisch|russland/gi,
+	words: [
+		// Orte
+		{ us:/\bukrain/gi, },
+		{ us:/\bkyiv/gi, de:/\bkiew/gi, fr:/\bkiev/gi, pl:/\bkijów/gi, },
+		{ us:/\bodessa/gi, },
+		{ us:/\bkharkiv/gi, de:/\bcharkiw/gi, pl:/\bcharków/gi, },
+		{ us:/\bkherson/gi, de:/\bcherson/gi, pl:/\bchersoń/gi, },
+		{ us:/\bmariupol/gi, fr:/\bmarioupol/gi, },
+		{ us:/\bluhansk/gi, fr:/\blouhansk/gi, pl:/\bługańsk/gi, },
+		{ us:/\bchernihiv/gi, de:/\btschernihiw/gi, fr:/\btchernihiv/gi, pl:/\bczernihów/gi, },
+		{ us:/\bdonetsk/gi, de:/\bdonezk/gi, pl:/\bdonieck/gi, },
+		{ us:/\bch[eo]rnobyl/gi, de:/\btsch[eo]rnobyl/gi, fr:/\btch[eo]rnobyl/gi, pl:/\bczarnobyl/gi, },
+		// ukrainische Personen
+		{ us:/\bzelensk/gi, de:/\bselensk/gi, fr:/\bselensk/gi, pl:/\bZełensk/gi, },
+		{ us:/\bklitschko/gi, pl:/\bk(ły|li)czko/gi, },
+		// russland
+		{ us:/\bputin/gi, fr:/\bpoutine/gi, },
+		{ us:/\bkremlin/gi, de:/\bkreml/gi, pl:/\bkreml/gi, },
+		{ us:/\brussia/gi, de:/\bruss(isch|land)/gi, fr:/\brussi?e/gi, pl:/\bros(ja|sij|yjsk)/gi, },
+	],
 }
-
 
 const dayMin = Math.round(Date.parse(config.dateMin)/86400000);
 const dayMax = Math.round(Date.now()/86400000-2);
@@ -76,6 +102,5 @@ for (let medium of config.media) {
 		});
 	}
 }
-
 
 module.exports = config;
