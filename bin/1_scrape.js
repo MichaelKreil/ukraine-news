@@ -16,10 +16,8 @@ async function start() {
 	})
 
 	for (let i = 0; i < todos.length; i++) {
-		console.log(i+'/'+todos.length);
-
 		const { medium, date, cacheFilenameApi, cacheFilenameHtml } = todos[i];
-		console.log('scrape',medium.slug,date);
+		console.log(i+'/'+todos.length,'scrape',medium.slug,date);
 
 		const timestamp = date.replaceAll('-','');
 		const apiUrl = `https://archive.org/wayback/available?url=${medium.url}&timestamp=${timestamp}1200`;
@@ -34,10 +32,13 @@ async function start() {
 			console.log(apiUrl);
 			console.log(apiResponse);
 			console.log('??? rm '+cacheFilenameApi);
-			throw e;
+			continue;
 		}
 
-		if (!apiResult.timestamp.startsWith(timestamp)) continue;
+		if (!apiResult.timestamp.startsWith(timestamp)) {
+			console.log('   skipping - '+cacheFilenameApi)
+			continue;
+		}
 
 		let htmlResult = await fetchCached(apiResult.url, cacheFilenameHtml);
 	}

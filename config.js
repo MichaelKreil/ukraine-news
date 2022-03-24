@@ -44,11 +44,10 @@ const config = {
 		{ country:'fr', name:'L\'Express',  slug:'lexpress',   url:'www.lexpress.fr' },
 
 		{ country:'pl', name:'Fakt',                         slug:'fakt',         url:'fakt.pl' },
-		{ country:'pl', name:'Gazeta Wyborcza',              slug:'wyborcza',     url:'wyborcza.pl' },
+		{ country:'pl', name:'Gazeta Wyborcza',              slug:'wyborcza',     url:'wyborcza.pl/0,0.html' },
 		{ country:'pl', name:'Super Express',                slug:'se',           url:'www.se.pl' },
 		{ country:'pl', name:'Rzeczpospolita',               slug:'rp',           url:'www.rp.pl' },
 		{ country:'pl', name:'Dziennik Gazeta Prawna',       slug:'dziennik',     url:'www.dziennik.pl' },
-		{ country:'pl', name:'Dziennik Trybuna',             slug:'trybuna',      url:'trybuna.info' },
 		{ country:'pl', name:'Nasz Dziennik',                slug:'naszdziennik', url:'naszdziennik.pl' },
 		{ country:'pl', name:'Polska Metropolia Warszawska', slug:'polskatimes',  url:'polskatimes.pl' },
 		{ country:'pl', name:'Gazeta Polska Codziennie',     slug:'gpcodziennie', url:'gpcodziennie.pl' },
