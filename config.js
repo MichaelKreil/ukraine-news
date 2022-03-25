@@ -53,7 +53,6 @@ const config = {
 		{ country:'fr', name:'L\'Express',  slug:'lexpress',   url:'www.lexpress.fr' },
 
 		{ country:'pl', name:'Fakt',                         slug:'fakt',         url:'fakt.pl' },
-		{ country:'pl', name:'Gazeta Wyborcza',              slug:'wyborcza',     url:'wyborcza.pl/0,0.html' },
 		{ country:'pl', name:'Super Express',                slug:'se',           url:'www.se.pl' },
 		{ country:'pl', name:'Rzeczpospolita',               slug:'rp',           url:'www.rp.pl' },
 		{ country:'pl', name:'Dziennik Gazeta Prawna',       slug:'dziennik',     url:'www.dziennik.pl' },
@@ -62,23 +61,23 @@ const config = {
 	],
 	words: [
 		// Orte
-		{ us:/\bukrain/gi, },
-		{ us:/\bkyiv/gi, de:/\bkiew/gi, fr:/\bkiev/gi, pl:/\bkijów/gi, },
-		{ us:/\bodessa/gi, },
-		{ us:/\bkharkiv/gi, de:/\bcharkiw/gi, pl:/\bcharków/gi, },
-		{ us:/\bkherson/gi, de:/\bcherson/gi, pl:/\bchersoń/gi, },
-		{ us:/\bmariupol/gi, fr:/\bmarioupol/gi, },
-		{ us:/\bluhansk/gi, fr:/\blouhansk/gi, pl:/\bługańsk/gi, },
-		{ us:/\bchernihiv/gi, de:/\btschernihiw/gi, fr:/\btchernihiv/gi, pl:/\bczernihów/gi, },
-		{ us:/\bdonetsk/gi, de:/\bdonezk/gi, pl:/\bdonieck/gi, },
-		{ us:/\bch[eo]rnobyl/gi, de:/\btsch[eo]rnobyl/gi, fr:/\btch[eo]rnobyl/gi, pl:/\bczarnobyl/gi, },
+		{ name:'ukrain', us:/\bukrain/gi, },
+		{ name:'kyiv', us:/\bkyiv/gi, de:/\bkiew/gi, fr:/\bkiev/gi, pl:/\bkijów/gi, },
+		{ name:'odessa', us:/\bodessa/gi, },
+		{ name:'kharkiv', us:/\bkharkiv/gi, de:/\bcharkiw/gi, pl:/\bcharków/gi, },
+		{ name:'kherson', us:/\bkherson/gi, de:/\bcherson/gi, pl:/\bchersoń/gi, },
+		{ name:'mariupol', us:/\bmariupol/gi, fr:/\bmarioupol/gi, },
+		{ name:'luhansk', us:/\bluhansk/gi, fr:/\blouhansk/gi, pl:/\bługańsk/gi, },
+		{ name:'chernihiv', us:/\bchernihiv/gi, de:/\btschernihiw/gi, fr:/\btchernihiv/gi, pl:/\bczernihów/gi, },
+		{ name:'donetsk', us:/\bdonetsk/gi, de:/\bdonezk/gi, pl:/\bdonieck/gi, },
+		{ name:'chernobyl', us:/\bch[eo]rnobyl/gi, de:/\btsch[eo]rnobyl/gi, fr:/\btch[eo]rnobyl/gi, pl:/\bczarnobyl/gi, },
 		// ukrainische Personen
-		{ us:/\bzelensk/gi, de:/\bselensk/gi, fr:/\bselensk/gi, pl:/\bZełensk/gi, },
-		{ us:/\bklitschko/gi, pl:/\bk(ły|li)czko/gi, },
+		{ name:'zelensk', us:/\bzelensk/gi, de:/\bselensk/gi, pl:/\bZełensk/gi, },
+		{ name:'klitschko', us:/\bklitschko/gi, pl:/\bk(ły|li)czko/gi, },
 		// russland
-		{ us:/\bputin/gi, fr:/\bpoutine/gi, },
-		{ us:/\bkremlin/gi, de:/\bkreml/gi, pl:/\bkreml/gi, },
-		{ us:/\brussia/gi, de:/\bruss(isch|land)/gi, fr:/\brussi?e/gi, pl:/\bros(ja|sij|yjsk)/gi, },
+		{ name:'putin', us:/\bputin/gi, fr:/\bpoutine/gi, },
+		{ name:'kremlin', us:/\bkremlin/gi, de:/\bkreml/gi, pl:/\bkreml/gi, },
+		{ name:'russia', us:/\brussia/gi, de:/\bruss(isch|land)/gi, fr:/\brussi?e/gi, pl:/\bros(ja|sij|yjsk)/gi, },
 	],
 }
 
@@ -87,12 +86,13 @@ const dayMax = Math.round(Date.now()/86400000-2);
 config.todos = [];
 
 for (let medium of config.media) {
-	let slug = medium.country+'_'+medium.slug;
-	const cacheFolder = path.resolve(__dirname, 'cache/'+slug);
+	medium.slug = medium.country+'_'+medium.slug;
+
+	const cacheFolder = path.resolve(__dirname, 'cache/'+medium.slug);
 	if (!fs.existsSync(cacheFolder)) fs.mkdirSync(cacheFolder, { recursive:true })
 	for (let day = dayMin; day <= dayMax; day++) {
 		const date = (new Date((day+0.5)*86400000)).toISOString().slice(0,10);
-		const cacheFilename = path.resolve(cacheFolder, slug+'-'+date);
+		const cacheFilename = path.resolve(cacheFolder, medium.slug+'-'+date);
 
 		config.todos.push({
 			medium,

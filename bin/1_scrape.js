@@ -4,6 +4,7 @@ const fs = require('fs');
 const zlib = require('zlib');
 const http = require('http');
 const https = require('https');
+const path = require('path');
 const config = require('../config.js')
 
 start()
@@ -36,7 +37,7 @@ async function start() {
 		}
 
 		if (!apiResult.timestamp.startsWith(timestamp)) {
-			console.log('   skipping - '+cacheFilenameApi)
+			console.log('   skipping, cause wrong timestamp - '+path.relative(__dirname, cacheFilenameApi))
 			continue;
 		}
 
