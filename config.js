@@ -58,8 +58,33 @@ const config = {
 		{ country:'pl', name:'Dziennik Gazeta Prawna',       slug:'dziennik',     url:'www.dziennik.pl' },
 		{ country:'pl', name:'Polska Metropolia Warszawska', slug:'polskatimes',  url:'polskatimes.pl' },
 		{ country:'pl', name:'Gazeta Polska Codziennie',     slug:'gpcodziennie', url:'gpcodziennie.pl' },
+
+		{ country:'ru', name:'Moskowski Komsomolez', slug:'mk',           url:'www.mk.ru' },
+		{ country:'ru', name:'Komsomolskaja Prawda', slug:'kp',           url:'www.kp.ru' },
+		{ country:'ru', name:'Trud',                 slug:'trud',         url:'www.trud.ru' },
+		{ country:'ru', name:'Rossijskaja gaseta',   slug:'rg',           url:'rg.ru' },
+		{ country:'ru', name:'Iswestija',            slug:'izvestia',     url:'www.izvestia.ru' },
+		{ country:'ru', name:'Nowaja Gaseta',        slug:'novayagazeta', url:'novayagazeta.ru' },
+		{ country:'ru', name:'Kommersant',           slug:'kommersant',   url:'www.kommersant.ru' },
+		{ country:'ru', name:'Nesawissimaja Gaseta', slug:'ng',           url:'www.ng.ru' },
+		{ country:'ru', name:'Wedomosti',            slug:'vedomosti',    url:'www.vedomosti.ru' },
+		{ country:'ru', name:'Gaseta',               slug:'gzt',          url:'gzt.ru' },
+
+		{ country:'fi', name:'Helsingin Sanomat',  slug:'hs',                url:'www.hs.fi' },
+		{ country:'fi', name:'Aamulehti',          slug:'aamulehti',         url:'www.aamulehti.fi' },
+		{ country:'fi', name:'Abo Underrattelser', slug:'abounderrattelser', url:'abounderrattelser.fi' },
+		{ country:'fi', name:'HBL',                slug:'hbl',               url:'www.hbl.fi' },
+		{ country:'fi', name:'Ilta Sanomat',       slug:'is',                url:'www.is.fi' },
+		{ country:'fi', name:'Iltalehti',          slug:'iltalehti',         url:'www.iltalehti.fi' },
+		{ country:'fi', name:'Kansan Uutiset',     slug:'kansanuutiset',     url:'www.kansanuutiset.fi' },
+		{ country:'fi', name:'Kaleva',             slug:'kaleva',            url:'www.kaleva.fi' },
+
 	],
 	words: [
+		// Begriffe
+		{ name:'war', us:/\bwar\b/gi, },
+		{ name:'invasion', us:/\binvasion/gi, },
+		{ name:'military operation', us:/\bmilitary operation/gi, },
 		// Orte
 		{ name:'ukrain', us:/\bukrain/gi, },
 		{ name:'kyiv', us:/\bkyiv/gi, de:/\bkiew/gi, fr:/\bkiev/gi, pl:/\bkij[oó]w/gi, },
@@ -70,6 +95,7 @@ const config = {
 		{ name:'luhansk', us:/\bluhansk/gi, fr:/\blouhansk/gi, pl:/\b[lł]uga[nń]sk/gi, },
 		{ name:'chernihiv', us:/\bchernihiv/gi, de:/\btschernihiw/gi, fr:/\btchernihiv/gi, pl:/\bczernih[oó]w/gi, },
 		{ name:'donetsk', us:/\bdonetsk/gi, de:/\bdonezk/gi, pl:/\bdonieck/gi, },
+		{ name:'lviv', us:/\blviv/gi, de:/\blwiw/gi, pl:/\blw[oó]w/gi, },
 		{ name:'chernobyl', us:/\bch[eo]rnobyl/gi, de:/\btsch[eo]rnobyl/gi, fr:/\btch[eo]rnobyl/gi, pl:/\bczarnobyl/gi, },
 		// ukrainische Personen
 		{ name:'zelensk', us:/\bzelensk/gi, de:/\bselensk/gi, pl:/\bze[lł]ensk/gi, },
@@ -77,7 +103,9 @@ const config = {
 		// russland
 		{ name:'putin', us:/\bputin/gi, fr:/\bpoutine/gi, },
 		{ name:'kremlin', us:/\bkremlin/gi, de:/\bkreml/gi, pl:/\bkreml/gi, },
-		{ name:'russia', us:/\brussia/gi, de:/\bruss(isch|land)/gi, fr:/\brussi?e/gi, pl:/\bros(ja|sij|yjsk)/gi, },
+		{ name:'russia', us:/\brussia/gi, de:/\bruss(isch|land)/gi, fr:/\brussi?e/gi, pl:/\bros(ja|sij|yjsk)/gi, ru:false },
+
+
 	],
 }
 

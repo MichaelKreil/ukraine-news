@@ -21,6 +21,7 @@ async function start() {
 		let cc = todo.medium.country;
 		for (let word of config.words) {
 			let regex = word[cc] ?? word.us;
+			if (regex === false) continue;
 			let count = countResults(html.matchAll(regex));
 
 			wordCountryMatrix.set([word.name, todo.medium.country], count);
