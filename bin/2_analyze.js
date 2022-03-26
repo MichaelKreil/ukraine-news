@@ -8,7 +8,7 @@ const config = require('../config.js')
 start()
 
 async function start() {
-	let timelinesByMedia = new Database();
+	let timelinesByMedia = [];
 	let wordCountryMatrix = new Database();
 
 	for (let [i, todo] of config.todos.entries()) {
@@ -24,11 +24,23 @@ async function start() {
 			let count = countResults(html.matchAll(regex));
 
 			wordCountryMatrix.set([word.name, todo.medium.country], count);
+
+			let i = todo.medium.index;
+			if (!timelinesByMedia[i]) timelinesByMedia[i] = { medium:todo.medium, list:new Map() }
+			if (!timelinesByMedia[i].list.has(todo.date)) {
+				timelinesByMedia[i].list.set(todo.date, { date:todo.date, value:count })
+			} else {
+				timelinesByMedia[i].list.get(todo.date).value += count;
+			}
+
 		}
-		//console.log(todo);
-		//process.exit();
 	}
 
+	timelinesByMedia.forEach(t => t.list = Array.from(t.list.values()).sort((a,b) => (a.date < b.date) ? -1 : 1));
+	fs.writeFileSync(path.resolve(__dirname, '../docs/data.json'), JSON.stringify(timelinesByMedia));
+
+	console.log();
+	//console.dir(timelinesByMedia, {depth:5});
 	console.log(wordCountryMatrix.getMatrix());
 }
 
@@ -40,33 +52,42 @@ function countResults(iterator) {
 
 function Database() {
 	let columnValues = [];
-	let data = [];
-	return { set, getMatrix }
+	let data = new Map();
+	return { set, getArrays, getMatrix }
 
 	function getMatrix() {
 		if (columnValues.length !== 2) throw Error();
-		let matrix = [['']].concat(data);
-		matrix = matrix.map(row => [''].concat(row));
+		let matrix = [[]];
+		let rows = Array.from(columnValues[0].values()).sort();
+		let cols = Array.from(columnValues[1].values()).sort();
 
-		for (let [t,i] of columnValues[0].entries()) matrix[i+1][0] = t;
-		for (let [t,i] of columnValues[1].entries()) matrix[0][i+1] = t;
+		cols.forEach((tx,x) => matrix[0][x+1] = tx);
+		rows.forEach((ty,y) => {
+			matrix[y+1] = [ty]
+			cols.forEach((tx,x) => matrix[y+1][x+1] = data.get(ty+','+tx))
+		})
 
 		return matrix.map(r => r.join('\t')).join('\n');
+	}
+
+	function getArrays() {
+		if (columnValues.length !== 2) throw Error();
+		let rows = Array.from(columnValues[0].values()).sort();
+		let cols = Array.from(columnValues[1].values()).sort();
+
+		return rows.map(obj => ({
+			obj,
+			list:cols.map(x => ({x, v: data.get(obj.toString()+','+x.toString())}))
+		}))
 	}
 
 	function set(keys, count) {
 		let list = data;
 		keys.forEach((key,col) => {
-			let cv = (columnValues[col] ??= new Map());
-			if (!cv.has(key)) cv.set(key, cv.size);
-			let i = cv.get(key);
-			if (col < keys.length-1) {
-				list = (list[i] ??= []);
-			} else {
-				// last column
-				list[i] = (list[i] ?? 0) + count;
-			}
+			let cv = (columnValues[col] ??= new Set());
+			if (!cv.has(key)) cv.add(key);
 		})
-
+		let key = keys.join(',');
+		data.set(key, (data.get(key) ?? 0)+count);
 	}
 }

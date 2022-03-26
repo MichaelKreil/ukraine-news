@@ -62,18 +62,18 @@ const config = {
 	words: [
 		// Orte
 		{ name:'ukrain', us:/\bukrain/gi, },
-		{ name:'kyiv', us:/\bkyiv/gi, de:/\bkiew/gi, fr:/\bkiev/gi, pl:/\bkijów/gi, },
-		{ name:'odessa', us:/\bodessa/gi, },
-		{ name:'kharkiv', us:/\bkharkiv/gi, de:/\bcharkiw/gi, pl:/\bcharków/gi, },
-		{ name:'kherson', us:/\bkherson/gi, de:/\bcherson/gi, pl:/\bchersoń/gi, },
+		{ name:'kyiv', us:/\bkyiv/gi, de:/\bkiew/gi, fr:/\bkiev/gi, pl:/\bkij[oó]w/gi, },
+		{ name:'odessa', us:/\bodessa/gi, pl:/\bodess[ay]/gi, },
+		{ name:'kharkiv', us:/\bkharkiv/gi, de:/\bcharkiw/gi, pl:/\bchark[oó]w/gi, },
+		{ name:'kherson', us:/\bkherson/gi, de:/\bcherson/gi, pl:/\bcherso[nń]/gi, },
 		{ name:'mariupol', us:/\bmariupol/gi, fr:/\bmarioupol/gi, },
-		{ name:'luhansk', us:/\bluhansk/gi, fr:/\blouhansk/gi, pl:/\bługańsk/gi, },
-		{ name:'chernihiv', us:/\bchernihiv/gi, de:/\btschernihiw/gi, fr:/\btchernihiv/gi, pl:/\bczernihów/gi, },
+		{ name:'luhansk', us:/\bluhansk/gi, fr:/\blouhansk/gi, pl:/\b[lł]uga[nń]sk/gi, },
+		{ name:'chernihiv', us:/\bchernihiv/gi, de:/\btschernihiw/gi, fr:/\btchernihiv/gi, pl:/\bczernih[oó]w/gi, },
 		{ name:'donetsk', us:/\bdonetsk/gi, de:/\bdonezk/gi, pl:/\bdonieck/gi, },
 		{ name:'chernobyl', us:/\bch[eo]rnobyl/gi, de:/\btsch[eo]rnobyl/gi, fr:/\btch[eo]rnobyl/gi, pl:/\bczarnobyl/gi, },
 		// ukrainische Personen
-		{ name:'zelensk', us:/\bzelensk/gi, de:/\bselensk/gi, pl:/\bZełensk/gi, },
-		{ name:'klitschko', us:/\bklitschko/gi, pl:/\bk(ły|li)czko/gi, },
+		{ name:'zelensk', us:/\bzelensk/gi, de:/\bselensk/gi, pl:/\bze[lł]ensk/gi, },
+		{ name:'klitschko', us:/\bklitschko/gi, pl:/\bk[lł][iy]czko/gi, },
 		// russland
 		{ name:'putin', us:/\bputin/gi, fr:/\bpoutine/gi, },
 		{ name:'kremlin', us:/\bkremlin/gi, de:/\bkreml/gi, pl:/\bkreml/gi, },
@@ -82,10 +82,11 @@ const config = {
 }
 
 const dayMin = Math.round(Date.parse(config.dateMin)/86400000);
-const dayMax = Math.round(Date.now()/86400000-2);
+const dayMax = Math.round(Date.now()/86400000-1.5);
 config.todos = [];
 
-for (let medium of config.media) {
+for (let [index, medium] of config.media.entries()) {
+	medium.index = index;
 	medium.slug = medium.country+'_'+medium.slug;
 
 	const cacheFolder = path.resolve(__dirname, 'cache/'+medium.slug);
@@ -97,8 +98,8 @@ for (let medium of config.media) {
 		config.todos.push({
 			medium,
 			date,
-			cacheFilenameApi:  cacheFilename+'-api.br',
-			cacheFilenameHtml: cacheFilename+'-html.br',
+			cacheFilenameApi:  cacheFilename+'.json.br',
+			cacheFilenameHtml: cacheFilename+'.html.br',
 		});
 	}
 }
