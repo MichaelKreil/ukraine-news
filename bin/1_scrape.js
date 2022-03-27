@@ -4,7 +4,7 @@ const fs = require('fs');
 const zlib = require('zlib');
 const path = require('path');
 const config = require('../config.js')
-const { fetch, wait } = require('./helper.js');
+const { fetchCached, wait } = require('./helper.js');
 
 start()
 
@@ -40,19 +40,8 @@ async function start() {
 			continue;
 		}
 
-		let htmlResult = await fetchCached(apiResult.url, cacheFilenameHtml);
+		await wait(5000);
+		await fetchCached(apiResult.url, cacheFilenameHtml);
+		await wait(5000);
 	}
-}
-
-async function fetchCached(url, filename) {
-	if (fs.existsSync(filename)) return zlib.brotliDecompressSync(fs.readFileSync(filename));
-
-	let buffer = fetch(url);
-
-	fs.writeFileSync(filename, zlib.brotliCompressSync(buffer, {params:{[zlib.constants.BROTLI_PARAM_QUALITY]:zlib.constants.BROTLI_MAX_QUALITY}}));
-
-	// be very nice to the archive api
-	wait(5000);
-
-	return buffer;
 }
