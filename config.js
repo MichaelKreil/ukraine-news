@@ -75,34 +75,39 @@ const config = {
 		{ country:'fi', name:'Iltalehti',          slug:'iltalehti',         url:'www.iltalehti.fi', $page:'.front' },
 		{ country:'fi', name:'Kansan Uutiset',     slug:'kansanuutiset',     url:'www.kansanuutiset.fi', $page:'#cb-container' },
 		{ country:'fi', name:'Kaleva',             slug:'kaleva',            url:'www.kaleva.fi', $page:'#main-content' },
-
+	],
+	countries: [
+		{ code:'de', lang:'de' },
+		{ code:'us', lang:'en' },
+		{ code:'uk', lang:'en' },
+		{ code:'fr', lang:'fr' },
+		{ code:'pl', lang:'pl' },
+		{ code:'ru', lang:'ru' },
+		{ code:'fi', lang:'fi' },
 	],
 	words: [
 		// Begriffe
-		{ name:'war', us:/\bwar\b/gi, },
-		{ name:'invasion', us:/\binvasion/gi, },
-		{ name:'military operation', us:/\bmilitary operation/gi, },
+		{ name:'War', us:/\bwar\b/gi, de:/\bkrieg/gi, fr:/\bguerre/gi, pl:/\bwojna/gi, ru:/Война/gi, fi:/\bsota/gi },
+		{ name:'Invasion', us:/\binvasion/gi, pl:/\binwazja/gi, ru:/вторжение/gi, fi:/maahantunkeutuminen/gi },
 		// Orte
-		{ name:'ukrain', us:/\bukrain/gi, },
-		{ name:'kyiv', us:/\bkyiv/gi, de:/\bkiew/gi, fr:/\bkiev/gi, pl:/\bkij[oó]w/gi, },
-		{ name:'odessa', us:/\bodessa/gi, pl:/\bodess[ay]/gi, },
-		{ name:'kharkiv', us:/\bkharkiv/gi, de:/\bcharkiw/gi, pl:/\bchark[oó]w/gi, },
-		{ name:'kherson', us:/\bkherson/gi, de:/\bcherson/gi, pl:/\bcherso[nń]/gi, },
-		{ name:'mariupol', us:/\bmariupol/gi, fr:/\bmarioupol/gi, },
-		{ name:'luhansk', us:/\bluhansk/gi, fr:/\blouhansk/gi, pl:/\b[lł]uga[nń]sk/gi, },
-		{ name:'chernihiv', us:/\bchernihiv/gi, de:/\btschernihiw/gi, fr:/\btchernihiv/gi, pl:/\bczernih[oó]w/gi, },
-		{ name:'donetsk', us:/\bdonetsk/gi, de:/\bdonezk/gi, pl:/\bdonieck/gi, },
-		{ name:'lviv', us:/\blviv/gi, de:/\blwiw/gi, pl:/\blw[oó]w/gi, },
-		{ name:'chernobyl', us:/\bch[eo]rnobyl/gi, de:/\btsch[eo]rnobyl/gi, fr:/\btch[eo]rnobyl/gi, pl:/\bczarnobyl/gi, },
+		{ name:'Ukraine', us:/\bukrain/gi, ru:/украин/gi },
+		{ name:'Kyiv', us:/\bkyiv/gi, de:/\bkiew/gi, fr:/\bkiev/gi, pl:/\bkij[oó]w/gi, ru:/киев/gi, fi:/\bkiova/gi },
+		{ name:'Odessa', us:/\bodessa/gi, pl:/\bodess[ay]/gi, ru:/одесса/gi },
+		{ name:'Kharkiv', us:/\bkharkiv/gi, de:/\bcharkiw/gi, pl:/\bchark[oó]w/gi, ru:/харьков/gi, fi:/\bharkova/gi },
+		{ name:'Kherson', us:/\bkherson/gi, de:/\bcherson/gi, pl:/\bcherso[nń]/gi, ru:/херсон/gi, fi:/\bh.erson/gi },
+		{ name:'Mariupol', us:/\bmariupol/gi, fr:/\bmarioupol/gi, ru:/мариуполь/gi, },
+		{ name:'Luhansk', us:/\bluhansk/gi, fr:/\blouhansk/gi, pl:/[lł]uga[nń]sk/gi, ru:/луганск/gi },
+		{ name:'Chernihiv', us:/\bchernihiv/gi, de:/\btschernihiw/gi, fr:/\btchernihiv/gi, pl:/\bczernih[oó]w/gi, ru:/чернигов/gi, fi:/\btšernihiv/gi },
+		{ name:'Donetsk', us:/\bdonetsk/gi, de:/\bdonezk/gi, pl:/\bdonieck/gi, ru:/донецк/gi },
+		{ name:'Lviv', us:/\blviv/gi, de:/\blwiw/gi, pl:/\blw[oó]w/gi, ru:/львов/gi },
+		{ name:'Chernobyl', us:/\bch[eo]rnobyl/gi, de:/\btsch[eo]rnobyl/gi, fr:/\btch[eo]rnobyl/gi, pl:/\bczarnobyl/gi, ru:/чернобыль/gi, fi:/\btšernobyl/gi },
 		// ukrainische Personen
-		{ name:'zelensk', us:/\bzelensk/gi, de:/\bselensk/gi, pl:/\bze[lł]ensk/gi, },
-		{ name:'klitschko', us:/\bklitschko/gi, pl:/\bk[lł][iy]czko/gi, },
+		{ name:'Volodymyr Zelenskyy', us:/\bzelensk/gi, de:/\bselensk/gi, pl:/\bze[lł]ensk/gi, ru:/зеленский/gi },
+		{ name:'Vitali Klitschko', us:/\bklitschko/gi, pl:/\bk[lł][iy]czko/gi, ru:/кличко/gi, fi:/\bklytško/gi },
 		// russland
-		{ name:'putin', us:/\bputin/gi, fr:/\bpoutine/gi, },
-		{ name:'kremlin', us:/\bkremlin/gi, de:/\bkreml/gi, pl:/\bkreml/gi, },
-		{ name:'russia', us:/\brussia/gi, de:/\bruss(isch|land)/gi, fr:/\brussi?e/gi, pl:/\bros(ja|sij|yjsk)/gi, ru:false },
-
-
+		{ name:'Vladimir Putin', us:/\bputin/gi, fr:/\bpoutine/gi, ru:/путин/gi },
+		{ name:'Kremlin', us:/\bkremlin/gi, de:/\bkreml/gi, pl:/\bkreml/gi, ru:/кремль/gi, fi:/\bkreml/gi },
+		{ name:'Russia', us:/\brussia/gi, de:/\bruss(isch|land)/gi, fr:/\brussi?e/gi, pl:/\bros(ja|sij|yjsk)/gi, ru:false, fi:/\bvenäjä/gi },
 	],
 }
 
@@ -126,6 +131,15 @@ for (let [index, medium] of config.media.entries()) {
 			cacheFilenameApi:  cacheFilename+'.json.br',
 			cacheFilenameHtml: cacheFilename+'.html.br',
 		});
+	}
+}
+
+for (let word of config.words) {
+	for (let country of config.countries) {
+		let code = country.code;
+		if (word[code]) continue;
+		if (word[code] === false) continue;
+		word[code] = word.us;
 	}
 }
 

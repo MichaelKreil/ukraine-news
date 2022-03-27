@@ -3,6 +3,7 @@
 const fs = require('fs');
 const zlib = require('zlib');
 const path = require('path');
+const cheerio = require('cheerio');
 const config = require('../config.js')
 
 start()
@@ -18,11 +19,12 @@ async function start() {
 		let html = zlib.brotliDecompressSync(fs.readFileSync(todo.cacheFilenameHtml));
 		html = html.toString();
 
+		html = cheerio.load(html)(todo.medium.$page).text();
+
 		let cc = todo.medium.country;
 		for (let word of config.words) {
-			let regex = word[cc] ?? word.us;
-			if (regex === false) continue;
-			let count = countResults(html.matchAll(regex));
+			if (word[cc] === false) continue;
+			let count = countResults(html.matchAll(word[cc]));
 
 			wordCountryMatrix.set([word.name, todo.medium.country], count);
 

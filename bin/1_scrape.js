@@ -2,10 +2,9 @@
 
 const fs = require('fs');
 const zlib = require('zlib');
-const http = require('http');
-const https = require('https');
 const path = require('path');
 const config = require('../config.js')
+const { fetch, wait } = require('./helper.js');
 
 start()
 
@@ -45,25 +44,15 @@ async function start() {
 	}
 }
 
-function fetchCached(url, filename) {
+async function fetchCached(url, filename) {
 	if (fs.existsSync(filename)) return zlib.brotliDecompressSync(fs.readFileSync(filename));
 
-	return new Promise(resolve => {
-		let protocol = url.startsWith('https') ? https : http;
+	let buffer = fetch(url);
 
-		protocol.get(url, response => {
-			if (response.statusCode !== 200) {
-				throw Error('status code: '+response.statusCode);
-			}
-			let buffers = [];
-			response.on('data', chunk => buffers.push(chunk));
-			response.on('end', () => {
-				buffers = Buffer.concat(buffers);
-				fs.writeFileSync(filename, zlib.brotliCompressSync(buffers, {params:{[zlib.constants.BROTLI_PARAM_QUALITY]:zlib.constants.BROTLI_MAX_QUALITY}}));
+	fs.writeFileSync(filename, zlib.brotliCompressSync(buffer, {params:{[zlib.constants.BROTLI_PARAM_QUALITY]:zlib.constants.BROTLI_MAX_QUALITY}}));
 
-				// be very nice to the archive api
-				setTimeout(() => resolve(buffers), 5000);
-			})
-		})
-	})
+	// be very nice to the archive api
+	wait(5000);
+
+	return buffer;
 }

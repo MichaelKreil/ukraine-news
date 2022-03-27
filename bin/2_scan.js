@@ -6,10 +6,12 @@ const util = require('util');
 const path = require('path');
 const cheerio = require('cheerio');
 const config = require('../config.js')
+const { fetch } = require('./helper.js');
 
 start()
 
 async function start() {
+	console.log('check media')
 	for (let [i, todo] of config.todos.entries()) {
 		if (todo.medium.$page) continue;
 
@@ -26,6 +28,41 @@ async function start() {
 		console.log($);
 		process.exit();
 	}
+
+	console.log('check words')
+	for (let word of config.words) {
+		let html = await fetch('https://en.wikipedia.org/wiki/'+word.name.replace(/\s/g, '_'));
+		let $ = cheerio.load(html.toString());
+
+		let titles = new Map();
+		titles.set('en', $('title').text().replace(/\s+–.*/, ''))
+		$('.interlanguage-link a').each((i,a) => {
+			a = $(a);
+			let title = a.attr('title').replace(/\s+–.*/, '');
+			let code = a.attr('lang');
+			titles.set(code, title);
+		})
+
+		for (let country of config.countries) {
+			let regex = word[country.code];
+			if (regex === false) continue;
+			let title = titles.get(country.lang);
+			if (!title) {
+				if ((country.lang === 'fi') && (word.name === 'Invasion')) continue; // no wiki article
+				console.log(titles);
+				console.log(country);
+				throw Error('title not found');
+			}
+			if (!title.match(regex)) {
+				console.log('country', country);
+				console.log('title', title);
+				console.log('regex', regex);
+				console.log('match', title.match(regex));
+				throw Error('regex does not match');
+			}
+		}
+	}
+
 	console.log('everything is fine')
 }
 
