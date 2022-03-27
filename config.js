@@ -65,9 +65,7 @@ const config = {
 		{ country:'ru', name:'Trud',                 slug:'trud',         url:'www.trud.ru', $page:'.off-canvas-content', convert:buf => new Iconv('CP1251', 'UTF-8').convert(buf) },
 		{ country:'ru', name:'Rossijskaja Gaseta',   slug:'rg',           url:'rg.ru', $page:'.l-page__body' },
 		{ country:'ru', name:'Nesawissimaja Gaseta', slug:'ng',           url:'www.ng.ru', $page:'#mainpage' },
-		{ country:'ru', name:'Wedomosti',            slug:'vedomosti',    url:'www.vedomosti.ru', $page:'.page' },
-		{ country:'ru', name:'Gaseta',               slug:'gzt',          url:'gzt.ru', $page:'.main' },
-
+		
 		{ country:'fi', name:'Helsingin Sanomat',  slug:'hs',                url:'www.hs.fi', $page:'main' },
 		{ country:'fi', name:'Aamulehti',          slug:'aamulehti',         url:'www.aamulehti.fi', $page:'main' },
 		{ country:'fi', name:'Abo Underrattelser', slug:'abounderrattelser', url:'abounderrattelser.fi', $page:'#main-content' },

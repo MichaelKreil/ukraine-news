@@ -22,6 +22,7 @@ async function start() {
 		html = html.toString();
 
 		let text = cheerio.load(html)(todo.medium.$page).text();
+		text = text.replace(/\s+/gm, ' ');
 
 		let cc = todo.medium.country;
 		for (let word of config.words) {
@@ -33,7 +34,7 @@ async function start() {
 			let i = todo.medium.index;
 			if (!timelinesByMedia[i]) timelinesByMedia[i] = { medium:todo.medium, list:new Map() }
 			if (!timelinesByMedia[i].list.has(todo.date)) {
-				timelinesByMedia[i].list.set(todo.date, { date:todo.date, value:count })
+				timelinesByMedia[i].list.set(todo.date, { date:todo.date, value:count, length:text.length  })
 			} else {
 				timelinesByMedia[i].list.get(todo.date).value += count;
 			}

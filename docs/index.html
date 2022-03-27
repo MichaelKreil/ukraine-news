@@ -4,30 +4,55 @@
 		<meta charset="utf-8">
 		<title></title>
 		<script src="d3.min.js" charset="utf-8"></script>
+		<style>
+			body {
+				font-family: sans-serif;
+				font-size: 14px;
+				margin-bottom: 100px;
+			}
+			h1 {
+				text-align: center;
+				margin: 100px 0 50px;
+			}
+			h2 {
+				text-align: center;
+				font-size: 18px;
+				margin: 100px 0 0px;
+			}
+			p {
+				max-width: 600px;
+				margin: 30px auto;
+				line-height: 1.3em
+			}
+			select {
+				font-size: 20px;
+			}
+		</style>
 	</head>
 	<body>
-		<h1></h1>
+		<h1>Wird uns der Krieg morgen noch interessieren?</h1>
 
-		<h2></h2>
-		<div id="linechart1"></div>
+		<p>Der Krieg in der Ukraine wird vorraussichtlich Monate oder sogar Jahre andauern. Weil viele Menschen nicht direkt betroffen sind, können wir davon ausgehen, dass in unserer Gesellschaft ein Gewöhnungseffekt eintreten wird. Im gleichen Maße wird die Berichterstattung abnehmen und andere Themen werden relevanter.
+		<br>Diesen Effekt möchte ich beobachten und dabei unterschiedliche Medien in unterschiedlichen Ländern vergleichen.</p>
 
-		<h2></h2>
-		<div id="linechart2"></div>
+		<p>Dazu werden die Frontseiten zahlreicher Nachrichtenseiten täglich von archive.org geladen und die Häufigkeit thematischer Begriffe gezählt. Diese Begriffe sind (natürlich in der jeweiligen Landessprache der Nachrichtenseite): Krieg, Invasion, Ukraine, Kiew, Odessa, Charkiw, Cherson, Mariupol, Luhansk, Tschernihiw, Donezk, Lwiw, Tschernobyl, Selenskyj, Klitschko, Putin, Kreml, Russland.</p>
 
-		<h2></h2>
-		<div id="linechart3"></div>
+		<h2>Medien in
+			<select id="selectCountry">
+				<option value="de">Deutschland</option>
+				<option value="fr">Frankreich</option>
+				<option value="us">USA</option>
+				<option value="uk">Großbritannien</option>
+				<option value="pl">Polen</option>
+				<option value="fi">Finnland</option>
+				<option value="ru">Russland</option>
+			</select>
+		</h2>
 
-		<h2></h2>
-		<div id="linechart4"></div>
+		<div id="linechartCountry"></div>
 
-		<h2></h2>
-		<div id="linechart5"></div>
-
-		<h2></h2>
-		<div id="linechart6"></div>
-
-		<h2></h2>
-		<div id="linechart7"></div>
+		<h2>Ländervergleich</h2>
+		<div id="linechartCountries"></div>
 
 		<script type="text/javascript">
 			setTimeout(start, 0);
@@ -63,17 +88,47 @@
 					})
 				})
 
-				drawCountry('#linechart1', 'Deutschland', 'de')
-				drawCountry('#linechart2', 'Frankreich', 'fr')
-				drawCountry('#linechart3', 'Polen', 'pl')
-				drawCountry('#linechart4', 'Groß Britannien', 'uk')
-				drawCountry('#linechart5', 'Vereinigte Staaten von A', 'us')
+
+
+				let selectCountry = d3.select('#selectCountry');
+				selectCountry.on('change', () => {
+					let selected = selectCountry.node().selectedOptions[0];
+					let name = selected.innerText;
+					let code = selected.value;
+					drawCountry(name, code);
+				})
+				selectCountry.dispatch('change')
+
+				drawAllCountries();
+
+				function drawAllCountries() {
+					let countries = [];
+					selectCountry.selectAll('option').each(function (a,b,c) {
+						let name = this.innerText;
+						let code = this.value;
+
+						let list = new Map();
+						data.forEach(e => {
+							if (e.medium.country !== code) return;
+							e.list.forEach(p => {
+								if (!list.has(p.date)) list.set(p.date, { xValue:p.xValue, ySmooth:0, count:0 })
+								let p2 = list.get(p.date);
+								p2.ySmooth += p.ySmooth;
+								p2.count ++;
+							})
+						})
+						list = Array.from(list.values());
+						list.forEach(p => p.ySmooth /= p.count)
+						countries.push({ name, color:'#000', opacity:0.3, list })
+					});
+					draw('#linechartCountries', countries);
+				}
 
 
 
-				function drawCountry(query, name, cc) {
+				function drawCountry(name, cc) {
 					let data1 = data.filter(e => e.medium.country === cc)
-						.map(e => Object.assign({}, e, {name:e.medium.name, dots:true, opacity:0.1, color: '#0069b4'}))
+						.map(e => Object.assign({}, e, {name:e.medium.name, dots:true, opacity:0.15, color: '#0069b4'}))
 					let list = new Map();
 					data1.forEach(e => e.list.forEach(p => {
 						if (!list.has(p.date)) list.set(p.date, { xValue:p.xValue, ySmooth:0, count:0 })
@@ -84,7 +139,7 @@
 					list = Array.from(list.values());
 					list.forEach(p => p.ySmooth /= p.count)
 					data1.push({ name, color:'#000', opacity:1, list })
-					draw(query, data1);
+					draw('#linechartCountry', data1);
 
 				}
 
@@ -103,6 +158,8 @@
 						.style('height', canvasHeight+'px')
 						.style('overflow', 'hidden')
 
+					wrapper.select('svg').remove();
+
 					let svg = wrapper.append('svg')
   						.attr('width',  canvasWidth)
   						.attr('height', canvasHeight)
@@ -120,7 +177,7 @@
 
 					svg.append('g')
 						.attr('transform', `translate(${margin.left},${canvasHeight-margin.bottom})`)
-						.call(d3.axisBottom(x).tickFormat(d3.timeFormat('%b-%e')));
+						.call(d3.axisBottom(x).tickFormat(d3.timeFormat('%e %b')));
 
 					svg.append('g')
 						.attr('transform', `translate(${margin.left},${margin.top})`)
