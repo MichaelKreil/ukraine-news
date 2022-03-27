@@ -27,7 +27,7 @@ async function start() {
 
 		let apiResult = apiResponse.archived_snapshots.closest;
 		try {
-			if (apiResult.status !== '200') throw Error();
+			if (!apiResult.status.startsWith('20')) throw Error();
 			if (!apiResult.available) throw Error();
 		} catch (e) {
 			console.log(apiUrl);
