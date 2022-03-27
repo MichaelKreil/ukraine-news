@@ -34,7 +34,6 @@ async function fetchCached(url, filename) {
 	return buffer;
 }
 
-
 function wait(time) {
 	return new Promise(res => setTimeout(res, time));
 }

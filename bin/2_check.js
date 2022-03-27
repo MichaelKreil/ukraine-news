@@ -6,7 +6,7 @@ const util = require('util');
 const path = require('path');
 const cheerio = require('cheerio');
 const config = require('../config.js')
-const { fetch } = require('./helper.js');
+const { fetchCached } = require('./helper.js');
 
 start()
 
@@ -31,7 +31,8 @@ async function start() {
 
 	console.log('check words')
 	for (let word of config.words) {
-		let html = await fetch('https://en.wikipedia.org/wiki/'+word.name.replace(/\s/g, '_'));
+		let slug = word.name.replace(/\s/g, '_');
+		let html = await fetchCached('https://en.wikipedia.org/wiki/'+slug, resolve(__dirname, '../tmp/'+slug+'.html'));
 		let $ = cheerio.load(html.toString());
 
 		let titles = new Map();
