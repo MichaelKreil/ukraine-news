@@ -61,7 +61,7 @@ const config = {
 
 		{ country:'ru', name:'Moskowski Komsomolez', slug:'mk',           url:'www.mk.ru', $page:'.wraper__content' },
 		{ country:'ru', name:'Komsomolskaja Prawda', slug:'kp',           url:'www.kp.ru', $page:'#app' },
-		{ country:'ru', name:'Trud',                 slug:'trud',         url:'www.trud.ru', $page:'[data-off-canvas-content]' },
+		{ country:'ru', name:'Trud',                 slug:'trud',         url:'www.trud.ru', $page:'.off-canvas-content' },
 		{ country:'ru', name:'Rossijskaja gaseta',   slug:'rg',           url:'rg.ru', $page:'.l-page__body' },
 		{ country:'ru', name:'Nesawissimaja Gaseta', slug:'ng',           url:'www.ng.ru', $page:'#mainpage' },
 		{ country:'ru', name:'Wedomosti',            slug:'vedomosti',    url:'www.vedomosti.ru', $page:'.page' },
@@ -88,7 +88,7 @@ const config = {
 	words: [
 		// Begriffe
 		{ name:'War', us:/\bwar\b/gi, de:/\bkrieg/gi, fr:/\bguerre/gi, pl:/\bwojna/gi, ru:/Война/gi, fi:/\bsota/gi },
-		{ name:'Invasion', us:/\binvasion/gi, pl:/\binwazja/gi, ru:/вторжение/gi, fi:/maahantunkeutuminen/gi },
+		{ name:'Invasion', us:/\binvasion/gi, pl:/\binwazja/gi, ru:/вторжение/gi, fi:/invaasion/gi },
 		// Orte
 		{ name:'Ukraine', us:/\bukrain/gi, ru:/украин/gi },
 		{ name:'Kyiv', us:/\bkyiv/gi, de:/\bkiew/gi, fr:/\bkiev/gi, pl:/\bkij[oó]w/gi, ru:/киев/gi, fi:/\bkiova/gi },
