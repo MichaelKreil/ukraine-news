@@ -34,7 +34,7 @@ async function start() {
 			let i = todo.medium.index;
 			if (!timelinesByMedia[i]) timelinesByMedia[i] = { medium:todo.medium, list:new Map() }
 			if (!timelinesByMedia[i].list.has(todo.date)) {
-				timelinesByMedia[i].list.set(todo.date, { date:todo.date, value:count, length:text.length  })
+				timelinesByMedia[i].list.set(todo.date, { date:todo.date, value:count  })
 			} else {
 				timelinesByMedia[i].list.get(todo.date).value += count;
 			}
@@ -43,7 +43,7 @@ async function start() {
 	}
 
 	timelinesByMedia.forEach(t => t.list = Array.from(t.list.values()).sort((a,b) => (a.date < b.date) ? -1 : 1));
-	fs.writeFileSync(path.resolve(__dirname, '../docs/data.json'), JSON.stringify(timelinesByMedia));
+	fs.writeFileSync(path.resolve(__dirname, '../docs/data.json'), JSON.stringify(timelinesByMedia, null, '\t'));
 
 	console.log();
 	//console.dir(timelinesByMedia, {depth:5});
