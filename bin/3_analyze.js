@@ -17,14 +17,16 @@ async function start() {
 
 		if (!fs.existsSync(todo.cacheFilenameHtml)) continue;
 		let html = zlib.brotliDecompressSync(fs.readFileSync(todo.cacheFilenameHtml));
+
+		if (todo.medium.convert) html = todo.medium.convert(html);
 		html = html.toString();
 
-		html = cheerio.load(html)(todo.medium.$page).text();
+		let text = cheerio.load(html)(todo.medium.$page).text();
 
 		let cc = todo.medium.country;
 		for (let word of config.words) {
 			if (word[cc] === false) continue;
-			let count = countResults(html.matchAll(word[cc]));
+			let count = countResults(text.matchAll(word[cc]));
 
 			wordCountryMatrix.set([word.name, todo.medium.country], count);
 

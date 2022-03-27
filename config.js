@@ -2,6 +2,7 @@
 
 const path = require('path');
 const fs = require('fs');
+const Iconv = require('iconv').Iconv;
 
 const config = {
 	dateMin: '2022-02-01',
@@ -61,8 +62,8 @@ const config = {
 
 		{ country:'ru', name:'Moskowski Komsomolez', slug:'mk',           url:'www.mk.ru', $page:'.wraper__content' },
 		{ country:'ru', name:'Komsomolskaja Prawda', slug:'kp',           url:'www.kp.ru', $page:'#app' },
-		{ country:'ru', name:'Trud',                 slug:'trud',         url:'www.trud.ru', $page:'.off-canvas-content' },
-		{ country:'ru', name:'Rossijskaja gaseta',   slug:'rg',           url:'rg.ru', $page:'.l-page__body' },
+		{ country:'ru', name:'Trud',                 slug:'trud',         url:'www.trud.ru', $page:'.off-canvas-content', convert:buf => new Iconv('CP1251', 'UTF-8').convert(buf) },
+		{ country:'ru', name:'Rossijskaja Gaseta',   slug:'rg',           url:'rg.ru', $page:'.l-page__body' },
 		{ country:'ru', name:'Nesawissimaja Gaseta', slug:'ng',           url:'www.ng.ru', $page:'#mainpage' },
 		{ country:'ru', name:'Wedomosti',            slug:'vedomosti',    url:'www.vedomosti.ru', $page:'.page' },
 		{ country:'ru', name:'Gaseta',               slug:'gzt',          url:'gzt.ru', $page:'.main' },
