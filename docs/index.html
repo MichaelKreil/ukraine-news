@@ -1,28 +1,31 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="de">
 	<head>
 		<meta charset="utf-8">
-		<title></title>
+		<meta name=viewport content="width=device-width, initial-scale=1">
+		<title>Wie lang ist Krieg interessant?</title>
 		<script src="d3.min.js" charset="utf-8"></script>
 		<style>
 			body {
 				font-family: sans-serif;
 				font-size: 14px;
-				margin-bottom: 100px;
+				margin: 0 0 100px;
+				line-height: 1.3em
 			}
 			h1 {
+				max-width: calc(100vw - 40px);
 				text-align: center;
-				margin: 100px 0 50px;
+				margin: 100px auto 50px;
 			}
 			h2 {
+				max-width: calc(100vw - 40px);
 				text-align: center;
 				font-size: 18px;
-				margin: 100px 0 0px;
+				margin: 50px auto 20px;
 			}
 			p {
-				max-width: 600px;
+				max-width: min(600px, calc(100vw - 40px));
 				margin: 30px auto;
-				line-height: 1.3em
 			}
 			select {
 				font-size: 20px;
@@ -30,14 +33,14 @@
 		</style>
 	</head>
 	<body>
-		<h1>Wird uns der Krieg morgen noch interessieren?</h1>
+		<h1>Wie lang ist Krieg interessant?</h1>
 
-		<p>Der Krieg in der Ukraine wird vorraussichtlich Monate oder sogar Jahre andauern. Weil viele Menschen nicht direkt betroffen sind, können wir davon ausgehen, dass in unserer Gesellschaft ein Gewöhnungseffekt eintreten wird. Im gleichen Maße wird die Berichterstattung abnehmen und andere Themen werden relevanter.
+		<p>Der Krieg in der Ukraine wird vorraussichtlich Monate, vielleicht sogar Jahre andauern. Weil viele Menschen nicht direkt betroffen sind, können wir davon ausgehen, dass in unserer Gesellschaft ein Gewöhnungseffekt eintreten wird. Im gleichen Maße wird die Berichterstattung abnehmen und andere Themen werden relevanter.
 		<br>Diesen Effekt möchte ich beobachten und dabei unterschiedliche Medien in unterschiedlichen Ländern vergleichen.</p>
 
-		<p>Dazu werden die Frontseiten zahlreicher Nachrichtenseiten täglich von archive.org geladen und die Häufigkeit thematischer Begriffe gezählt. Diese Begriffe sind (natürlich in der jeweiligen Landessprache der Nachrichtenseite): Krieg, Invasion, Ukraine, Kiew, Odessa, Charkiw, Cherson, Mariupol, Luhansk, Tschernihiw, Donezk, Lwiw, Tschernobyl, Selenskyj, Klitschko, Putin, Kreml, Russland.</p>
+		<p>Dazu werden die Frontseiten zahlreicher Nachrichtenseiten täglich von archive.org geladen und die Häufigkeit thematischer Begriffe gezählt. Diese Begriffe sind: Krieg, Invasion, Panzer, Ukraine, Kiew, Odessa, Charkiw, Cherson, Mariupol, Luhansk, Tschernihiw, Donezk, Lwiw, Tschernobyl, Selenskyj, Klitschko, Putin, Kreml, Russland (natürlich in der jeweiligen Landessprache der Nachrichtenseite und nur wenn sinnvoll).</p>
 
-		<h2>Medien in
+		<h2>Berichterstattung über den Ukrainekrieg in
 			<select id="selectCountry">
 				<option value="de">Deutschland</option>
 				<option value="fr">Frankreich</option>
@@ -53,6 +56,17 @@
 
 		<h2>Ländervergleich</h2>
 		<div id="linechartCountries"></div>
+
+		<p>
+			Natürlich lässt sich dieser Ansatz in mehrere Richtungen verbessern. Man könnte weitere Medien hinzufügen, weitere Länder und weitere Sprachen.
+		</p>
+		<p>
+			Auch die Methodik, die Anzahl der relevanten Wörter zu zählen, ließe sich verbessern: Das Wort "Kreml" ist aktuell in der deutschen Berichterstattung ein sicherer Marker, dass es um den Krieg in der Ukraine geht. Jedoch in russischen Medien gibt es auch andere Themen, die das Wort "Kreml" enthalten. Dort ist "Kiew" ein sicherer Marker, was wiederum nicht für Medien in Kiew gilt, usw.<br>
+			Kurz: Ich suche Verbesserungsvorschläge, wie man die Berichterstattung besser nach Themen kategorisieren kann, und das für unterschiedliche Medien, Sprachen und Länder.
+		</p>
+		<p>
+			Code und Daten befinden sich wie immer auf GitHub: <a href="https://github.com/michaelkreil/ukraine-news">github.com/michaelkreil/ukraine-news</a>
+		</p>
 
 		<script type="text/javascript">
 			setTimeout(start, 0);
@@ -145,26 +159,32 @@
 
 				function draw(query, lines) {
 
-					const margin = {top:10, right:180, bottom:30, left:60};
+					const margin = {top:10, right:180, bottom:30, left:40};
 
 					const wrapper = d3.select(query);
-					const width  = Math.round(wrapper.node().offsetWidth - margin.left - margin.right);
+					let offsetWidth = wrapper.node().offsetWidth;
+					let scale  = 1;
+					if (offsetWidth < 700) {
+						scale = offsetWidth/700;
+						offsetWidth = 700;
+					}
+					const width  = Math.round(offsetWidth - margin.left - margin.right);
 					const height = Math.round(width*0.618);
 
 					const canvasWidth  = Math.ceil(width  + margin.left + margin.right);
 					const canvasHeight = Math.ceil(height + margin.top  + margin.bottom);
 
 					wrapper
-						.style('height', canvasHeight+'px')
+						.style('height', Math.round(scale*canvasHeight)+'px')
 						.style('overflow', 'hidden')
 
 					wrapper.select('svg').remove();
 
 					let svg = wrapper.append('svg')
-  						.attr('width',  canvasWidth)
-  						.attr('height', canvasHeight)
-  						.style('width',  canvasWidth+'px')
-  						.style('height', canvasHeight+'px')
+					 	.attr('xmlns', 'http://www.w3.org/2000/svg')
+  						.attr('width', '100%')
+  						.attr('viewBox', [0,0,canvasWidth,canvasHeight].join(' '))
+						.attr('preserveAspectRatio', 'xMidYMid meet');
 
 					// Add X axis --> it is a date format
 					let x = d3.scaleLinear()
