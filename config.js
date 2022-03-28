@@ -131,7 +131,7 @@ for (let [index, medium] of config.media.entries()) {
 	medium.slug = medium.country+'_'+medium.slug;
 	medium.lang ??= config.countries.find(c => c.code === medium.country).lang;
 
-	const cacheFolder = path.resolve(__dirname, 'cache/'+medium.slug);
+	const cacheFolder = path.resolve(__dirname, 'data/'+medium.slug);
 	if (!fs.existsSync(cacheFolder)) fs.mkdirSync(cacheFolder, { recursive:true })
 	for (let day = dayMin; day <= dayMax; day++) {
 		const date = (new Date((day+0.5)*86400000)).toISOString().slice(0,10);

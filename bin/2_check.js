@@ -30,9 +30,11 @@ async function start() {
 	}
 
 	console.log('check words')
+	let folder = path.resolve(__dirname, '../tmp/wikipedia');
+	fs.mkdirSync(folder, {recursive:true});
 	for (let word of config.words) {
 		let slug = word.name.replace(/\s/g, '_');
-		let html = await fetchCached('https://en.wikipedia.org/wiki/'+slug, path.resolve(__dirname, '../tmp/'+slug+'.html'));
+		let html = await fetchCached('https://en.wikipedia.org/wiki/'+slug, path.resolve(folder, slug+'.html'));
 		let $ = cheerio.load(html.toString());
 
 		let titles = new Map();
