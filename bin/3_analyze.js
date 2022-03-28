@@ -5,10 +5,15 @@ const zlib = require('zlib');
 const path = require('path');
 const cheerio = require('cheerio');
 const config = require('../config.js')
+const { Level } = require('level');
 
 start()
 
 async function start() {
+	let folder = path.resolve(__dirname, '../tmp/cached_results');
+	fs.mkdirSync(folder, {recursive:true});
+	let db = new Level(folder, {keyEncoding:'json', valueEncoding:'json'})
+
 	let timelinesByMedia = [];
 	let wordCountryMatrix = new Database();
 
@@ -16,18 +21,26 @@ async function start() {
 		process.stdout.write('\r'+(100*i/config.todos.length).toFixed(1)+'%');
 
 		if (!fs.existsSync(todo.cacheFilenameHtml)) continue;
-		let html = zlib.brotliDecompressSync(fs.readFileSync(todo.cacheFilenameHtml));
-
-		if (todo.medium.convert) html = todo.medium.convert(html);
-		html = html.toString();
-
-		let text = cheerio.load(html)(todo.medium.$page).text();
-		text = text.replace(/\s+/gm, ' ');
 
 		let lang = todo.medium.lang;
+		let text;
 		for (let word of config.words) {
 			if (word[lang] === false) continue;
-			let count = countResults(text.matchAll(word[lang]));
+
+			let key = [
+				todo.cacheFilenameHtml,
+				todo.medium.convert?.name,
+				todo.medium.$page,
+				word[lang].toString()
+			]
+			let count;
+			try {
+				count = await db.get(key)
+			} catch (e) {
+				text ??= getText();
+				count = countResults(text.matchAll(word[lang]));
+				await db.put(key, count);
+			}
 
 			wordCountryMatrix.set([word.name, todo.medium.country], count);
 
@@ -39,6 +52,14 @@ async function start() {
 				timelinesByMedia[i].list.get(todo.date).value += count;
 			}
 
+		}
+
+		function getText() {
+			let html = zlib.brotliDecompressSync(fs.readFileSync(todo.cacheFilenameHtml));
+			if (todo.medium.convert) html = todo.medium.convert(html);
+			html = html.toString();
+			let text = cheerio.load(html)(todo.medium.$page).text();
+			return text.replace(/\s+/gm, ' ');
 		}
 	}
 
