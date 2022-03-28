@@ -3,16 +3,16 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name=viewport content="width=device-width, initial-scale=1">
-		<title>Wie lange interessiert uns der Krieg?</title>
+		<title>Wie lange interessiert uns noch der Krieg?</title>
 
 		<meta name="twitter:card" content="summary_large_image">
 		<meta name="twitter:creator" content="@michaelkreil">
-		<meta name="twitter:title" content="Wie lange interessiert uns der Krieg?">
+		<meta name="twitter:title" content="Wie lange interessiert uns noch der Krieg?">
 		<meta name="twitter:description" content="Der Krieg wird Alltag und die Berichterstattung nimmt ab. Passiert das in allen Ländern in gleichem Maße?">
 		<meta name="twitter:image" content="https://michaelkreil.github.io/ukraine-news/screenshot.png">
 
 		<script src="d3.min.js" charset="utf-8"></script>
-		
+
 		<style>
 			body {
 				font-family: sans-serif;
@@ -41,7 +41,7 @@
 		</style>
 	</head>
 	<body>
-		<h1>Wie lange interessiert uns der Krieg?</h1>
+		<h1>Wie lange interessiert uns noch der Krieg?</h1>
 
 		<p>Der Krieg in der Ukraine wird vorraussichtlich Monate, vielleicht sogar Jahre andauern. Weil viele Menschen nicht direkt betroffen sind, können wir davon ausgehen, dass in unserer Gesellschaft ein Gewöhnungseffekt eintreten wird. Im gleichen Maße wird die Berichterstattung abnehmen und andere Themen werden relevanter.
 		<br>Diesen Effekt möchte ich beobachten und dabei unterschiedliche Medien in unterschiedlichen Ländern vergleichen.</p>
@@ -179,8 +179,8 @@
 					const width  = Math.round(offsetWidth - margin.left - margin.right);
 					const height = Math.round(width*0.618);
 
-					const canvasWidth  = Math.ceil(width  + margin.left + margin.right);
-					const canvasHeight = Math.ceil(height + margin.top  + margin.bottom);
+					const canvasWidth  = Math.round(width  + margin.left + margin.right);
+					const canvasHeight = Math.round(height + margin.top  + margin.bottom);
 
 					wrapper
 						.style('height', Math.round(scale*canvasHeight)+'px')
