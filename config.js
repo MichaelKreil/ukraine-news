@@ -45,7 +45,6 @@ const config = {
 		{ country:'fr', name:'Le Figaro',   slug:'lefigaro',   url:'www.lefigaro.fr', $page:'#fig-page' },
 		{ country:'fr', name:'Le Monde',    slug:'lemonde',    url:'www.lemonde.fr', $page:'[role="main"]' },
 		{ country:'fr', name:'Libération',  slug:'liberation', url:'www.liberation.fr', $page:'#main' },
-		{ country:'fr', name:'L\'Equipe',   slug:'lequipe',    url:'www.lequipe.fr', $page:'#outer-edito-content' },
 		{ country:'fr', name:'Le Parisien', slug:'leparisien', url:'www.leparisien.fr', $page:'#homepage_container' },
 		{ country:'fr', name:'Les Echos',   slug:'lesechos',   url:'www.lesechos.fr', $page:'main' },
 		{ country:'fr', name:'La Croix',    slug:'la-croix',   url:'www.la-croix.com', $page:'main' },
@@ -53,7 +52,7 @@ const config = {
 		{ country:'fr', name:'Le Progrès',  slug:'leprogres',  url:'www.leprogres.fr', $page:'#wrapper' },
 		{ country:'fr', name:'L\'Express',  slug:'lexpress',   url:'www.lexpress.fr', $page:'#pub-cover' },
 
-		{ country:'pl', name:'Fakt',                         slug:'fakt',         url:'fakt.pl', $page:'.grid-container:first' },
+		{ country:'pl', name:'Fakt',                         slug:'fakt',         url:'fakt.pl', $page:'body' },
 		{ country:'pl', name:'Super Express',                slug:'se',           url:'www.se.pl', $page:'.main-content' },
 		{ country:'pl', name:'Rzeczpospolita',               slug:'rp',           url:'www.rp.pl', $page:'body' },
 		{ country:'pl', name:'Dziennik Gazeta Prawna',       slug:'dziennik',     url:'www.dziennik.pl', $page:'#doc' },
