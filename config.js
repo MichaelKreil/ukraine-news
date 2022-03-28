@@ -75,25 +75,21 @@ const config = {
 		{ country:'fi', name:'Kansan Uutiset',     slug:'kansanuutiset',     url:'www.kansanuutiset.fi', $page:'#cb-container' },
 		{ country:'fi', name:'Kaleva',             slug:'kaleva',            url:'www.kaleva.fi', $page:'#main-content' },
 
-		{ country:'ua', name:'Holos Ukrajiny',      slug:'holos',         url:'www.golos.com.ua' },
-		{ country:'ua', name:'Silski wisti',        slug:'silskivisti',   url:'www.silskivisti.kiev.ua/19958/index.ph' },
-		{ country:'ua', name:'ATR',                 slug:'atr',           url:'atr.ua' },
-		{ country:'ua', name:'Ekspres',             slug:'ekspres',       url:'expres.online' },
-		{ country:'ua', name:'Fakty i kommentarii', slug:'fakty',         url:'fakty.ua' },
-		{ country:'ua', name:'Wetschernije Westi',  slug:'gazetavv',      url:'gazetavv.com' },
-		{ country:'ua', name:'ICTV',                slug:'ictv',          url:'ictv.ua/ua' },
-		{ country:'ua', name:'Korrespondent',       slug:'korrespondent', url:'korrespondent.net' },
-		{ country:'ua', name:'Kyiv Post',           slug:'kyivpost',      url:'www.kyivpost.com' },
-		{ country:'ua', name:'Sewodnja',            slug:'segodnya',      url:'www.segodnya.ua' },
-		{ country:'ua', name:'Ukrajina moloda',     slug:'umoloda',       url:'www.umoloda.kiev.ua' },
-		{ country:'ua', name:'Wysokyj Zamok',       slug:'wz',            url:'wz.lviv.ua' },
-		{ country:'ua', name:'Zerkalo nedeli',      slug:'zn',            url:'zn.ua' },
+		{ country:'ua', name:'Holos Ukrajiny',      slug:'holos',         url:'www.golos.com.ua', $page:'body' },
+		{ country:'ua', name:'ATR',                 slug:'atr',           url:'atr.ua', $page:'main' },
+		{ country:'ua', name:'Ekspres',             slug:'ekspres',       url:'expres.online', $page:'main' },
+		{ country:'ua', name:'Fakty i kommentarii', slug:'fakty',         url:'fakty.ua', $page:'.page_cnt' },
+		{ country:'ua', name:'ICTV',                slug:'ictv',          url:'ictv.ua/ua', $page:'.container' },
+		{ country:'ua', name:'Korrespondent',       slug:'korrespondent', url:'ua.korrespondent.net', $page:'.layout-content' },
+		{ country:'ua', name:'Ukrajina moloda',     slug:'umoloda',       url:'www.umoloda.kiev.ua', $page:'#main' },
+		{ country:'ua', name:'Wysokyj Zamok',       slug:'wz',            url:'wz.lviv.ua', $page:'#main' },
+		{ country:'ua', name:'Zerkalo nedeli',      slug:'zn',            url:'zn.ua', $page:'#holder' },
 	],
 	countries: [
 		{ code:'de', lang:'de' },
 		{ code:'us', lang:'en' },
 		{ code:'uk', lang:'en' },
-		{ code:'ua', lang:'ua' },
+		{ code:'ua', lang:'uk' },
 		{ code:'fr', lang:'fr' },
 		{ code:'pl', lang:'pl' },
 		{ code:'ru', lang:'ru' },
@@ -101,27 +97,28 @@ const config = {
 	],
 	words: [
 		// Begriffe
-		{ name:'War', us:/\bwar\b/gi, de:/\bkrieg/gi, fr:/\bguerre/gi, pl:/\bwojna/gi, ru:/Война/gi, fi:/\bsota/gi },
-		{ name:'Invasion', us:/\binvasion/gi, pl:/\binwazja/gi, ru:/вторжение/gi, fi:/invaasion/gi },
+		{ name:'War', en:/\bwar\b/gi, de:/\bkrieg/gi, fr:/\bguerre/gi, pl:/\bwojna/gi, ru:/война/gi, fi:/\bsota/gi, uk:/війна/gi },
+		{ name:'Invasion', en:/\binvasion/gi, pl:/\binwazja/gi, ru:/вторжение/gi, fi:/invaasion/gi, uk:/вторгнення/gi },
+		{ name:'Tank', en:/\btank/gi, de:/\bpanzer/gi, fr:/\bchar\b/gi, pl:/\bczołg/gi, fi:/panssarivaunu/gi, ru:/танк/gi, uk:/танк/gi },
 		// Orte
-		{ name:'Ukraine', us:/\bukrain/gi, ru:/украин/gi },
-		{ name:'Kyiv', us:/\bkyiv/gi, de:/\bkiew/gi, fr:/\bkiev/gi, pl:/\bkij[oó]w/gi, ru:/киев/gi, fi:/\bkiova/gi },
-		{ name:'Odessa', us:/\bodessa/gi, pl:/\bodess[ay]/gi, ru:/одесса/gi },
-		{ name:'Kharkiv', us:/\bkharkiv/gi, de:/\bcharkiw/gi, pl:/\bchark[oó]w/gi, ru:/харьков/gi, fi:/\bharkova/gi },
-		{ name:'Kherson', us:/\bkherson/gi, de:/\bcherson/gi, pl:/\bcherso[nń]/gi, ru:/херсон/gi, fi:/\bh.erson/gi },
-		{ name:'Mariupol', us:/\bmariupol/gi, fr:/\bmarioupol/gi, ru:/мариуполь/gi, },
-		{ name:'Luhansk', us:/\bluhansk/gi, fr:/\blouhansk/gi, pl:/[lł]uga[nń]sk/gi, ru:/луганск/gi },
-		{ name:'Chernihiv', us:/\bchernihiv/gi, de:/\btschernihiw/gi, fr:/\btchernihiv/gi, pl:/\bczernih[oó]w/gi, ru:/чернигов/gi, fi:/\btšernihiv/gi },
-		{ name:'Donetsk', us:/\bdonetsk/gi, de:/\bdonezk/gi, pl:/\bdonieck/gi, ru:/донецк/gi },
-		{ name:'Lviv', us:/\blviv/gi, de:/\blwiw/gi, pl:/\blw[oó]w/gi, ru:/львов/gi },
-		{ name:'Chernobyl', us:/\bch[eo]rnobyl/gi, de:/\btsch[eo]rnobyl/gi, fr:/\btch[eo]rnobyl/gi, pl:/\bczarnobyl/gi, ru:/чернобыль/gi, fi:/\btšernobyl/gi },
+		{ name:'Ukraine', en:/\bukrain/gi, ru:/украин/gi, uk:false },
+		{ name:'Kyiv', en:/\bkyiv/gi, de:/\bkiew/gi, fr:/\bkiev/gi, pl:/\bkij[oó]w/gi, ru:/киев/gi, fi:/\bkiova/gi, uk:false },
+		{ name:'Odessa', en:/\bodessa/gi, pl:/\bodess[ay]/gi, ru:/одесса/gi, uk:false },
+		{ name:'Kharkiv', en:/\bkharkiv/gi, de:/\bcharkiw/gi, pl:/\bchark[oó]w/gi, ru:/харьков/gi, fi:/\bharkova/gi, uk:false },
+		{ name:'Kherson', en:/\bkherson/gi, de:/\bcherson/gi, pl:/\bcherso[nń]/gi, ru:/херсон/gi, fi:/\bh.erson/gi, uk:false },
+		{ name:'Mariupol', en:/\bmariupol/gi, fr:/\bmarioupol/gi, ru:/мариуполь/gi, uk:false },
+		{ name:'Luhansk', en:/\bluhansk/gi, fr:/\blouhansk/gi, pl:/[lł]uga[nń]sk/gi, ru:/луганск/gi, uk:false },
+		{ name:'Chernihiv', en:/\bchernihiv/gi, de:/\btschernihiw/gi, fr:/\btchernihiv/gi, pl:/\bczernih[oó]w/gi, ru:/чернигов/gi, fi:/\btšernihiv/gi, uk:false },
+		{ name:'Donetsk', en:/\bdonetsk/gi, de:/\bdonezk/gi, pl:/\bdonieck/gi, ru:/донецк/gi, uk:false },
+		{ name:'Lviv', en:/\blviv/gi, de:/\blwiw/gi, pl:/\blw[oó]w/gi, ru:/львов/gi, uk:false },
+		{ name:'Chernobyl', en:/\bch[eo]rnobyl/gi, de:/\btsch[eo]rnobyl/gi, fr:/\btch[eo]rnobyl/gi, pl:/\bczarnobyl/gi, ru:/чернобыль/gi, fi:/\btšernobyl/gi, uk:false },
 		// ukrainische Personen
-		{ name:'Volodymyr Zelenskyy', us:/\bzelensk/gi, de:/\bselensk/gi, pl:/\bze[lł]ensk/gi, ru:/зеленский/gi },
-		{ name:'Vitali Klitschko', us:/\bklitschko/gi, pl:/\bk[lł][iy]czko/gi, ru:/кличко/gi, fi:/\bklytško/gi },
+		{ name:'Volodymyr Zelenskyy', en:/\bzelensk/gi, de:/\bselensk/gi, pl:/\bze[lł]ensk/gi, ru:/зеленский/gi, uk:false },
+		{ name:'Vitali Klitschko', en:/\bklitschko/gi, pl:/\bk[lł][iy]czko/gi, ru:/кличко/gi, fi:/\bklytško/gi, uk:false },
 		// russland
-		{ name:'Vladimir Putin', us:/\bputin/gi, fr:/\bpoutine/gi, ru:/путин/gi },
-		{ name:'Kremlin', us:/\bkremlin/gi, de:/\bkreml/gi, pl:/\bkreml/gi, ru:/кремль/gi, fi:/\bkreml/gi },
-		{ name:'Russia', us:/\brussia/gi, de:/\bruss(isch|land)/gi, fr:/\brussi?e/gi, pl:/\bros(ja|sij|yjsk)/gi, ru:false, fi:/\bvenäjä/gi },
+		{ name:'Vladimir Putin', en:/\bputin/gi, fr:/\bpoutine/gi, ru:false, uk:/путін/gi },
+		{ name:'Kremlin', en:/\bkremlin/gi, de:/\bkreml/gi, pl:/\bkreml/gi, ru:false, fi:/\bkreml/gi, uk:/кремль/gi },
+		{ name:'Russia', en:/\brussia/gi, de:/\bruss(isch|land)/gi, fr:/\brussi?e/gi, pl:/\bros(ja|sij|yjsk)/gi, ru:false, fi:/\bvenäjä/gi, uk:/росія/gi },
 	],
 }
 
@@ -132,6 +129,7 @@ config.todos = [];
 for (let [index, medium] of config.media.entries()) {
 	medium.index = index;
 	medium.slug = medium.country+'_'+medium.slug;
+	medium.lang ??= config.countries.find(c => c.code === medium.country).lang;
 
 	const cacheFolder = path.resolve(__dirname, 'cache/'+medium.slug);
 	if (!fs.existsSync(cacheFolder)) fs.mkdirSync(cacheFolder, { recursive:true })
@@ -153,7 +151,7 @@ for (let word of config.words) {
 		let code = country.code;
 		if (word[code]) continue;
 		if (word[code] === false) continue;
-		word[code] = word.us;
+		word[code] = word.en;
 	}
 }
 

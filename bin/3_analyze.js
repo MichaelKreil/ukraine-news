@@ -24,10 +24,10 @@ async function start() {
 		let text = cheerio.load(html)(todo.medium.$page).text();
 		text = text.replace(/\s+/gm, ' ');
 
-		let cc = todo.medium.country;
+		let lang = todo.medium.lang;
 		for (let word of config.words) {
-			if (word[cc] === false) continue;
-			let count = countResults(text.matchAll(word[cc]));
+			if (word[lang] === false) continue;
+			let count = countResults(text.matchAll(word[lang]));
 
 			wordCountryMatrix.set([word.name, todo.medium.country], count);
 

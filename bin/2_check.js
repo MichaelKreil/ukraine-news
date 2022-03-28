@@ -32,7 +32,7 @@ async function start() {
 	console.log('check words')
 	for (let word of config.words) {
 		let slug = word.name.replace(/\s/g, '_');
-		let html = await fetchCached('https://en.wikipedia.org/wiki/'+slug, resolve(__dirname, '../tmp/'+slug+'.html'));
+		let html = await fetchCached('https://en.wikipedia.org/wiki/'+slug, path.resolve(__dirname, '../tmp/'+slug+'.html'));
 		let $ = cheerio.load(html.toString());
 
 		let titles = new Map();
@@ -45,20 +45,22 @@ async function start() {
 		})
 
 		for (let country of config.countries) {
-			let regex = word[country.code];
+			let regex = word[country.lang];
 			if (regex === false) continue;
 			let title = titles.get(country.lang);
+			//console.log(word.name, country.lang, regex, title);
 			if (!title) {
 				if ((country.lang === 'fi') && (word.name === 'Invasion')) continue; // no wiki article
 				console.log(titles);
 				console.log(country);
-				throw Error('title not found');
+				throw Error('title not found for this language');
 			}
 			if (!title.match(regex)) {
 				console.log('country', country);
 				console.log('title', title);
 				console.log('regex', regex);
 				console.log('match', title.match(regex));
+				console.log(`, ${country.code}:/${title.toLowerCase()}/gi`)
 				throw Error('regex does not match');
 			}
 		}
