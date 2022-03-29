@@ -122,7 +122,7 @@ const config = {
 }
 
 const dayMin = Math.round(Date.parse(config.dateMin)/86400000);
-const dayMax = Math.round(Date.now()/86400000-1.5);
+const dayMax = Math.round(Date.now()/86400000-1.2);
 config.todos = [];
 
 for (let [index, medium] of config.media.entries()) {
