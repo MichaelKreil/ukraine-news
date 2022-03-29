@@ -18,6 +18,7 @@ function fetch(url) {
 
 		protocol.get(url, response => {
 			if (response.statusCode !== 200) {
+				console.log('url', url);
 				throw Error('status code: '+response.statusCode);
 			}
 			let buffers = [];
