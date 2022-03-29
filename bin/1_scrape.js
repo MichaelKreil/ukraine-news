@@ -19,7 +19,7 @@ async function start() {
 		console.log(i+'/'+todos.length,'scrape',medium.slug,date);
 
 		const timestamp = date.replaceAll('-','');
-		const apiUrl = `https://archive.org/wayback/available?url=${medium.url}&timestamp=${timestamp}1200`;
+		const apiUrl = `https://web.archive.org/wayback/available?url=${medium.url}&timestamp=${timestamp}1200`;
 		let apiResponse = await fetchCached(apiUrl, cacheFilenameApi);
 		apiResponse = JSON.parse(apiResponse);
 
