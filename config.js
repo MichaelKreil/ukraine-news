@@ -111,6 +111,8 @@ const config = {
 		{ name:'Donetsk', en:/\bdonetsk/gi, de:/\bdonezk/gi, pl:/\bdonieck/gi, ru:/донецк/gi, uk:false },
 		{ name:'Lviv', en:/\blviv/gi, de:/\blwiw/gi, pl:/\blw[oó]w/gi, ru:/львов/gi, uk:false },
 		{ name:'Chernobyl', en:/\bch[eo]rnobyl/gi, de:/\btsch[eo]rnobyl/gi, fr:/\btch[eo]rnobyl/gi, pl:/\bczarnobyl/gi, ru:/чернобыль/gi, fi:/\btšernobyl/gi, uk:false },
+		{ name:'Bucha, Kyiv Oblast', en:/\bbucha/gi, de:/\bbutscha/gi, fr:/\bboutcha/gi, pl:/bucza/gi, ru:/буча/gi, fi:/\bbutša/gi, uk:false },
+		{ name:'Irpin', en:/\birpin/gi, pl:/\birpień/gi, ru:/ирпень/gi, uk:false },
 		// ukrainische Personen
 		{ name:'Volodymyr Zelenskyy', en:/\bzelensk/gi, de:/\bselensk/gi, pl:/\bze[lł]ensk/gi, ru:/зеленский/gi, uk:false },
 		{ name:'Vitali Klitschko', en:/\bklitschko/gi, pl:/\bk[lł][iy]czko/gi, ru:/кличко/gi, fi:/\bklytško/gi, uk:false },
