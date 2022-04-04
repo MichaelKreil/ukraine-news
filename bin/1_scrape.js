@@ -20,26 +20,27 @@ async function start() {
 
 		const timestamp = date.replaceAll('-','');
 		const apiUrl = `https://web.archive.org/wayback/available?url=${medium.url}&timestamp=${timestamp}1200`;
-		let apiResponse = await fetchCached(apiUrl, cacheFilenameApi);
-		apiResponse = JSON.parse(apiResponse);
 
-		let apiResult = apiResponse.archived_snapshots.closest;
-		try {
-			if (!apiResult.status.startsWith('20')) throw Error();
-			if (!apiResult.available) throw Error();
-		} catch (e) {
-			console.log(apiUrl);
-			console.log(apiResponse);
-			console.log('??? rm '+cacheFilenameApi);
-			continue;
+		let apiResponse, apiResult;
+		for (let j = 1; j <= 5; j++) {
+			apiResponse = await fetchCached(apiUrl, cacheFilenameApi);
+			apiResponse = JSON.parse(apiResponse);
+			apiResult = apiResponse.archived_snapshots.closest;
+			if (apiResult && apiResult.status.startsWith('20') && apiResult.available) break;
+			fs.unlinkSync(cacheFilenameApi)
+			console.log('apiUrl', apiUrl);
+			console.log('apiResult', apiResult);
+			console.log('   …retry '+j)
+			await wait(5000);
 		}
+
+		await wait(5000);
 
 		if (!apiResult.timestamp.startsWith(timestamp)) {
 			console.log('   skipping, cause wrong timestamp - '+path.relative(__dirname, cacheFilenameApi))
 			continue;
 		}
 
-		await wait(5000);
 		await fetchCached(apiResult.url, cacheFilenameHtml);
 		await wait(5000);
 	}
