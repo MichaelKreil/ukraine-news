@@ -124,7 +124,7 @@ const config = {
 }
 
 const dayMin = Math.round(Date.parse(config.dateMin)/86400000);
-const dayMax = Math.round(Date.now()/86400000-2);
+const today = Math.floor(Date.now()/86400000);
 config.todos = [];
 
 for (let [index, medium] of config.media.entries()) {
@@ -134,13 +134,16 @@ for (let [index, medium] of config.media.entries()) {
 
 	const cacheFolder = path.resolve(__dirname, 'data/'+medium.slug);
 	if (!fs.existsSync(cacheFolder)) fs.mkdirSync(cacheFolder, { recursive:true })
-	for (let day = dayMin; day <= dayMax; day++) {
-		const date = (new Date((day+0.5)*86400000)).toISOString().slice(0,10);
+	for (let day = dayMin; day <= today; day++) {
+		if (day > today-2) continue;
+		const dateTime = new Date((day+0.5)*86400000)
+		const date = dateTime.toISOString().slice(0,10);
 		const cacheFilename = path.resolve(cacheFolder, medium.slug+'-'+date);
 
 		config.todos.push({
 			medium,
 			date,
+			dateTime,
 			cacheFilenameApi:  cacheFilename+'.json.br',
 			cacheFilenameHtml: cacheFilename+'.html.br',
 		});
