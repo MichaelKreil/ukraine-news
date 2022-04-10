@@ -13,10 +13,10 @@ module.exports = {
 }
 
 function fetch(url, slowdown) {
-	return new Promise(resolve => {
+	return new Promise(async resolve => {
 		let protocol = url.startsWith('https') ? https : http;
 
-		if (slowdown) wait(5000);
+		if (slowdown) await wait(5000);
 
 		protocol.get(url, response => {
 			if (response.statusCode !== 200) {
