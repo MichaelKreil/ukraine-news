@@ -18,9 +18,14 @@ function fetch(url, slowdown) {
 
 		if (slowdown) await wait(5000);
 
-		protocol.get(url, response => {
+		protocol.get(url, async response => {
+			if (response.statusCode === 302) {
+				resolve(await fetch(response.headers.location, slowdown));
+				return;
+			}
 			if (response.statusCode !== 200) {
 				console.log('url', url);
+				console.log('headers', response.headers)
 				throw Error('status code: '+response.statusCode);
 			}
 			let buffers = [];
