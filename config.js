@@ -150,6 +150,12 @@ for (let [index, medium] of config.media.entries()) {
 	}
 }
 
+config.todos.sort((a,b) => {
+	if (a.date !== b.date) return a.date < b.date ? -1 : 1;
+	if (a.medium !== b.medium) return a.medium.index - b.medium.index;
+	return 0;
+})
+
 for (let word of config.words) {
 	for (let country of config.countries) {
 		let code = country.code;
