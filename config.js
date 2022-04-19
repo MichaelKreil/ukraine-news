@@ -124,7 +124,7 @@ const config = {
 }
 
 const dayMin = Math.round(Date.parse(config.dateMin)/86400000);
-const today = Math.floor(Date.now()/86400000);
+const today = Math.floor(Date.now()/86400000-2);
 config.todos = [];
 
 for (let [index, medium] of config.media.entries()) {
