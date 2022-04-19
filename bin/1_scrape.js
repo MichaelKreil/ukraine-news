@@ -3,7 +3,7 @@
 const fs = require('fs');
 const path = require('path');
 const config = require('../config.js')
-const { fetchCached } = require('./helper.js');
+const { fetchCached, wait } = require('./helper.js');
 
 start()
 
@@ -31,6 +31,7 @@ async function start() {
 			console.log('apiUrl', apiUrl);
 			console.log('apiResult', apiResult);
 			console.log('   …retry '+j)
+			await wait(60000);
 		}
 
 		if (!apiResult.timestamp.startsWith(timestamp)) {
