@@ -16,7 +16,7 @@ async function start() {
 
 	for (let i = 0; i < todos.length; i++) {
 		const { medium, date, dateTime, cacheFilenameApi, cacheFilenameHtml } = todos[i];
-		console.log(i+'/'+todos.length,'scrape',medium.slug,date);
+		process.stderr.write(`\n${i}/${todos.length} - ${medium.slug} - ${date}: `);
 
 		const timestamp = date.replaceAll('-','');
 		const apiUrl = `https://web.archive.org/wayback/available?url=${medium.url}&timestamp=${timestamp}1200`;
@@ -28,18 +28,19 @@ async function start() {
 			apiResult = apiResponse.archived_snapshots.closest;
 			if (apiResult && apiResult.status.startsWith('20') && apiResult.available) break;
 			fs.unlinkSync(cacheFilenameApi)
-			console.log('apiUrl', apiUrl);
-			console.log('apiResult', apiResult);
-			console.log('   …retry '+j)
+			process.stderr.write(`\n   …retry ${j}`);
 			await wait(60000);
+			if (j >= 5) process.exit(1);
 		}
 
 		if (!apiResult.timestamp.startsWith(timestamp)) {
-			console.log('   skipping, cause wrong timestamp - '+path.relative(__dirname, cacheFilenameApi))
+			process.stderr.write(`skip wrong timestamp: ${path.relative(__dirname, cacheFilenameApi)}`)
 			if (dateTime > Date.now()-3*86400000) fs.unlinkSync(cacheFilenameApi)
 			continue;
 		}
 
 		await fetchCached(apiResult.url, cacheFilenameHtml, true);
+
+		process.stderr.write('OK');
 	}
 }
