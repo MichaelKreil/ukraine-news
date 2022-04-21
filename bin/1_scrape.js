@@ -34,8 +34,12 @@ async function start() {
 		}
 
 		if (!apiResult.timestamp.startsWith(timestamp)) {
-			process.stderr.write(`skip wrong timestamp: ${relative(__dirname, cacheFilenameApi)}`)
-			if (dateTime > Date.now()-3*86400000) fs.unlinkSync(cacheFilenameApi)
+			process.stderr.write(`wrong timestamp: ${relative(__dirname, cacheFilenameApi)}`)
+			if (Math.random() < 0.1) {
+				fs.unlinkSync(cacheFilenameApi)
+				process.stderr.write(`retry to download`)
+				i--;
+			}
 			continue;
 		}
 
