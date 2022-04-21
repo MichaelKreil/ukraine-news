@@ -37,7 +37,7 @@ async function start() {
 			process.stderr.write(`wrong timestamp: ${relative(__dirname, cacheFilenameApi)}`)
 			if (Math.random() < 0.1) {
 				fs.unlinkSync(cacheFilenameApi)
-				process.stderr.write(`retry to download`)
+				process.stderr.write(`\n   random retry`)
 				i--;
 			}
 			continue;
