@@ -2,7 +2,7 @@
 
 const fs = require('fs');
 const zlib = require('zlib');
-const path = require('path');
+const { resolve } = require('path');
 const cheerio = require('cheerio');
 const config = require('../config.js')
 const { Level } = require('level');
@@ -10,7 +10,7 @@ const { Level } = require('level');
 start()
 
 async function start() {
-	let folder = path.resolve(__dirname, '../tmp/cached_results');
+	let folder = resolve(__dirname, '../tmp/cached_results');
 	fs.mkdirSync(folder, {recursive:true});
 	let db = new Level(folder, {keyEncoding:'json', valueEncoding:'json'})
 
@@ -64,7 +64,7 @@ async function start() {
 	}
 
 	timelinesByMedia.forEach(t => t.list = Array.from(t.list.values()).sort((a,b) => (a.date < b.date) ? -1 : 1));
-	fs.writeFileSync(path.resolve(__dirname, '../docs/data.json'), JSON.stringify(timelinesByMedia, null, '\t'));
+	fs.writeFileSync(resolve(__dirname, '../docs/data.json'), JSON.stringify(timelinesByMedia, null, '\t'));
 
 	console.log();
 	//console.dir(timelinesByMedia, {depth:5});

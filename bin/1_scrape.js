@@ -1,7 +1,7 @@
 'use strict'
 
 const fs = require('fs');
-const path = require('path');
+const { relative } = require('path');
 const config = require('../config.js')
 const { fetchCached, wait } = require('./helper.js');
 
@@ -34,7 +34,7 @@ async function start() {
 		}
 
 		if (!apiResult.timestamp.startsWith(timestamp)) {
-			process.stderr.write(`skip wrong timestamp: ${path.relative(__dirname, cacheFilenameApi)}`)
+			process.stderr.write(`skip wrong timestamp: ${relative(__dirname, cacheFilenameApi)}`)
 			if (dateTime > Date.now()-3*86400000) fs.unlinkSync(cacheFilenameApi)
 			continue;
 		}

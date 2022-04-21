@@ -3,7 +3,7 @@
 const fs = require('fs');
 const zlib = require('zlib');
 const util = require('util');
-const path = require('path');
+const { resolve } = require('path');
 const cheerio = require('cheerio');
 const config = require('../config.js')
 const { fetchCached } = require('./helper.js');
@@ -30,11 +30,11 @@ async function start() {
 	}
 
 	console.log('check words')
-	let folder = path.resolve(__dirname, '../tmp/wikipedia');
+	let folder = resolve(__dirname, '../tmp/wikipedia');
 	fs.mkdirSync(folder, {recursive:true});
 	for (let word of config.words) {
 		let slug = word.name.replace(/\s/g, '_');
-		let html = await fetchCached('https://en.wikipedia.org/wiki/'+slug, path.resolve(folder, slug+'.html'));
+		let html = await fetchCached('https://en.wikipedia.org/wiki/'+slug, resolve(folder, slug+'.html'));
 		let $ = cheerio.load(html.toString());
 
 		let titles = new Map();
