@@ -16,7 +16,7 @@ async function start() {
 
 	for (let i = 0; i < todos.length; i++) {
 		const { medium, date, dateTime, cacheFilenameApi, cacheFilenameHtml } = todos[i];
-		process.stderr.write(`\n${i}/${todos.length} - ${medium.slug} - ${date}: `);
+		process.stderr.write(`\n${i}/${todos.length} - ${medium.slug} - ${date}`);
 
 		const timestamp = date.replaceAll('-','');
 		const apiUrl = `https://web.archive.org/wayback/available?url=${medium.url}&timestamp=${timestamp}1200`;
@@ -34,10 +34,10 @@ async function start() {
 		}
 
 		if (!apiResult.timestamp.startsWith(timestamp)) {
-			process.stderr.write(`wrong timestamp: ${relative(__dirname, cacheFilenameApi)}`)
+			process.stderr.write(` - wrong timestamp`)
 			if (Math.random() < 0.1) {
 				fs.unlinkSync(cacheFilenameApi)
-				process.stderr.write(`\n   random retry`)
+				process.stderr.write(`\n   …random retry`)
 				i--;
 			}
 			continue;
