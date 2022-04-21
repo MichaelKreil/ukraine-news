@@ -13,7 +13,7 @@ module.exports = {
 }
 
 function fetch(url, slowdown) {
-	return new Promise(async resolve => {
+	return new Promise(async (resolve, reject) => {
 		let protocol = url.startsWith('https') ? https : http;
 
 		if (slowdown) await wait(5000);
@@ -31,7 +31,7 @@ function fetch(url, slowdown) {
 			let buffers = [];
 			response.on('data', chunk => buffers.push(chunk));
 			response.on('end', () => resolve(Buffer.concat(buffers)))
-		})
+		}).on('error', e => reject(e))
 	})
 }
 

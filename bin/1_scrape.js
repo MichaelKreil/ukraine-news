@@ -23,7 +23,9 @@ async function start() {
 
 		let apiResponse, apiResult;
 		for (let j = 1; j <= 5; j++) {
-			apiResponse = await fetchCached(apiUrl, cacheFilenameApi, true);
+			try {
+				apiResponse = await fetchCached(apiUrl, cacheFilenameApi, true);
+			} catch (e) { console.log(e) }
 			apiResponse = JSON.parse(apiResponse);
 			apiResult = apiResponse.archived_snapshots.closest;
 			if (apiResult && apiResult.status.startsWith('20') && apiResult.available) break;
