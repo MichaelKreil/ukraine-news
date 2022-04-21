@@ -45,6 +45,6 @@ async function start() {
 
 		await fetchCached(apiResult.url, cacheFilenameHtml, true);
 
-		process.stderr.write('OK');
+		process.stderr.write(' - OK');
 	}
 }
