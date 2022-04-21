@@ -5,7 +5,7 @@ const fs = require('fs');
 const Iconv = require('iconv').Iconv;
 
 const config = {
-	dateMin: '2022-02-01',
+	dateMin: '2022-01-01',
 	media: [
 		{ country:'de', name:'T-Online',     slug:'t-online',     url:'www.t-online.de', $page:'#Tcontboxi' },
 		{ country:'de', name:'Spiegel',      slug:'spiegel',      url:'www.spiegel.de', $page:'#Inhalt' },
