@@ -9,7 +9,7 @@ while true; do
 	node ./bin/2_check.js
 	node ./bin/3_analyze.js
 
-	git add ./data
+	git add .
 	git commit -m "automatic update"
 	git push
 

@@ -109,7 +109,6 @@ function Database() {
 	}
 
 	function set(keys, count) {
-		let list = data;
 		keys.forEach((key,col) => {
 			let cv = (columnValues[col] ??= new Set());
 			if (!cv.has(key)) cv.add(key);
