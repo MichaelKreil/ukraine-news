@@ -167,29 +167,34 @@
 				function draw(query, lines) {
 
 					const margin = {top:10, right:180, bottom:30, left:40};
-
+					const ratio = 0.618;
 					const wrapper = d3.select(query);
-					let offsetWidth = wrapper.node().offsetWidth;
+					let offsetWidth = Math.min(wrapper.node().offsetWidth, window.innerHeight*0.8/ratio);
+					
 					let scale  = 1;
 					if (offsetWidth < 700) {
 						scale = offsetWidth/700;
 						offsetWidth = 700;
 					}
 					const width  = Math.round(offsetWidth - margin.left - margin.right);
-					const height = Math.round(width*0.618);
-
 					const canvasWidth  = Math.round(width  + margin.left + margin.right);
-					const canvasHeight = Math.round(height + margin.top  + margin.bottom);
+					const canvasHeight = Math.round(canvasWidth*0.618);
+					const height = Math.round(canvasHeight - margin.top - margin.bottom);
+
+
+					console.log({width,height});
+					console.log({canvasWidth,canvasHeight});
 
 					wrapper
 						.style('height', Math.round(scale*canvasHeight)+'px')
 						.style('overflow', 'hidden')
+						.style('text-align', 'center')
 
 					wrapper.select('svg').remove();
 
 					let svg = wrapper.append('svg')
 					 	.attr('xmlns', 'http://www.w3.org/2000/svg')
-  						.attr('width', '100%')
+  						.attr('width', canvasWidth*scale)
   						.attr('viewBox', [0,0,canvasWidth,canvasHeight].join(' '))
 						.attr('preserveAspectRatio', 'xMidYMid meet');
 
@@ -198,8 +203,9 @@
 						.domain([dateMin, dateMax])
 						.range([0, width]);
 
+					// add Y axis
 					let y = d3.scaleLinear()
-						.domain([0, 3])
+						.domain([0, 4])
 						.range([height, 0]);
 
 					svg.append('g')
