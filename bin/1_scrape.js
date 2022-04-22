@@ -15,7 +15,7 @@ async function start() {
 	})
 
 	for (let i = 0; i < todos.length; i++) {
-		const { medium, date, dateTime, cacheFilenameApi, cacheFilenameHtml } = todos[i];
+		const { medium, date, cacheFilenameApi, cacheFilenameHtml } = todos[i];
 		process.stderr.write(`\n${i}/${todos.length} - ${medium.slug} - ${date}`);
 
 		const timestamp = date.replaceAll('-','');
@@ -40,7 +40,7 @@ async function start() {
 
 		if (!apiResult.timestamp.startsWith(timestamp)) {
 			process.stderr.write(` - wrong timestamp`)
-			if (Math.random() < 0.1) {
+			if (Math.random() < 0.03) {
 				fs.unlinkSync(cacheFilenameApi)
 				process.stderr.write(`\n   …random retry`)
 				i--;
