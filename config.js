@@ -146,6 +146,7 @@ for (let [index, medium] of config.media.entries()) {
 			dateTime,
 			cacheFilenameApi:  cacheFilename+'.json.br',
 			cacheFilenameHtml: cacheFilename+'.html.br',
+			age: today-day,
 		});
 	}
 }

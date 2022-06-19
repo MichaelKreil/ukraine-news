@@ -1,7 +1,6 @@
 'use strict'
 
 const fs = require('fs');
-const { relative } = require('path');
 const config = require('../config.js')
 const { fetchCached, wait } = require('./helper.js');
 
@@ -15,7 +14,7 @@ async function start() {
 	})
 
 	for (let i = 0; i < todos.length; i++) {
-		const { medium, date, cacheFilenameApi, cacheFilenameHtml } = todos[i];
+		const { age, medium, date, cacheFilenameApi, cacheFilenameHtml } = todos[i];
 		process.stderr.write(`\n${i}/${todos.length} - ${medium.slug} - ${date}`);
 
 		const timestamp = date.replaceAll('-','');
@@ -39,6 +38,7 @@ async function start() {
 		}
 
 		if (!apiResult.timestamp.startsWith(timestamp)) {
+			if (age > 21) continue;
 			process.stderr.write(` - wrong timestamp`)
 			if (Math.random() < 0.03) {
 				fs.unlinkSync(cacheFilenameApi)
