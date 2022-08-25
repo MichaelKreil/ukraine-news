@@ -23,7 +23,7 @@ async function start() {
 		let apiResponse, apiResult;
 		for (let j = 1; j <= 5; j++) {
 			try {
-				apiResponse = await fetchCached(apiUrl, cacheFilenameApi, true);
+				apiResponse = await fetchCached(apiUrl, cacheFilenameApi);
 			} catch (e) {
 				console.log(e);
 				continue;
@@ -33,7 +33,7 @@ async function start() {
 			if (apiResult && apiResult.status.startsWith('20') && apiResult.available) break;
 			fs.unlinkSync(cacheFilenameApi)
 			process.stderr.write(`\n   …retry ${j}`);
-			await wait(5*60*1000);
+			await wait(10*60*1000);
 			if (j >= 5) process.exit(1);
 		}
 
@@ -48,7 +48,7 @@ async function start() {
 			continue;
 		}
 
-		await fetchCached(apiResult.url, cacheFilenameHtml, true);
+		await fetchCached(apiResult.url, cacheFilenameHtml);
 
 		process.stderr.write(' - OK');
 	}

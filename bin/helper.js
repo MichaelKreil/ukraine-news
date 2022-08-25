@@ -12,7 +12,7 @@ module.exports = {
 	wait,
 }
 
-function fetch(url, slowdown) {
+function fetch(url, slowdown = true) {
 	return new Promise(async (resolve, reject) => {
 		let protocol = url.startsWith('https') ? https : http;
 
@@ -36,8 +36,13 @@ function fetch(url, slowdown) {
 	})
 }
 
-async function fetchCached(url, filename, slowdown) {
-	if (fs.existsSync(filename)) return zlib.brotliDecompressSync(fs.readFileSync(filename));
+async function fetchCached(url, filename, slowdown = true) {
+	try {
+		if (fs.existsSync(filename)) return zlib.brotliDecompressSync(fs.readFileSync(filename));
+	} catch (e) {
+		process.stderr.write(` - file corrupt, retry download`);
+	}
+
 	let buffer = await fetch(url, slowdown);
 	fs.writeFileSync(filename, zlib.brotliCompressSync(buffer, {params:{[zlib.constants.BROTLI_PARAM_QUALITY]:zlib.constants.BROTLI_MAX_QUALITY}}));
 	return buffer;
