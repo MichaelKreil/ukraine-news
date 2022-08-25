@@ -16,7 +16,7 @@ function fetch(url, slowdown = true) {
 	return new Promise(async (resolve, reject) => {
 		let protocol = url.startsWith('https') ? https : http;
 
-		if (slowdown) await wait(5000);
+		if (slowdown) await wait(10*1000); // 10 seconds
 
 		let request = protocol.get(url, async response => {
 			if (response.statusCode === 302) {
