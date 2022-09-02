@@ -38,7 +38,7 @@ async function start() {
 		}
 
 		if (!apiResult.timestamp.startsWith(timestamp)) {
-			if (age > 21) continue;
+			if (age > 60) continue;
 			process.stderr.write(` - wrong timestamp`)
 			if (Math.random() < 0.03) {
 				fs.unlinkSync(cacheFilenameApi)
