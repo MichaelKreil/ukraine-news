@@ -12,7 +12,7 @@ start()
 
 async function start() {
 	console.log('check media')
-	for (let [i, todo] of config.todos.entries()) {
+	for (let todo of config.todos.values()) {
 		if (todo.medium.$page) continue;
 
 		if (!fs.existsSync(todo.cacheFilenameHtml)) continue;
