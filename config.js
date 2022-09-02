@@ -7,7 +7,7 @@ const Iconv = require('iconv').Iconv;
 const config = {
 	dateMin: '2022-01-01',
 	media: [
-		{ country:'de', name:'T-Online',     slug:'t-online',     url:'www.t-online.de', $page:'#Tcontboxi' },
+		{ country:'de', name:'T-Online',     slug:'t-online',     url:'www.t-online.de', $page:'#Tcontboxi,main' },
 		{ country:'de', name:'Spiegel',      slug:'spiegel',      url:'www.spiegel.de', $page:'#Inhalt' },
 		{ country:'de', name:'Focus',        slug:'focus',        url:'www.focus.de', $page:'#page-container' },
 		{ country:'de', name:'Bild',         slug:'bild',         url:'www.bild.de', $page:'.main-content' },
