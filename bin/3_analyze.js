@@ -23,7 +23,7 @@ async function start() {
 		if (!fs.existsSync(todo.cacheFilenameHtml)) continue;
 
 		let lang = todo.medium.lang;
-		let text;
+		let text, wordCount;
 		for (let word of config.words) {
 			if (word[lang] === false) continue;
 
@@ -33,13 +33,19 @@ async function start() {
 				todo.medium.$page,
 				word[lang].toString()
 			]
-			let count;
+			let count,ratio;
 			try {
-				count = await db.get(key)
+				let result = await db.get(key);
+				count = result.count;
+				ratio = result.ratio;
 			} catch (e) {
-				text ??= getText();
+				if (!text) {
+					text = getText();
+					wordCount = text.split(' ').length;
+				}
 				count = countResults(text.matchAll(word[lang]));
-				await db.put(key, count);
+				ratio = count / wordCount;
+				await db.put(key, {count,ratio});
 			}
 
 			wordCountryMatrix.set([word.name, todo.medium.country], count);
@@ -47,9 +53,9 @@ async function start() {
 			let i = todo.medium.index;
 			if (!timelinesByMedia[i]) timelinesByMedia[i] = { medium:todo.medium, list:new Map() }
 			if (!timelinesByMedia[i].list.has(todo.date)) {
-				timelinesByMedia[i].list.set(todo.date, { date:todo.date, value:count  })
+				timelinesByMedia[i].list.set(todo.date, { date:todo.date, value:ratio  })
 			} else {
-				timelinesByMedia[i].list.get(todo.date).value += count;
+				timelinesByMedia[i].list.get(todo.date).value += ratio;
 			}
 
 		}
@@ -59,15 +65,18 @@ async function start() {
 			if (todo.medium.convert) html = todo.medium.convert(html);
 			html = html.toString();
 			let text = cheerio.load(html)(todo.medium.$page).text();
-			return text.replace(/\s+/gm, ' ');
+			return text.replace(/\s+/gm, ' ').trim();
 		}
 	}
 
-	timelinesByMedia.forEach(t => t.list = Array.from(t.list.values()).sort((a,b) => (a.date < b.date) ? -1 : 1));
+	timelinesByMedia.forEach(t => {
+		t.list = Array.from(t.list.values())
+		t.list.sort((a,b) => (a.date < b.date) ? -1 : 1);
+		t.list.forEach(e => e.value = Math.round(e.value*1e5));
+	});
 	fs.writeFileSync(resolve(__dirname, '../docs/data.json'), JSON.stringify(timelinesByMedia, null, '\t'));
 
 	console.log();
-	//console.dir(timelinesByMedia, {depth:5});
 	console.log(wordCountryMatrix.getMatrix());
 }
 
