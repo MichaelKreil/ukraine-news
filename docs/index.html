@@ -212,10 +212,6 @@
 					const canvasHeight = Math.round(canvasWidth*0.618);
 					const height = Math.round(canvasHeight - margin.top - margin.bottom);
 
-
-					console.log({width,height});
-					console.log({canvasWidth,canvasHeight});
-
 					wrapper
 						.style('height', Math.round(scale*canvasHeight)+'px')
 						.style('overflow', 'hidden')
@@ -256,7 +252,8 @@
 							.attr('stroke-dasharray', '2 4')
 
 
-					let canvas = svg.append('g')
+					let canvas = svg
+						.append('g')
 							.attr('transform', `translate(${margin.left},${margin.top})`)
 
 					lines.forEach(line => {
@@ -270,13 +267,12 @@
 						line.legendY = line.lastY;
 					})
 
-					fixY(lines, 'legendY', 15);
+					fixLegendLabelY(lines, 'legendY', 15);
 
 					// Draw the line
 					lines.forEach(line => {
 						line.path = d3.line()
 							.curve(d3.curveBasis)
-							//.curve(d3.curveBundle.beta(0.7))
 							.x(d => x(d.xValue))
 							.y(d => y(d.ySmooth))
 							(line.curveData);
@@ -323,8 +319,9 @@
 								.attr('opacity', 0);
 
 						let dx = 20;
-						let dy = line.legendY-line.lastY;
+						let dy = line.legendY - line.lastY;
 						let f = 5/Math.sqrt(dx*dx + dy*dy);
+						
 						line.annotations.append('line')
 							.attr('x1', width + dx*f)
 							.attr('x2', width + dx - dx*f)
@@ -347,8 +344,9 @@
 					})
 				}
 
-				function fixY(list, key, minDistance) {
+				function fixLegendLabelY(list, key, minDistance) {
 					let entries = list.map(e => ({y0:e[key], entry:e}));
+					
 					entries.sort((a,b) => a.y0 - b.y0);
 
 					let y = null;
