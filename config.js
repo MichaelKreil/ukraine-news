@@ -14,7 +14,7 @@ const config = {
 		{ country:'de', name:'FAZ',          slug:'faz',          url:'www.faz.net/aktuell', $page:'.Home' },
 		{ country:'de', name:'Welt',         slug:'welt',         url:'www.welt.de', $page:'.c-page-wrapper' },
 		{ country:'de', name:'N-TV',         slug:'n-tv',         url:'www.n-tv.de', $page:'[role="main"]' },
-		{ country:'de', name:'RTL',          slug:'rtl',          url:'www.rtl.de/news/', $page:'#main' },
+		{ country:'de', name:'RTL',          slug:'rtl',          url:'www.rtl.de', $page:'#main' },
 		{ country:'de', name:'Stern',        slug:'stern',        url:'www.stern.de', $page:'.page__inner-content' },
 		{ country:'de', name:'Süddeutsche',  slug:'sueddeutsche', url:'www.sueddeutsche.de', $page:'.sz-content' },
 		{ country:'de', name:'Zeit',         slug:'zeit',         url:'www.zeit.de/index', $page:'#main' },
