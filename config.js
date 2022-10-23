@@ -19,7 +19,7 @@ const config = {
 		{ country:'de', name:'Süddeutsche',  slug:'sueddeutsche', url:'www.sueddeutsche.de', $page:'.sz-content' },
 		{ country:'de', name:'Zeit',         slug:'zeit',         url:'www.zeit.de/index', $page:'#main' },
 		{ country:'de', name:'WAZ',          slug:'waz',          url:'www.waz.de', $page:'[role="main"]' },
-		{ country:'de', name:'Tagesspiegel', slug:'tagesspiegel', url:'www.tagesspiegel.de', $page:'.ts-content-wrapper' },
+		{ country:'de', name:'Tagesspiegel', slug:'tagesspiegel', url:'www.tagesspiegel.de', $page:'.ts-content-wrapper,#main-content' },
 		{ country:'de', name:'RP-Online',    slug:'rp-online',    url:'rp-online.de', $page:'[role="main"]' },
 		{ country:'de', name:'Tagesschau',   slug:'tagesschau',   url:'www.tagesschau.de', $page:'#content' },
 		{ country:'de', name:'Merkur',       slug:'merkur',       url:'www.merkur.de', $page:'[role="main"]' },
