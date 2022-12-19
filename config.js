@@ -56,7 +56,7 @@ const config = {
 		{ country:'pl', name:'Super Express',                slug:'se',           url:'www.se.pl', $page:'.main-content' },
 		{ country:'pl', name:'Rzeczpospolita',               slug:'rp',           url:'www.rp.pl', $page:'body' },
 		{ country:'pl', name:'Dziennik Gazeta Prawna',       slug:'dziennik',     url:'www.dziennik.pl', $page:'#doc' },
-		{ country:'pl', name:'Polska Metropolia Warszawska', slug:'polskatimes',  url:'polskatimes.pl', $page:'main' },
+		{ country:'pl', name:'Polska Metropolia Warszawska', slug:'polskatimes',  url:'i.pl', $page:'.componentsListingMainTopicDailyPremium__content' },
 		{ country:'pl', name:'Gazeta Polska Codziennie',     slug:'gpcodziennie', url:'gpcodziennie.pl', $page:'body' },
 
 		{ country:'ru', name:'Moskowski Komsomolez', slug:'mk',           url:'www.mk.ru', $page:'.wraper__content' },
@@ -71,7 +71,7 @@ const config = {
 		{ country:'fi', name:'HBL',                slug:'hbl',               url:'www.hbl.fi', $page:'#page-wrapper' },
 		{ country:'fi', name:'Ilta Sanomat',       slug:'is',                url:'www.is.fi', $page:'main' },
 		{ country:'fi', name:'Iltalehti',          slug:'iltalehti',         url:'www.iltalehti.fi', $page:'.front' },
-		{ country:'fi', name:'Kansan Uutiset',     slug:'kansanuutiset',     url:'www.kansanuutiset.fi', $page:'#cb-container' },
+		{ country:'fi', name:'Kansan Uutiset',     slug:'kansanuutiset',     url:'www.ku.fi', $page:'.jeg_content' },
 		{ country:'fi', name:'Kaleva',             slug:'kaleva',            url:'www.kaleva.fi', $page:'#main-content' },
 
 		{ country:'ua', name:'Holos Ukrajiny',      slug:'holos',         url:'www.golos.com.ua', $page:'body' },

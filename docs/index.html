@@ -190,7 +190,7 @@
 						list = list.filter(p => p.wSmooth >= 1);
 						countries.push({ name, color: '#000', opacity: 0.3, list })
 					});
-					draw('#linechartCountries', countries);
+					drawLines('#linechartCountries', countries);
 				}
 
 				function drawCountry(name, cc) {
@@ -212,10 +212,10 @@
 					list.forEach(p => p.ySmooth /= p.wSmooth);
 					list = list.filter(p => p.wSmooth >= 1);
 					data1.push({ name, color: '#000', opacity: 1, list })
-					draw('#linechartCountry', data1);
+					drawLines('#linechartCountry', data1);
 				}
 
-				function draw(query, lines) {
+				function drawLines(query, lines) {
 
 					const margin = { top: 10, right: 180, bottom: 30, left: 40 };
 					const ratio = 0.618;
@@ -280,12 +280,14 @@
 						line.list.sort((a, b) => a.xValue - b.xValue);
 
 						line.dotData = line.list.filter(p => isFinite(p.yValue));
-						line.curveData = line.list.filter(p => p.wSmooth >= 1);
+						line.curveData = line.list.filter(p => p.wSmooth >= 0.1);
 
 						let lastPoint = line.curveData[line.curveData.length - 1];
 						line.lastY = y(lastPoint.ySmooth);
 						line.legendY = line.lastY;
 					})
+
+					console.log(lines[12]);
 
 					fixLegendLabelY(lines, 'legendY', 15);
 

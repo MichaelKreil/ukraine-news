@@ -55418,6 +55418,10 @@
 				"value": 207
 			},
 			{
+				"date": "2022-12-09",
+				"value": 145
+			},
+			{
 				"date": "2022-12-10",
 				"value": 371
 			},
@@ -62413,15 +62417,15 @@
 			"country": "pl",
 			"name": "Polska Metropolia Warszawska",
 			"slug": "pl_polskatimes",
-			"url": "polskatimes.pl",
-			"$page": "main",
+			"url": "i.pl",
+			"$page": ".componentsListingMainTopicDailyPremium__content",
 			"index": 45,
 			"lang": "pl"
 		},
 		"list": [
 			{
 				"date": "2022-01-01",
-				"value": 38
+				"value": 0
 			},
 			{
 				"date": "2022-01-02",
@@ -62429,23 +62433,23 @@
 			},
 			{
 				"date": "2022-01-03",
-				"value": 73
+				"value": 0
 			},
 			{
 				"date": "2022-01-04",
-				"value": 182
+				"value": 0
 			},
 			{
 				"date": "2022-01-05",
-				"value": 37
+				"value": 0
 			},
 			{
 				"date": "2022-01-06",
-				"value": 145
+				"value": 0
 			},
 			{
 				"date": "2022-01-07",
-				"value": 184
+				"value": 0
 			},
 			{
 				"date": "2022-01-08",
@@ -62453,7 +62457,7 @@
 			},
 			{
 				"date": "2022-01-09",
-				"value": 146
+				"value": 0
 			},
 			{
 				"date": "2022-01-10",
@@ -62461,15 +62465,15 @@
 			},
 			{
 				"date": "2022-01-11",
-				"value": 293
+				"value": 0
 			},
 			{
 				"date": "2022-01-12",
-				"value": 185
+				"value": 0
 			},
 			{
 				"date": "2022-01-13",
-				"value": 143
+				"value": 0
 			},
 			{
 				"date": "2022-01-14",
@@ -62477,19 +62481,19 @@
 			},
 			{
 				"date": "2022-01-15",
-				"value": 36
+				"value": 0
 			},
 			{
 				"date": "2022-01-16",
-				"value": 294
+				"value": 0
 			},
 			{
 				"date": "2022-01-17",
-				"value": 218
+				"value": 0
 			},
 			{
 				"date": "2022-01-18",
-				"value": 292
+				"value": 0
 			},
 			{
 				"date": "2022-01-19",
@@ -62497,31 +62501,31 @@
 			},
 			{
 				"date": "2022-01-20",
-				"value": 251
+				"value": 0
 			},
 			{
 				"date": "2022-01-21",
-				"value": 599
+				"value": 0
 			},
 			{
 				"date": "2022-01-22",
-				"value": 144
+				"value": 0
 			},
 			{
 				"date": "2022-01-23",
-				"value": 583
+				"value": 0
 			},
 			{
 				"date": "2022-01-24",
-				"value": 144
+				"value": 0
 			},
 			{
 				"date": "2022-01-25",
-				"value": 324
+				"value": 0
 			},
 			{
 				"date": "2022-01-26",
-				"value": 216
+				"value": 0
 			},
 			{
 				"date": "2022-01-27",
@@ -62529,87 +62533,87 @@
 			},
 			{
 				"date": "2022-01-28",
-				"value": 247
+				"value": 0
 			},
 			{
 				"date": "2022-01-29",
-				"value": 377
+				"value": 0
 			},
 			{
 				"date": "2022-01-30",
-				"value": 174
+				"value": 0
 			},
 			{
 				"date": "2022-01-31",
-				"value": 171
+				"value": 0
 			},
 			{
 				"date": "2022-02-01",
-				"value": 172
+				"value": 0
 			},
 			{
 				"date": "2022-02-02",
-				"value": 175
+				"value": 0
 			},
 			{
 				"date": "2022-02-03",
-				"value": 209
+				"value": 0
 			},
 			{
 				"date": "2022-02-04",
-				"value": 355
+				"value": 0
 			},
 			{
 				"date": "2022-02-05",
-				"value": 104
+				"value": 0
 			},
 			{
 				"date": "2022-02-06",
-				"value": 242
+				"value": 0
 			},
 			{
 				"date": "2022-02-07",
-				"value": 314
+				"value": 0
 			},
 			{
 				"date": "2022-02-08",
-				"value": 276
+				"value": 0
 			},
 			{
 				"date": "2022-02-09",
-				"value": 515
+				"value": 0
 			},
 			{
 				"date": "2022-02-10",
-				"value": 444
+				"value": 0
 			},
 			{
 				"date": "2022-02-11",
-				"value": 169
+				"value": 0
 			},
 			{
 				"date": "2022-02-12",
-				"value": 470
+				"value": 0
 			},
 			{
 				"date": "2022-02-13",
-				"value": 578
+				"value": 0
 			},
 			{
 				"date": "2022-02-14",
-				"value": 278
+				"value": 0
 			},
 			{
 				"date": "2022-02-15",
-				"value": 278
+				"value": 0
 			},
 			{
 				"date": "2022-02-16",
-				"value": 488
+				"value": 0
 			},
 			{
 				"date": "2022-02-17",
-				"value": 384
+				"value": 0
 			},
 			{
 				"date": "2022-02-18",
@@ -62621,19 +62625,19 @@
 			},
 			{
 				"date": "2022-02-20",
-				"value": 535
+				"value": 0
 			},
 			{
 				"date": "2022-02-21",
-				"value": 1396
+				"value": 0
 			},
 			{
 				"date": "2022-02-22",
-				"value": 1154
+				"value": 0
 			},
 			{
 				"date": "2022-02-23",
-				"value": 804
+				"value": 0
 			},
 			{
 				"date": "2022-02-24",
@@ -62641,7 +62645,7 @@
 			},
 			{
 				"date": "2022-02-25",
-				"value": 2623
+				"value": 0
 			},
 			{
 				"date": "2022-02-26",
@@ -62649,7 +62653,7 @@
 			},
 			{
 				"date": "2022-02-27",
-				"value": 2387
+				"value": 0
 			},
 			{
 				"date": "2022-02-28",
@@ -62657,23 +62661,23 @@
 			},
 			{
 				"date": "2022-03-01",
-				"value": 2310
+				"value": 0
 			},
 			{
 				"date": "2022-03-02",
-				"value": 2681
+				"value": 0
 			},
 			{
 				"date": "2022-03-03",
-				"value": 2166
+				"value": 0
 			},
 			{
 				"date": "2022-03-04",
-				"value": 2112
+				"value": 0
 			},
 			{
 				"date": "2022-03-05",
-				"value": 2262
+				"value": 0
 			},
 			{
 				"date": "2022-03-06",
@@ -62681,31 +62685,31 @@
 			},
 			{
 				"date": "2022-03-07",
-				"value": 2503
+				"value": 0
 			},
 			{
 				"date": "2022-03-08",
-				"value": 2104
+				"value": 0
 			},
 			{
 				"date": "2022-03-09",
-				"value": 1802
+				"value": 0
 			},
 			{
 				"date": "2022-03-10",
-				"value": 1915
+				"value": 0
 			},
 			{
 				"date": "2022-03-11",
-				"value": 1824
+				"value": 0
 			},
 			{
 				"date": "2022-03-12",
-				"value": 1854
+				"value": 0
 			},
 			{
 				"date": "2022-03-13",
-				"value": 1902
+				"value": 0
 			},
 			{
 				"date": "2022-03-14",
@@ -62713,31 +62717,31 @@
 			},
 			{
 				"date": "2022-03-15",
-				"value": 2279
+				"value": 0
 			},
 			{
 				"date": "2022-03-16",
-				"value": 1807
+				"value": 0
 			},
 			{
 				"date": "2022-03-17",
-				"value": 1617
+				"value": 0
 			},
 			{
 				"date": "2022-03-18",
-				"value": 1801
+				"value": 0
 			},
 			{
 				"date": "2022-03-19",
-				"value": 1802
+				"value": 0
 			},
 			{
 				"date": "2022-03-20",
-				"value": 1738
+				"value": 0
 			},
 			{
 				"date": "2022-03-21",
-				"value": 1881
+				"value": 0
 			},
 			{
 				"date": "2022-03-22",
@@ -62745,19 +62749,19 @@
 			},
 			{
 				"date": "2022-03-23",
-				"value": 1748
+				"value": 0
 			},
 			{
 				"date": "2022-03-24",
-				"value": 1587
+				"value": 0
 			},
 			{
 				"date": "2022-03-25",
-				"value": 1695
+				"value": 0
 			},
 			{
 				"date": "2022-03-26",
-				"value": 986
+				"value": 0
 			},
 			{
 				"date": "2022-03-27",
@@ -62765,83 +62769,83 @@
 			},
 			{
 				"date": "2022-03-28",
-				"value": 1643
+				"value": 0
 			},
 			{
 				"date": "2022-03-29",
-				"value": 1182
+				"value": 0
 			},
 			{
 				"date": "2022-03-30",
-				"value": 1214
+				"value": 0
 			},
 			{
 				"date": "2022-03-31",
-				"value": 1346
+				"value": 0
 			},
 			{
 				"date": "2022-04-01",
-				"value": 1601
+				"value": 0
 			},
 			{
 				"date": "2022-04-02",
-				"value": 1675
+				"value": 0
 			},
 			{
 				"date": "2022-04-03",
-				"value": 1916
+				"value": 0
 			},
 			{
 				"date": "2022-04-04",
-				"value": 1674
+				"value": 0
 			},
 			{
 				"date": "2022-04-05",
-				"value": 1592
+				"value": 0
 			},
 			{
 				"date": "2022-04-06",
-				"value": 1584
+				"value": 0
 			},
 			{
 				"date": "2022-04-07",
-				"value": 1202
+				"value": 0
 			},
 			{
 				"date": "2022-04-08",
-				"value": 1136
+				"value": 0
 			},
 			{
 				"date": "2022-04-09",
-				"value": 1588
+				"value": 0
 			},
 			{
 				"date": "2022-04-10",
-				"value": 1190
+				"value": 0
 			},
 			{
 				"date": "2022-04-11",
-				"value": 1447
+				"value": 0
 			},
 			{
 				"date": "2022-04-12",
-				"value": 1151
+				"value": 0
 			},
 			{
 				"date": "2022-04-13",
-				"value": 1164
+				"value": 0
 			},
 			{
 				"date": "2022-04-14",
-				"value": 979
+				"value": 0
 			},
 			{
 				"date": "2022-04-16",
-				"value": 1392
+				"value": 0
 			},
 			{
 				"date": "2022-04-17",
-				"value": 715
+				"value": 0
 			},
 			{
 				"date": "2022-04-19",
@@ -62849,111 +62853,111 @@
 			},
 			{
 				"date": "2022-04-20",
-				"value": 1523
+				"value": 0
 			},
 			{
 				"date": "2022-04-21",
-				"value": 1636
+				"value": 0
 			},
 			{
 				"date": "2022-04-22",
-				"value": 1271
+				"value": 0
 			},
 			{
 				"date": "2022-04-23",
-				"value": 1192
+				"value": 0
 			},
 			{
 				"date": "2022-04-24",
-				"value": 1681
+				"value": 0
 			},
 			{
 				"date": "2022-04-25",
-				"value": 1224
+				"value": 0
 			},
 			{
 				"date": "2022-04-26",
-				"value": 1613
+				"value": 0
 			},
 			{
 				"date": "2022-04-27",
-				"value": 1492
+				"value": 0
 			},
 			{
 				"date": "2022-04-28",
-				"value": 1103
+				"value": 0
 			},
 			{
 				"date": "2022-04-29",
-				"value": 913
+				"value": 0
 			},
 			{
 				"date": "2022-04-30",
-				"value": 811
+				"value": 0
 			},
 			{
 				"date": "2022-05-01",
-				"value": 615
+				"value": 0
 			},
 			{
 				"date": "2022-05-02",
-				"value": 1126
+				"value": 0
 			},
 			{
 				"date": "2022-05-03",
-				"value": 1289
+				"value": 0
 			},
 			{
 				"date": "2022-05-04",
-				"value": 1243
+				"value": 0
 			},
 			{
 				"date": "2022-05-05",
-				"value": 1285
+				"value": 0
 			},
 			{
 				"date": "2022-05-06",
-				"value": 1429
+				"value": 0
 			},
 			{
 				"date": "2022-05-07",
-				"value": 1232
+				"value": 0
 			},
 			{
 				"date": "2022-05-08",
-				"value": 1283
+				"value": 0
 			},
 			{
 				"date": "2022-05-09",
-				"value": 1431
+				"value": 0
 			},
 			{
 				"date": "2022-05-10",
-				"value": 1407
+				"value": 0
 			},
 			{
 				"date": "2022-05-11",
-				"value": 1133
+				"value": 0
 			},
 			{
 				"date": "2022-05-12",
-				"value": 947
+				"value": 0
 			},
 			{
 				"date": "2022-05-13",
-				"value": 1142
+				"value": 0
 			},
 			{
 				"date": "2022-05-14",
-				"value": 1128
+				"value": 0
 			},
 			{
 				"date": "2022-05-15",
-				"value": 745
+				"value": 0
 			},
 			{
 				"date": "2022-05-16",
-				"value": 1027
+				"value": 0
 			},
 			{
 				"date": "2022-05-17",
@@ -62961,391 +62965,391 @@
 			},
 			{
 				"date": "2022-05-18",
-				"value": 924
+				"value": 0
 			},
 			{
 				"date": "2022-05-19",
-				"value": 1087
+				"value": 0
 			},
 			{
 				"date": "2022-05-20",
-				"value": 1385
+				"value": 0
 			},
 			{
 				"date": "2022-05-21",
-				"value": 1097
+				"value": 0
 			},
 			{
 				"date": "2022-05-22",
-				"value": 935
+				"value": 0
 			},
 			{
 				"date": "2022-05-23",
-				"value": 1292
+				"value": 0
 			},
 			{
 				"date": "2022-05-24",
-				"value": 1149
+				"value": 0
 			},
 			{
 				"date": "2022-05-25",
-				"value": 1223
+				"value": 0
 			},
 			{
 				"date": "2022-05-26",
-				"value": 1119
+				"value": 0
 			},
 			{
 				"date": "2022-05-28",
-				"value": 2065
+				"value": 0
 			},
 			{
 				"date": "2022-05-29",
-				"value": 1123
+				"value": 0
 			},
 			{
 				"date": "2022-05-30",
-				"value": 1113
+				"value": 0
 			},
 			{
 				"date": "2022-05-31",
-				"value": 1456
+				"value": 0
 			},
 			{
 				"date": "2022-06-01",
-				"value": 842
+				"value": 0
 			},
 			{
 				"date": "2022-06-03",
-				"value": 1375
+				"value": 0
 			},
 			{
 				"date": "2022-06-04",
-				"value": 940
+				"value": 0
 			},
 			{
 				"date": "2022-06-05",
-				"value": 604
+				"value": 0
 			},
 			{
 				"date": "2022-06-06",
-				"value": 776
+				"value": 0
 			},
 			{
 				"date": "2022-06-07",
-				"value": 1071
+				"value": 0
 			},
 			{
 				"date": "2022-06-09",
-				"value": 857
+				"value": 0
 			},
 			{
 				"date": "2022-06-10",
-				"value": 1062
+				"value": 0
 			},
 			{
 				"date": "2022-06-11",
-				"value": 1069
+				"value": 0
 			},
 			{
 				"date": "2022-06-12",
-				"value": 428
+				"value": 0
 			},
 			{
 				"date": "2022-06-14",
-				"value": 649
+				"value": 0
 			},
 			{
 				"date": "2022-06-15",
-				"value": 746
+				"value": 0
 			},
 			{
 				"date": "2022-06-16",
-				"value": 823
+				"value": 0
 			},
 			{
 				"date": "2022-06-18",
-				"value": 1273
+				"value": 0
 			},
 			{
 				"date": "2022-06-19",
-				"value": 1044
+				"value": 0
 			},
 			{
 				"date": "2022-06-20",
-				"value": 875
+				"value": 0
 			},
 			{
 				"date": "2022-06-21",
-				"value": 955
+				"value": 0
 			},
 			{
 				"date": "2022-06-23",
-				"value": 1180
+				"value": 0
 			},
 			{
 				"date": "2022-06-24",
-				"value": 958
+				"value": 0
 			},
 			{
 				"date": "2022-06-25",
-				"value": 728
+				"value": 0
 			},
 			{
 				"date": "2022-06-26",
-				"value": 1707
+				"value": 0
 			},
 			{
 				"date": "2022-06-27",
-				"value": 1378
+				"value": 0
 			},
 			{
 				"date": "2022-06-28",
-				"value": 557
+				"value": 0
 			},
 			{
 				"date": "2022-06-29",
-				"value": 1009
+				"value": 0
 			},
 			{
 				"date": "2022-07-01",
-				"value": 962
+				"value": 0
 			},
 			{
 				"date": "2022-07-02",
-				"value": 893
+				"value": 0
 			},
 			{
 				"date": "2022-07-03",
-				"value": 915
+				"value": 0
 			},
 			{
 				"date": "2022-07-04",
-				"value": 580
+				"value": 0
 			},
 			{
 				"date": "2022-07-05",
-				"value": 738
+				"value": 0
 			},
 			{
 				"date": "2022-07-06",
-				"value": 731
+				"value": 0
 			},
 			{
 				"date": "2022-07-07",
-				"value": 386
+				"value": 0
 			},
 			{
 				"date": "2022-07-08",
-				"value": 565
+				"value": 0
 			},
 			{
 				"date": "2022-07-09",
-				"value": 709
+				"value": 0
 			},
 			{
 				"date": "2022-07-10",
-				"value": 714
+				"value": 0
 			},
 			{
 				"date": "2022-07-12",
-				"value": 797
+				"value": 0
 			},
 			{
 				"date": "2022-07-13",
-				"value": 389
+				"value": 0
 			},
 			{
 				"date": "2022-07-15",
-				"value": 726
+				"value": 0
 			},
 			{
 				"date": "2022-07-16",
-				"value": 890
+				"value": 0
 			},
 			{
 				"date": "2022-07-17",
-				"value": 766
+				"value": 0
 			},
 			{
 				"date": "2022-07-19",
-				"value": 527
+				"value": 0
 			},
 			{
 				"date": "2022-07-20",
-				"value": 796
+				"value": 0
 			},
 			{
 				"date": "2022-07-21",
-				"value": 1068
+				"value": 0
 			},
 			{
 				"date": "2022-07-22",
-				"value": 759
+				"value": 0
 			},
 			{
 				"date": "2022-07-23",
-				"value": 455
+				"value": 0
 			},
 			{
 				"date": "2022-07-24",
-				"value": 988
+				"value": 0
 			},
 			{
 				"date": "2022-07-25",
-				"value": 589
+				"value": 0
 			},
 			{
 				"date": "2022-07-26",
-				"value": 452
+				"value": 0
 			},
 			{
 				"date": "2022-07-27",
-				"value": 898
+				"value": 0
 			},
 			{
 				"date": "2022-07-28",
-				"value": 923
+				"value": 0
 			},
 			{
 				"date": "2022-07-29",
-				"value": 932
+				"value": 0
 			},
 			{
 				"date": "2022-07-30",
-				"value": 444
+				"value": 0
 			},
 			{
 				"date": "2022-07-31",
-				"value": 347
+				"value": 0
 			},
 			{
 				"date": "2022-08-01",
-				"value": 483
+				"value": 0
 			},
 			{
 				"date": "2022-08-02",
-				"value": 555
+				"value": 0
 			},
 			{
 				"date": "2022-08-03",
-				"value": 315
+				"value": 0
 			},
 			{
 				"date": "2022-08-04",
-				"value": 411
+				"value": 0
 			},
 			{
 				"date": "2022-08-05",
-				"value": 773
+				"value": 0
 			},
 			{
 				"date": "2022-08-06",
-				"value": 593
+				"value": 0
 			},
 			{
 				"date": "2022-08-07",
-				"value": 579
+				"value": 0
 			},
 			{
 				"date": "2022-08-08",
-				"value": 490
+				"value": 0
 			},
 			{
 				"date": "2022-08-09",
-				"value": 1050
+				"value": 0
 			},
 			{
 				"date": "2022-08-10",
-				"value": 644
+				"value": 0
 			},
 			{
 				"date": "2022-08-11",
-				"value": 726
+				"value": 0
 			},
 			{
 				"date": "2022-08-12",
-				"value": 441
+				"value": 0
 			},
 			{
 				"date": "2022-08-14",
-				"value": 589
+				"value": 0
 			},
 			{
 				"date": "2022-08-15",
-				"value": 551
+				"value": 0
 			},
 			{
 				"date": "2022-08-16",
-				"value": 606
+				"value": 0
 			},
 			{
 				"date": "2022-08-18",
-				"value": 1157
+				"value": 0
 			},
 			{
 				"date": "2022-08-19",
-				"value": 881
+				"value": 0
 			},
 			{
 				"date": "2022-08-20",
-				"value": 671
+				"value": 0
 			},
 			{
 				"date": "2022-08-21",
-				"value": 708
+				"value": 0
 			},
 			{
 				"date": "2022-08-22",
-				"value": 803
+				"value": 0
 			},
 			{
 				"date": "2022-08-23",
-				"value": 557
+				"value": 0
 			},
 			{
 				"date": "2022-08-24",
-				"value": 561
+				"value": 0
 			},
 			{
 				"date": "2022-08-25",
-				"value": 990
+				"value": 0
 			},
 			{
 				"date": "2022-08-26",
-				"value": 336
+				"value": 0
 			},
 			{
 				"date": "2022-08-27",
-				"value": 718
+				"value": 0
 			},
 			{
 				"date": "2022-08-28",
-				"value": 460
+				"value": 0
 			},
 			{
 				"date": "2022-08-30",
-				"value": 591
+				"value": 0
 			},
 			{
 				"date": "2022-08-31",
-				"value": 852
+				"value": 0
 			},
 			{
 				"date": "2022-09-01",
-				"value": 688
+				"value": 0
 			},
 			{
 				"date": "2022-09-02",
-				"value": 588
+				"value": 0
 			},
 			{
 				"date": "2022-09-03",
-				"value": 626
+				"value": 0
 			},
 			{
 				"date": "2022-09-04",
-				"value": 474
+				"value": 0
 			}
 		]
 	},
@@ -78458,8 +78462,8 @@
 			"country": "fi",
 			"name": "Kansan Uutiset",
 			"slug": "fi_kansanuutiset",
-			"url": "www.kansanuutiset.fi",
-			"$page": "#cb-container",
+			"url": "www.ku.fi",
+			"$page": ".jeg_content",
 			"index": 58,
 			"lang": "fi"
 		},
@@ -78478,99 +78482,99 @@
 			},
 			{
 				"date": "2022-01-04",
-				"value": 124
+				"value": 0
 			},
 			{
 				"date": "2022-01-05",
-				"value": 182
+				"value": 0
 			},
 			{
 				"date": "2022-01-06",
-				"value": 130
+				"value": 0
 			},
 			{
 				"date": "2022-01-07",
-				"value": 669
+				"value": 0
 			},
 			{
 				"date": "2022-01-08",
-				"value": 674
+				"value": 0
 			},
 			{
 				"date": "2022-01-09",
-				"value": 918
+				"value": 0
 			},
 			{
 				"date": "2022-01-10",
-				"value": 862
+				"value": 0
 			},
 			{
 				"date": "2022-01-11",
-				"value": 707
+				"value": 0
 			},
 			{
 				"date": "2022-01-12",
-				"value": 587
+				"value": 0
 			},
 			{
 				"date": "2022-01-13",
-				"value": 537
+				"value": 0
 			},
 			{
 				"date": "2022-01-14",
-				"value": 467
+				"value": 0
 			},
 			{
 				"date": "2022-01-15",
-				"value": 310
+				"value": 0
 			},
 			{
 				"date": "2022-01-16",
-				"value": 456
+				"value": 0
 			},
 			{
 				"date": "2022-01-17",
-				"value": 199
+				"value": 0
 			},
 			{
 				"date": "2022-01-18",
-				"value": 188
+				"value": 0
 			},
 			{
 				"date": "2022-01-19",
-				"value": 432
+				"value": 0
 			},
 			{
 				"date": "2022-01-20",
-				"value": 314
+				"value": 0
 			},
 			{
 				"date": "2022-01-21",
-				"value": 194
+				"value": 0
 			},
 			{
 				"date": "2022-01-22",
-				"value": 123
+				"value": 0
 			},
 			{
 				"date": "2022-01-23",
-				"value": 127
+				"value": 0
 			},
 			{
 				"date": "2022-01-24",
-				"value": 313
+				"value": 0
 			},
 			{
 				"date": "2022-01-25",
-				"value": 125
+				"value": 0
 			},
 			{
 				"date": "2022-01-26",
-				"value": 61
+				"value": 0
 			},
 			{
 				"date": "2022-01-27",
-				"value": 61
+				"value": 0
 			},
 			{
 				"date": "2022-01-28",
@@ -78578,39 +78582,39 @@
 			},
 			{
 				"date": "2022-01-29",
-				"value": 61
+				"value": 0
 			},
 			{
 				"date": "2022-01-30",
-				"value": 653
+				"value": 0
 			},
 			{
 				"date": "2022-01-31",
-				"value": 473
+				"value": 0
 			},
 			{
 				"date": "2022-02-01",
-				"value": 412
+				"value": 0
 			},
 			{
 				"date": "2022-02-02",
-				"value": 413
+				"value": 0
 			},
 			{
 				"date": "2022-02-03",
-				"value": 299
+				"value": 0
 			},
 			{
 				"date": "2022-02-04",
-				"value": 530
+				"value": 0
 			},
 			{
 				"date": "2022-02-05",
-				"value": 119
+				"value": 0
 			},
 			{
 				"date": "2022-02-06",
-				"value": 61
+				"value": 0
 			},
 			{
 				"date": "2022-02-07",
@@ -78618,531 +78622,531 @@
 			},
 			{
 				"date": "2022-02-08",
-				"value": 528
+				"value": 0
 			},
 			{
 				"date": "2022-02-09",
-				"value": 121
+				"value": 0
 			},
 			{
 				"date": "2022-02-10",
-				"value": 117
+				"value": 0
 			},
 			{
 				"date": "2022-02-11",
-				"value": 117
+				"value": 0
 			},
 			{
 				"date": "2022-02-12",
-				"value": 117
+				"value": 0
 			},
 			{
 				"date": "2022-02-13",
-				"value": 662
+				"value": 0
 			},
 			{
 				"date": "2022-02-14",
-				"value": 1114
+				"value": 0
 			},
 			{
 				"date": "2022-02-15",
-				"value": 1500
+				"value": 0
 			},
 			{
 				"date": "2022-02-16",
-				"value": 1063
+				"value": 0
 			},
 			{
 				"date": "2022-02-17",
-				"value": 818
+				"value": 0
 			},
 			{
 				"date": "2022-02-18",
-				"value": 1255
+				"value": 0
 			},
 			{
 				"date": "2022-02-19",
-				"value": 950
+				"value": 0
 			},
 			{
 				"date": "2022-02-20",
-				"value": 797
+				"value": 0
 			},
 			{
 				"date": "2022-02-21",
-				"value": 254
+				"value": 0
 			},
 			{
 				"date": "2022-02-22",
-				"value": 2917
+				"value": 0
 			},
 			{
 				"date": "2022-02-23",
-				"value": 2728
+				"value": 0
 			},
 			{
 				"date": "2022-02-24",
-				"value": 4171
+				"value": 0
 			},
 			{
 				"date": "2022-02-25",
-				"value": 4452
+				"value": 0
 			},
 			{
 				"date": "2022-02-26",
-				"value": 3938
+				"value": 0
 			},
 			{
 				"date": "2022-02-27",
-				"value": 3071
+				"value": 0
 			},
 			{
 				"date": "2022-03-01",
-				"value": 2287
+				"value": 0
 			},
 			{
 				"date": "2022-03-02",
-				"value": 4298
+				"value": 0
 			},
 			{
 				"date": "2022-03-03",
-				"value": 4412
+				"value": 0
 			},
 			{
 				"date": "2022-03-04",
-				"value": 3762
+				"value": 0
 			},
 			{
 				"date": "2022-03-05",
-				"value": 4197
+				"value": 0
 			},
 			{
 				"date": "2022-03-06",
-				"value": 3669
+				"value": 0
 			},
 			{
 				"date": "2022-03-07",
-				"value": 3394
+				"value": 0
 			},
 			{
 				"date": "2022-03-08",
-				"value": 2205
+				"value": 0
 			},
 			{
 				"date": "2022-03-09",
-				"value": 2334
+				"value": 0
 			},
 			{
 				"date": "2022-03-10",
-				"value": 2036
+				"value": 0
 			},
 			{
 				"date": "2022-03-11",
-				"value": 1965
+				"value": 0
 			},
 			{
 				"date": "2022-03-12",
-				"value": 2898
+				"value": 0
 			},
 			{
 				"date": "2022-03-13",
-				"value": 2759
+				"value": 0
 			},
 			{
 				"date": "2022-03-15",
-				"value": 2736
+				"value": 0
 			},
 			{
 				"date": "2022-03-16",
-				"value": 2073
+				"value": 0
 			},
 			{
 				"date": "2022-03-19",
-				"value": 2281
+				"value": 0
 			},
 			{
 				"date": "2022-03-20",
-				"value": 2088
+				"value": 0
 			},
 			{
 				"date": "2022-03-21",
-				"value": 1919
+				"value": 0
 			},
 			{
 				"date": "2022-03-22",
-				"value": 1376
+				"value": 0
 			},
 			{
 				"date": "2022-03-23",
-				"value": 1084
+				"value": 0
 			},
 			{
 				"date": "2022-03-24",
-				"value": 1235
+				"value": 0
 			},
 			{
 				"date": "2022-03-25",
-				"value": 1084
+				"value": 0
 			},
 			{
 				"date": "2022-03-26",
-				"value": 735
+				"value": 0
 			},
 			{
 				"date": "2022-03-27",
-				"value": 680
+				"value": 0
 			},
 			{
 				"date": "2022-03-28",
-				"value": 2814
+				"value": 0
 			},
 			{
 				"date": "2022-03-29",
-				"value": 2216
+				"value": 0
 			},
 			{
 				"date": "2022-03-30",
-				"value": 3051
+				"value": 0
 			},
 			{
 				"date": "2022-03-31",
-				"value": 2519
+				"value": 0
 			},
 			{
 				"date": "2022-04-01",
-				"value": 1476
+				"value": 0
 			},
 			{
 				"date": "2022-04-02",
-				"value": 1118
+				"value": 0
 			},
 			{
 				"date": "2022-04-03",
-				"value": 879
+				"value": 0
 			},
 			{
 				"date": "2022-04-04",
-				"value": 3176
+				"value": 0
 			},
 			{
 				"date": "2022-04-05",
-				"value": 1964
+				"value": 0
 			},
 			{
 				"date": "2022-04-06",
-				"value": 2923
+				"value": 0
 			},
 			{
 				"date": "2022-04-07",
-				"value": 2976
+				"value": 0
 			},
 			{
 				"date": "2022-04-08",
-				"value": 2739
+				"value": 0
 			},
 			{
 				"date": "2022-04-09",
-				"value": 1816
+				"value": 0
 			},
 			{
 				"date": "2022-04-10",
-				"value": 1790
+				"value": 0
 			},
 			{
 				"date": "2022-04-11",
-				"value": 1581
+				"value": 0
 			},
 			{
 				"date": "2022-04-12",
-				"value": 2326
+				"value": 0
 			},
 			{
 				"date": "2022-04-17",
-				"value": 1726
+				"value": 0
 			},
 			{
 				"date": "2022-04-19",
-				"value": 860
+				"value": 0
 			},
 			{
 				"date": "2022-04-20",
-				"value": 860
+				"value": 0
 			},
 			{
 				"date": "2022-04-21",
-				"value": 655
+				"value": 0
 			},
 			{
 				"date": "2022-04-22",
-				"value": 1723
+				"value": 0
 			},
 			{
 				"date": "2022-04-23",
-				"value": 1515
+				"value": 0
 			},
 			{
 				"date": "2022-04-24",
-				"value": 2035
+				"value": 0
 			},
 			{
 				"date": "2022-04-25",
-				"value": 1793
+				"value": 0
 			},
 			{
 				"date": "2022-04-26",
-				"value": 1869
+				"value": 0
 			},
 			{
 				"date": "2022-04-27",
-				"value": 1949
+				"value": 0
 			},
 			{
 				"date": "2022-04-28",
-				"value": 2732
+				"value": 0
 			},
 			{
 				"date": "2022-04-29",
-				"value": 1714
+				"value": 0
 			},
 			{
 				"date": "2022-04-30",
-				"value": 1800
+				"value": 0
 			},
 			{
 				"date": "2022-05-01",
-				"value": 1669
+				"value": 0
 			},
 			{
 				"date": "2022-05-03",
-				"value": 1233
+				"value": 0
 			},
 			{
 				"date": "2022-05-04",
-				"value": 1851
+				"value": 0
 			},
 			{
 				"date": "2022-05-05",
-				"value": 1859
+				"value": 0
 			},
 			{
 				"date": "2022-05-06",
-				"value": 1007
+				"value": 0
 			},
 			{
 				"date": "2022-05-07",
-				"value": 1155
+				"value": 0
 			},
 			{
 				"date": "2022-05-08",
-				"value": 918
+				"value": 0
 			},
 			{
 				"date": "2022-05-09",
-				"value": 918
+				"value": 0
 			},
 			{
 				"date": "2022-05-10",
-				"value": 2271
+				"value": 0
 			},
 			{
 				"date": "2022-05-11",
-				"value": 1590
+				"value": 0
 			},
 			{
 				"date": "2022-05-12",
-				"value": 1277
+				"value": 0
 			},
 			{
 				"date": "2022-05-13",
-				"value": 2886
+				"value": 0
 			},
 			{
 				"date": "2022-05-14",
-				"value": 1284
+				"value": 0
 			},
 			{
 				"date": "2022-05-15",
-				"value": 947
+				"value": 0
 			},
 			{
 				"date": "2022-05-16",
-				"value": 941
+				"value": 0
 			},
 			{
 				"date": "2022-05-17",
-				"value": 1147
+				"value": 0
 			},
 			{
 				"date": "2022-05-18",
-				"value": 966
+				"value": 0
 			},
 			{
 				"date": "2022-05-19",
-				"value": 966
+				"value": 0
 			},
 			{
 				"date": "2022-05-20",
-				"value": 1186
+				"value": 0
 			},
 			{
 				"date": "2022-05-21",
-				"value": 529
+				"value": 0
 			},
 			{
 				"date": "2022-05-22",
-				"value": 880
+				"value": 0
 			},
 			{
 				"date": "2022-05-23",
-				"value": 567
+				"value": 0
 			},
 			{
 				"date": "2022-05-24",
-				"value": 625
+				"value": 0
 			},
 			{
 				"date": "2022-05-25",
-				"value": 1219
+				"value": 0
 			},
 			{
 				"date": "2022-05-26",
-				"value": 467
+				"value": 0
 			},
 			{
 				"date": "2022-05-27",
-				"value": 452
+				"value": 0
 			},
 			{
 				"date": "2022-05-28",
-				"value": 1042
+				"value": 0
 			},
 			{
 				"date": "2022-05-29",
-				"value": 1485
+				"value": 0
 			},
 			{
 				"date": "2022-05-30",
-				"value": 1251
+				"value": 0
 			},
 			{
 				"date": "2022-05-31",
-				"value": 1145
+				"value": 0
 			},
 			{
 				"date": "2022-06-01",
-				"value": 1132
+				"value": 0
 			},
 			{
 				"date": "2022-06-02",
-				"value": 1235
+				"value": 0
 			},
 			{
 				"date": "2022-06-03",
-				"value": 974
+				"value": 0
 			},
 			{
 				"date": "2022-06-04",
-				"value": 945
+				"value": 0
 			},
 			{
 				"date": "2022-06-05",
-				"value": 644
+				"value": 0
 			},
 			{
 				"date": "2022-06-06",
-				"value": 540
+				"value": 0
 			},
 			{
 				"date": "2022-06-07",
-				"value": 537
+				"value": 0
 			},
 			{
 				"date": "2022-06-08",
-				"value": 418
+				"value": 0
 			},
 			{
 				"date": "2022-06-09",
-				"value": 357
+				"value": 0
 			},
 			{
 				"date": "2022-06-11",
-				"value": 460
+				"value": 0
 			},
 			{
 				"date": "2022-06-12",
-				"value": 816
+				"value": 0
 			},
 			{
 				"date": "2022-06-14",
-				"value": 779
+				"value": 0
 			},
 			{
 				"date": "2022-06-15",
-				"value": 659
+				"value": 0
 			},
 			{
 				"date": "2022-06-16",
-				"value": 655
+				"value": 0
 			},
 			{
 				"date": "2022-06-17",
-				"value": 529
+				"value": 0
 			},
 			{
 				"date": "2022-06-18",
-				"value": 876
+				"value": 0
 			},
 			{
 				"date": "2022-06-19",
-				"value": 1333
+				"value": 0
 			},
 			{
 				"date": "2022-06-20",
-				"value": 1333
+				"value": 0
 			},
 			{
 				"date": "2022-06-21",
-				"value": 1140
+				"value": 0
 			},
 			{
 				"date": "2022-06-22",
-				"value": 1140
+				"value": 0
 			},
 			{
 				"date": "2022-06-23",
-				"value": 853
+				"value": 0
 			},
 			{
 				"date": "2022-06-24",
-				"value": 859
+				"value": 0
 			},
 			{
 				"date": "2022-06-25",
-				"value": 497
+				"value": 0
 			},
 			{
 				"date": "2022-06-26",
-				"value": 308
+				"value": 0
 			},
 			{
 				"date": "2022-06-27",
-				"value": 181
+				"value": 0
 			},
 			{
 				"date": "2022-06-28",
-				"value": 59
+				"value": 0
 			},
 			{
 				"date": "2022-06-29",
-				"value": 59
+				"value": 0
 			},
 			{
 				"date": "2022-06-30",
-				"value": 57
+				"value": 0
 			},
 			{
 				"date": "2022-07-01",
-				"value": 56
+				"value": 0
 			},
 			{
 				"date": "2022-07-02",
@@ -79150,47 +79154,55 @@
 			},
 			{
 				"date": "2022-07-03",
-				"value": 562
+				"value": 0
 			},
 			{
 				"date": "2022-07-04",
-				"value": 452
+				"value": 0
 			},
 			{
 				"date": "2022-07-05",
-				"value": 452
+				"value": 0
 			},
 			{
 				"date": "2022-07-06",
-				"value": 890
+				"value": 0
 			},
 			{
 				"date": "2022-07-07",
-				"value": 780
+				"value": 0
 			},
 			{
 				"date": "2022-07-08",
-				"value": 688
+				"value": 0
 			},
 			{
 				"date": "2022-07-09",
-				"value": 688
+				"value": 0
 			},
 			{
 				"date": "2022-07-10",
-				"value": 400
+				"value": 0
 			},
 			{
 				"date": "2022-07-11",
-				"value": 283
+				"value": 0
 			},
 			{
 				"date": "2022-07-12",
-				"value": 283
+				"value": 0
 			},
 			{
 				"date": "2022-07-13",
-				"value": 285
+				"value": 0
+			},
+			{
+				"date": "2022-11-06",
+				"value": 602
+			},
+			{
+				"date": "2022-11-10",
+				"value": 282
 			}
 		]
 	},
