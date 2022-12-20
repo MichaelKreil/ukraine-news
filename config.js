@@ -78,7 +78,7 @@ const config = {
 		{ country:'ua', name:'ATR',                 slug:'atr',           url:'atr.ua', $page:'main' },
 		{ country:'ua', name:'Ekspres',             slug:'ekspres',       url:'expres.online', $page:'main' },
 		{ country:'ua', name:'Fakty i kommentarii', slug:'fakty',         url:'fakty.ua', $page:'.page_cnt' },
-		{ country:'ua', name:'ICTV',                slug:'ictv',          url:'ictv.ua/ua', $page:'.container' },
+		{ country:'ua', name:'ICTV',                slug:'ictv',          url:'ictv.ua/ua/', $page:'.container' },
 		{ country:'ua', name:'Korrespondent',       slug:'korrespondent', url:'ua.korrespondent.net', $page:'.layout-content' },
 		{ country:'ua', name:'Ukrajina moloda',     slug:'umoloda',       url:'www.umoloda.kiev.ua', $page:'#main' },
 		{ country:'ua', name:'Wysokyj Zamok',       slug:'wz',            url:'wz.lviv.ua', $page:'#main' },
@@ -124,7 +124,7 @@ const config = {
 }
 
 const dayMin = Math.round(Date.parse(config.dateMin)/86400000);
-const today = Math.floor(Date.now()/86400000-2);
+const today = Math.floor(Date.now()/86400000-5);
 config.todos = [];
 
 for (let [index, medium] of config.media.entries()) {
