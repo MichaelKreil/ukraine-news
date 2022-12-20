@@ -96,65 +96,85 @@
 	</p>
 
 	<script type="text/javascript">
+
 		setTimeout(start, 0);
 
 		async function start() {
-			let data = await d3.json('./data.json');
 
-			let dateMin = Date.now(), dateMax = false;
-			data.forEach(e => {
-				e.dates = e.dates.split(',');
-				e.values = e.values.split(',').map(v => parseInt(v, 10));
-				e.list = e.values.map((value, i) => ({ value, date: e.dates[i] }))
-				
-				let avg = e.list.reduce((s, e) => s += e.value ?? 0, 0);
-				avg /= e.list.length;
+			const smoothRadius = 7;
 
-				e.list.forEach(p => {
-					p.xValue = new Date(p.date);
-					if (dateMin > p.xValue) dateMin = p.xValue;
-					if (dateMax < p.xValue) dateMax = p.xValue;
+			let media = await d3.json('./data.json');
 
-					p.yValue = p.value / avg;
-				})
-
-				e.list.sort((a, b) => a.xValue - b.xValue);
+			// process dates and values
+			let dateMin = Date.now(), dateMax = 0;
+			media.forEach(medium => {
+				let values = medium.values.split(',');
+				medium.list = medium.dates.split(',').map((date, i) => {
+					date = (new Date(date)).getTime();
+					if (dateMin > date) dateMin = date;
+					if (dateMax < date) dateMax = date;
+					return {
+						date,
+						value: parseInt(values[i], 10)
+					}
+				});
 			})
 
 			const indexMax = Math.round((dateMax - dateMin) / 86400000);
-			const radius = 7;
 
-			data.forEach(e => {
-				e.list.forEach(p => p.index = Math.round((p.xValue - dateMin) / 86400000));
+			// process values to generate an array medium.list:
+			// - index is the day since dateMin
+			// - value is the value
+			// - weight is 1, when value is defined, otherwise it is 0
+			// - yValue is the relative value
 
-				let array = [];
-				e.list.forEach(p => array[p.index] = p);
-				e.list = array;
-				for (let i = 0; i <= indexMax; i++) {
-					if (e.list[i]) {
-						e.list[i].defined = true;
-					} else {
-						e.list[i] = {
-							index: i,
-							xValue: new Date(dateMin + 86400000 * i),
-						}
-					}
+			media.forEach(medium => {
+				let list = [];
+				for (let index = 0; index <= indexMax; index++) {
+					list[index] = { value: 0, weight: 0, index }
 				}
+				medium.list.forEach(point => {
+					if (point.value < 0) return;
+					let index = Math.round((point.date - dateMin) / 86400000);
+					list[index].value = point.value;
+					list[index].weight = 1;
+				})
+				list.forEach((point, index) => point.date = new Date((index + 0.5) * 86400000 + dateMin));
+				//console.log(list);
+				medium.list = list;
 
-				for (let i = 0; i <= indexMax; i++) {
-					let j0 = Math.max(Math.round(i - radius * 5), 0);
-					let j1 = Math.min(Math.round(i + radius * 5), indexMax);
+				let sum = 0, count = 0;
+				medium.list.forEach(point => {
+					if (point.weight < 0.5) return;
+					sum += point.value;
+					count++;
+				});
+				sum /= count;
+
+				medium.list.forEach(point => point.yValue = point.value / sum);
+			})
+
+			// calculate smooth values
+			media.forEach(medium => {
+				medium.list.forEach(point0 => {
+					let j0 = Math.round(point0.index - smoothRadius * 5);
+					let j1 = Math.min(Math.round(point0.index + smoothRadius * 5), indexMax);
+
 					let valSum = 0;
 					let weightSum = 0;
 					for (let j = j0; j <= j1; j++) {
-						if (!e.list[j].defined) continue;
-						let weight = Math.exp(-Math.pow((i - j) / radius, 2));
-						valSum += weight * e.list[j].yValue;
-						weightSum += weight;
+						let weight = Math.exp(-Math.pow((point0.index - j) / smoothRadius, 2));
+
+						if (j >= 0) {
+							let point1 = medium.list[j];
+							weight *= point1.weight;
+							valSum += weight * point1.yValue;
+							weightSum += weight;
+						}
 					}
-					e.list[i].ySmooth = valSum / weightSum;
-					e.list[i].wSmooth = weightSum / radius;
-				}
+					point0.ySmooth = valSum / weightSum;
+					point0.wSmooth = weightSum / smoothRadius;
+				})
 			})
 
 			let selectCountry = d3.select('#selectCountry');
@@ -172,52 +192,40 @@
 				let countries = [];
 				selectCountry.selectAll('option').each(function (a, b, c) {
 					let name = this.innerText;
-					let code = this.value;
-
-					let list = new Map();
-					data.forEach(entry => {
-						if (entry.medium.country !== code) return;
-						entry.list.forEach(pMedium => {
-							if (!list.has(pMedium.index)) {
-								list.set(pMedium.index, { xValue: pMedium.xValue, ySmooth: 0, wSmooth: 0 })
-							}
-							if (pMedium.wSmooth < 1e-3) return;
-							let pCountry = list.get(pMedium.index);
-							pCountry.ySmooth += pMedium.wSmooth * pMedium.ySmooth;
-							pCountry.wSmooth += pMedium.wSmooth;
-						})
-					})
-					list = Array.from(list.values());
-					list.forEach(p => p.ySmooth /= p.wSmooth);
-					list = list.filter(p => p.wSmooth >= 1);
+					let countryCode = this.value;
+					let list = averageMedia(media.filter(e => e.medium.country === countryCode));
 					countries.push({ name, color: '#000', opacity: 0.3, list })
 				});
 				drawLines('#linechartCountries', countries);
 			}
 
-			function drawCountry(name, cc) {
-				let data1 = data
-					.filter(e => e.medium.country === cc)
-					.map(e => Object.assign({}, e, { name: e.medium.name, dots: true, opacity: 0.15, color: '#0069b4' }))
-				let list = [];
-				data1.forEach(entry => {
-					entry.list.forEach(pMedium => {
-						if (!list[pMedium.index]) {
-							list[pMedium.index] = { xValue: pMedium.xValue, ySmooth: 0, wSmooth: 0 };
-						}
-						if (pMedium.wSmooth < 1e-3) return;
-						let pCountry = list[pMedium.index];
-						pCountry.ySmooth += pMedium.wSmooth * pMedium.ySmooth;
-						pCountry.wSmooth += pMedium.wSmooth;
+			function drawCountry(countryName, countryCode) {
+				let countryMedia = media
+					.filter(e => e.medium.country === countryCode)
+					.map(e => Object.assign({}, e, { name: e.medium.name, dots: true, opacity: 0.15, color: '#0069b4' }));
+				let list = averageMedia(countryMedia);
+				countryMedia.push({ name:countryName, color: '#000', opacity: 1, list })
+				drawLines('#linechartCountry', countryMedia);
+			}
+
+			function averageMedia(media) {
+				let averageData = [];
+				media.forEach(medium => {
+					medium.list.forEach(point => {
+						let { index, wSmooth, ySmooth, date } = point;
+						if (!averageData[index]) averageData[index] = { index, date, ySmooth: 0, wSmooth: 0 };
+						if (wSmooth < 1e-3) return;
+						let pointCountry = averageData[index];
+						pointCountry.ySmooth += wSmooth * ySmooth;
+						pointCountry.wSmooth += wSmooth;
 					})
 				})
-				list.forEach(p => p.ySmooth /= p.wSmooth);
-				list = list.filter(p => p.wSmooth >= 1);
-				data1.push({ name, color: '#000', opacity: 1, list })
-				drawLines('#linechartCountry', data1);
+				averageData.forEach(p => p.ySmooth /= p.wSmooth);
+				return averageData;
 			}
 
 			function drawLines(query, lines) {
+				//console.log(lines[11].medium.name, lines[11].list.slice(0,16).map(e => e.ySmooth));
 
 				const margin = { top: 10, right: 180, bottom: 30, left: 40 };
 				const ratio = 0.618;
@@ -254,7 +262,7 @@
 
 				// add Y axis
 				let y = d3.scaleLinear()
-					.domain([0, 4])
+					.domain([0, 5])
 					.range([height, 0]);
 
 				svg.append('g')
@@ -279,25 +287,25 @@
 					.attr('transform', `translate(${margin.left},${margin.top})`)
 
 				lines.forEach(line => {
-					line.list.sort((a, b) => a.xValue - b.xValue);
-
-					line.dotData = line.list.filter(p => isFinite(p.yValue));
+					line.dotData = line.list.filter(p => p.weight > 0.5);
 					line.curveData = line.list.filter(p => p.wSmooth >= 0.1);
 
 					let lastPoint = line.curveData[line.curveData.length - 1];
+
 					line.lastY = y(lastPoint.ySmooth);
 					line.legendY = line.lastY;
 				})
 
-				console.log(lines[12]);
-
 				fixLegendLabelY(lines, 'legendY', 15);
+
+				//console.table(lines.map((l, index) => ({ name: l.name, index })));
+				//console.table(lines[8].curveData.map(d => ({ x: x(d.date), y: y(d.ySmooth) })));
 
 				// Draw the line
 				lines.forEach(line => {
 					line.path = d3.line()
 						.curve(d3.curveBasis)
-						.x(d => x(d.xValue))
+						.x(d => x(d.date))
 						.y(d => y(d.ySmooth))
 						(line.curveData);
 
@@ -359,7 +367,7 @@
 							.data(line.dotData)
 							.enter()
 							.append('circle')
-							.attr('cx', d => x(d.xValue))
+							.attr('cx', d => x(d.date))
 							.attr('cy', d => y(d.yValue))
 							.attr('r', 1.5)
 							.attr('fill', line.color)
