@@ -11,14 +11,14 @@ start()
 
 async function start() {
 	let folder = resolve(__dirname, '../tmp/cached_results');
-	fs.mkdirSync(folder, {recursive:true});
-	let db = new Level(folder, {keyEncoding:'json', valueEncoding:'json'})
+	fs.mkdirSync(folder, { recursive: true });
+	let db = new Level(folder, { keyEncoding: 'json', valueEncoding: 'json' })
 
 	let timelinesByMedia = [];
 	let wordCountryMatrix = new Database();
 
 	for (let [i, todo] of config.todos.entries()) {
-		process.stdout.write('\r'+(100*i/config.todos.length).toFixed(1)+'%');
+		process.stdout.write('\r' + (100 * i / config.todos.length).toFixed(1) + '%');
 
 		if (!fs.existsSync(todo.cacheFilenameHtml)) continue;
 
@@ -33,7 +33,7 @@ async function start() {
 				todo.medium.$page,
 				word[lang].toString()
 			]
-			let count,ratio;
+			let count, ratio;
 			try {
 				let result = await db.get(key);
 				count = result.count;
@@ -45,15 +45,15 @@ async function start() {
 				}
 				count = countResults(text.matchAll(word[lang]));
 				ratio = count / wordCount;
-				await db.put(key, {count,ratio});
+				await db.put(key, { count, ratio });
 			}
 
 			wordCountryMatrix.set([word.name, todo.medium.country], count);
 
 			let i = todo.medium.index;
-			if (!timelinesByMedia[i]) timelinesByMedia[i] = { medium:todo.medium, list:new Map() }
+			if (!timelinesByMedia[i]) timelinesByMedia[i] = { medium: todo.medium, list: new Map() }
 			if (!timelinesByMedia[i].list.has(todo.date)) {
-				timelinesByMedia[i].list.set(todo.date, { date:todo.date, value:ratio  })
+				timelinesByMedia[i].list.set(todo.date, { date: todo.date, value: ratio })
 			} else {
 				timelinesByMedia[i].list.get(todo.date).value += ratio;
 			}
@@ -70,9 +70,11 @@ async function start() {
 	}
 
 	timelinesByMedia.forEach(t => {
-		t.list = Array.from(t.list.values())
-		t.list.sort((a,b) => (a.date < b.date) ? -1 : 1);
-		t.list.forEach(e => e.value = Math.round(e.value*1e5));
+		let list = Array.from(t.list.values())
+		list.sort((a, b) => (a.date < b.date) ? -1 : 1);
+		t.dates = list.map(e => e.date).join(',');
+		t.values = list.map(e => Math.round(e.value * 1e5)).join(',');
+		delete t.list;
 	});
 	fs.writeFileSync(resolve(__dirname, '../docs/data.json'), JSON.stringify(timelinesByMedia, null, '\t'));
 
@@ -97,10 +99,10 @@ function Database() {
 		let rows = Array.from(columnValues[0].values()).sort();
 		let cols = Array.from(columnValues[1].values()).sort();
 
-		cols.forEach((tx,x) => matrix[0][x+1] = tx);
-		rows.forEach((ty,y) => {
-			matrix[y+1] = [ty]
-			cols.forEach((tx,x) => matrix[y+1][x+1] = data.get(ty+','+tx))
+		cols.forEach((tx, x) => matrix[0][x + 1] = tx);
+		rows.forEach((ty, y) => {
+			matrix[y + 1] = [ty]
+			cols.forEach((tx, x) => matrix[y + 1][x + 1] = data.get(ty + ',' + tx))
 		})
 
 		return matrix.map(r => r.join('\t')).join('\n');
@@ -113,16 +115,16 @@ function Database() {
 
 		return rows.map(obj => ({
 			obj,
-			list:cols.map(x => ({x, v: data.get(obj.toString()+','+x.toString())}))
+			list: cols.map(x => ({ x, v: data.get(obj.toString() + ',' + x.toString()) }))
 		}))
 	}
 
 	function set(keys, count) {
-		keys.forEach((key,col) => {
+		keys.forEach((key, col) => {
 			let cv = (columnValues[col] ??= new Set());
 			if (!cv.has(key)) cv.add(key);
 		})
 		let key = keys.join(',');
-		data.set(key, (data.get(key) ?? 0)+count);
+		data.set(key, (data.get(key) ?? 0) + count);
 	}
 }
