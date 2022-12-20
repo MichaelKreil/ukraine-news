@@ -33,20 +33,19 @@ async function start() {
 				todo.medium.$page,
 				word[lang].toString()
 			]
-			let count, ratio;
+			let count, wordCount;
 			try {
-				let result = await db.get(key);
-				count = result.count;
-				ratio = result.ratio;
+				({ count, wordCount } = await db.get(key));
 			} catch (e) {
 				if (!text) {
 					text = getText();
 					wordCount = text.split(' ').length;
 				}
 				count = countResults(text.matchAll(word[lang]));
-				ratio = count / wordCount;
-				await db.put(key, { count, ratio });
+				await db.put(key, { count, wordCount });
 			}
+			let ratio = count / wordCount;
+			if (wordCount < 100) ratio = -1;
 
 			wordCountryMatrix.set([word.name, todo.medium.country], count);
 
