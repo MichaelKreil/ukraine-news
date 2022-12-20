@@ -1,387 +1,387 @@
 <!DOCTYPE html>
 <html lang="de">
 
-	<head>
-		<meta charset="utf-8">
-		<meta name=viewport content="width=device-width, initial-scale=1">
-		<title>Wie lange interessiert uns noch der Krieg?</title>
+<head>
+	<meta charset="utf-8">
+	<meta name=viewport content="width=device-width, initial-scale=1">
+	<title>Wie lange interessiert uns noch der Krieg?</title>
 
-		<meta name="twitter:card" content="summary_large_image">
-		<meta name="twitter:creator" content="@michaelkreil">
-		<meta name="twitter:title" content="Wie lange interessiert uns noch der Krieg?">
-		<meta name="twitter:description"
-			content="Der Krieg wird Alltag und die Berichterstattung nimmt ab. Passiert das in allen Ländern in gleichem Maße?">
-		<meta name="twitter:image" content="https://michaelkreil.github.io/ukraine-news/screenshot1.png">
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:creator" content="@michaelkreil">
+	<meta name="twitter:title" content="Wie lange interessiert uns noch der Krieg?">
+	<meta name="twitter:description"
+		content="Der Krieg wird Alltag und die Berichterstattung nimmt ab. Passiert das in allen Ländern in gleichem Maße?">
+	<meta name="twitter:image" content="https://michaelkreil.github.io/ukraine-news/screenshot1.png">
 
-		<script src="d3.min.js" charset="utf-8"></script>
-		<style>
-			body {
-				font-family: sans-serif;
-				font-size: 14px;
-				margin: 0 0 100px;
-				line-height: 1.3em
-			}
+	<script src="d3.min.js" charset="utf-8"></script>
+	<style>
+		body {
+			font-family: sans-serif;
+			font-size: 14px;
+			margin: 0 0 100px;
+			line-height: 1.3em
+		}
 
-			h1 {
-				max-width: calc(100vw - 40px);
-				text-align: center;
-				margin: 100px auto 50px;
-			}
+		h1 {
+			max-width: calc(100vw - 40px);
+			text-align: center;
+			margin: 100px auto 50px;
+		}
 
-			h2 {
-				max-width: calc(100vw - 40px);
-				text-align: center;
-				font-size: 18px;
-				margin: 50px auto 20px;
-			}
+		h2 {
+			max-width: calc(100vw - 40px);
+			text-align: center;
+			font-size: 18px;
+			margin: 50px auto 20px;
+		}
 
-			p {
-				max-width: min(600px, calc(100vw - 40px));
-				margin: 30px auto;
-			}
+		p {
+			max-width: min(600px, calc(100vw - 40px));
+			margin: 30px auto;
+		}
 
-			select {
-				font-size: 20px;
-			}
-		</style>
-	</head>
+		select {
+			font-size: 20px;
+		}
+	</style>
+</head>
 
-	<body>
-		<h1>Wie lange interessiert uns noch der Krieg?</h1>
+<body>
+	<h1>Wie lange interessiert uns noch der Krieg?</h1>
 
-		<p>Der Krieg in der Ukraine wird vorraussichtlich Monate, vielleicht sogar Jahre andauern. Weil viele Menschen nicht
-			direkt betroffen sind, können wir davon ausgehen, dass in unserer Gesellschaft ein Gewöhnungseffekt eintreten
-			wird. Im gleichen Maße wird die Berichterstattung abnehmen und andere Themen werden relevanter.
-			<br>Diesen Effekt möchte ich beobachten und dabei unterschiedliche Medien in unterschiedlichen Ländern
-			vergleichen.
-		</p>
+	<p>Der Krieg in der Ukraine wird vorraussichtlich Monate, vielleicht sogar Jahre andauern. Weil viele Menschen nicht
+		direkt betroffen sind, können wir davon ausgehen, dass in unserer Gesellschaft ein Gewöhnungseffekt eintreten
+		wird. Im gleichen Maße wird die Berichterstattung abnehmen und andere Themen werden relevanter.
+		<br>Diesen Effekt möchte ich beobachten und dabei unterschiedliche Medien in unterschiedlichen Ländern
+		vergleichen.
+	</p>
 
-		<p>Dazu werden die Frontseiten zahlreicher Nachrichtenseiten täglich von archive.org geladen und die Häufigkeit
-			thematischer Begriffe gezählt. Diese Begriffe sind: Krieg, Invasion, Panzer, Ukraine, Kiew, Odessa, Charkiw,
-			Cherson, Mariupol, Luhansk, Tschernihiw, Donezk, Lwiw, Tschernobyl, Selenskyj, Klitschko, Putin, Kreml, Russland
-			(natürlich in der jeweiligen Landessprache der Nachrichtenseite und nur wenn sinnvoll).</p>
+	<p>Dazu werden die Frontseiten zahlreicher Nachrichtenseiten täglich von archive.org geladen und die Häufigkeit
+		thematischer Begriffe gezählt. Diese Begriffe sind: Krieg, Invasion, Panzer, Ukraine, Kiew, Odessa, Charkiw,
+		Cherson, Mariupol, Luhansk, Tschernihiw, Donezk, Lwiw, Tschernobyl, Selenskyj, Klitschko, Putin, Kreml, Russland
+		(natürlich in der jeweiligen Landessprache der Nachrichtenseite und nur wenn sinnvoll).</p>
 
-		<h2>Berichterstattung über den Ukrainekrieg in
-			<select id="selectCountry">
-				<option value="de">Deutschland</option>
-				<option value="fr">Frankreich</option>
-				<option value="us">USA</option>
-				<option value="uk">Großbritannien</option>
-				<option value="pl">Polen</option>
-				<option value="fi">Finnland</option>
-				<option value="ru">Russland</option>
-			</select>
-		</h2>
+	<h2>Berichterstattung über den Ukrainekrieg in
+		<select id="selectCountry">
+			<option value="de">Deutschland</option>
+			<option value="fr">Frankreich</option>
+			<option value="us">USA</option>
+			<option value="uk">Großbritannien</option>
+			<option value="pl">Polen</option>
+			<option value="fi">Finnland</option>
+			<option value="ru">Russland</option>
+		</select>
+	</h2>
 
-		<div id="linechartCountry"></div>
+	<div id="linechartCountry"></div>
 
-		<h2>Ländervergleich</h2>
-		<div id="linechartCountries"></div>
+	<h2>Ländervergleich</h2>
+	<div id="linechartCountries"></div>
 
-		<p>
-			Natürlich lässt sich dieser Ansatz in mehrere Richtungen verbessern. Man könnte weitere Medien hinzufügen, weitere
-			Länder und weitere Sprachen.
-		</p>
-		<p>
-			Auch die Methodik, die Anzahl der relevanten Wörter zu zählen, ließe sich verbessern: Das Wort "Kreml" ist aktuell
-			in der deutschen Berichterstattung ein sicherer Marker, dass es um den Krieg in der Ukraine geht. Jedoch in
-			russischen Medien gibt es auch andere Themen, die das Wort "Kreml" enthalten. Dort ist "Kiew" ein sicherer Marker,
-			was wiederum nicht für Medien in Kiew gilt, usw.<br>
-			Kurz: Ich suche Verbesserungsvorschläge, wie man die Berichterstattung besser nach Themen kategorisieren kann, und
-			das für unterschiedliche Medien, Sprachen und Länder.
-		</p>
-		<p>
-			Code und Daten befinden sich wie immer auf GitHub: <a
-				href="https://github.com/michaelkreil/ukraine-news">github.com/michaelkreil/ukraine-news</a>
-		</p>
+	<p>
+		Natürlich lässt sich dieser Ansatz in mehrere Richtungen verbessern. Man könnte weitere Medien hinzufügen, weitere
+		Länder und weitere Sprachen.
+	</p>
+	<p>
+		Auch die Methodik, die Anzahl der relevanten Wörter zu zählen, ließe sich verbessern: Das Wort "Kreml" ist aktuell
+		in der deutschen Berichterstattung ein sicherer Marker, dass es um den Krieg in der Ukraine geht. Jedoch in
+		russischen Medien gibt es auch andere Themen, die das Wort "Kreml" enthalten. Dort ist "Kiew" ein sicherer Marker,
+		was wiederum nicht für Medien in Kiew gilt, usw.<br>
+		Kurz: Ich suche Verbesserungsvorschläge, wie man die Berichterstattung besser nach Themen kategorisieren kann, und
+		das für unterschiedliche Medien, Sprachen und Länder.
+	</p>
+	<p>
+		Code und Daten befinden sich wie immer auf GitHub: <a
+			href="https://github.com/michaelkreil/ukraine-news">github.com/michaelkreil/ukraine-news</a>
+	</p>
 
-		<script type="text/javascript">
-			setTimeout(start, 0);
+	<script type="text/javascript">
+		setTimeout(start, 0);
 
-			async function start() {
-				let data = await d3.json('./data.json');
+		async function start() {
+			let data = await d3.json('./data.json');
 
-				let dateMin = Date.now(), dateMax = false;
-				data.forEach(e => {
-					e.list = e.list.filter(e => e.value);
+			let dateMin = Date.now(), dateMax = false;
+			data.forEach(e => {
+				e.list = e.list.filter(e => e.value);
 
-					let avg = e.list.reduce((s, e) => s += e.value ?? 0, 0);
-					avg /= e.list.length;
+				let avg = e.list.reduce((s, e) => s += e.value ?? 0, 0);
+				avg /= e.list.length;
 
-					e.list.forEach(p => {
-						p.xValue = new Date(p.date);
-						if (dateMin > p.xValue) dateMin = p.xValue;
-						if (dateMax < p.xValue) dateMax = p.xValue;
+				e.list.forEach(p => {
+					p.xValue = new Date(p.date);
+					if (dateMin > p.xValue) dateMin = p.xValue;
+					if (dateMax < p.xValue) dateMax = p.xValue;
 
-						p.yValue = p.value / avg;
-					})
-
-					e.list.sort((a, b) => a.xValue - b.xValue);
+					p.yValue = p.value / avg;
 				})
 
-				const indexMax = Math.round((dateMax - dateMin) / 86400000);
-				const radius = 7;
+				e.list.sort((a, b) => a.xValue - b.xValue);
+			})
 
-				data.forEach(e => {
-					e.list.forEach(p => p.index = Math.round((p.xValue - dateMin) / 86400000));
+			const indexMax = Math.round((dateMax - dateMin) / 86400000);
+			const radius = 7;
 
-					let array = [];
-					e.list.forEach(p => array[p.index] = p);
-					e.list = array;
-					for (let i = 0; i <= indexMax; i++) {
-						if (e.list[i]) {
-							e.list[i].defined = true;
-						} else {
-							e.list[i] = {
-								index: i,
-								xValue: new Date(dateMin + 86400000 * i),
-							}
+			data.forEach(e => {
+				e.list.forEach(p => p.index = Math.round((p.xValue - dateMin) / 86400000));
+
+				let array = [];
+				e.list.forEach(p => array[p.index] = p);
+				e.list = array;
+				for (let i = 0; i <= indexMax; i++) {
+					if (e.list[i]) {
+						e.list[i].defined = true;
+					} else {
+						e.list[i] = {
+							index: i,
+							xValue: new Date(dateMin + 86400000 * i),
 						}
 					}
-
-					for (let i = 0; i <= indexMax; i++) {
-						let j0 = Math.max(Math.round(i - radius * 5), 0);
-						let j1 = Math.min(Math.round(i + radius * 5), indexMax);
-						let valSum = 0;
-						let weightSum = 0;
-						for (let j = j0; j <= j1; j++) {
-							if (!e.list[j].defined) continue;
-							let weight = Math.exp(-Math.pow((i - j) / radius, 2));
-							valSum += weight * e.list[j].yValue;
-							weightSum += weight;
-						}
-						e.list[i].ySmooth = valSum / weightSum;
-						e.list[i].wSmooth = weightSum / radius;
-					}
-				})
-
-				let selectCountry = d3.select('#selectCountry');
-				selectCountry.on('change', () => {
-					let selected = selectCountry.node().selectedOptions[0];
-					let name = selected.innerText;
-					let code = selected.value;
-					drawCountry(name, code);
-				})
-				selectCountry.dispatch('change')
-
-				drawAllCountries();
-
-				function drawAllCountries() {
-					let countries = [];
-					selectCountry.selectAll('option').each(function (a, b, c) {
-						let name = this.innerText;
-						let code = this.value;
-
-						let list = new Map();
-						data.forEach(entry => {
-							if (entry.medium.country !== code) return;
-							entry.list.forEach(pMedium => {
-								if (!list.has(pMedium.index)) {
-									list.set(pMedium.index, { xValue: pMedium.xValue, ySmooth: 0, wSmooth: 0 })
-								}
-								if (pMedium.wSmooth < 1e-3) return;
-								let pCountry = list.get(pMedium.index);
-								pCountry.ySmooth += pMedium.wSmooth * pMedium.ySmooth;
-								pCountry.wSmooth += pMedium.wSmooth;
-							})
-						})
-						list = Array.from(list.values());
-						list.forEach(p => p.ySmooth /= p.wSmooth);
-						list = list.filter(p => p.wSmooth >= 1);
-						countries.push({ name, color: '#000', opacity: 0.3, list })
-					});
-					drawLines('#linechartCountries', countries);
 				}
 
-				function drawCountry(name, cc) {
-					let data1 = data
-						.filter(e => e.medium.country === cc)
-						.map(e => Object.assign({}, e, { name: e.medium.name, dots: true, opacity: 0.15, color: '#0069b4' }))
-					let list = [];
-					data1.forEach(entry => {
+				for (let i = 0; i <= indexMax; i++) {
+					let j0 = Math.max(Math.round(i - radius * 5), 0);
+					let j1 = Math.min(Math.round(i + radius * 5), indexMax);
+					let valSum = 0;
+					let weightSum = 0;
+					for (let j = j0; j <= j1; j++) {
+						if (!e.list[j].defined) continue;
+						let weight = Math.exp(-Math.pow((i - j) / radius, 2));
+						valSum += weight * e.list[j].yValue;
+						weightSum += weight;
+					}
+					e.list[i].ySmooth = valSum / weightSum;
+					e.list[i].wSmooth = weightSum / radius;
+				}
+			})
+
+			let selectCountry = d3.select('#selectCountry');
+			selectCountry.on('change', () => {
+				let selected = selectCountry.node().selectedOptions[0];
+				let name = selected.innerText;
+				let code = selected.value;
+				drawCountry(name, code);
+			})
+			selectCountry.dispatch('change')
+
+			drawAllCountries();
+
+			function drawAllCountries() {
+				let countries = [];
+				selectCountry.selectAll('option').each(function (a, b, c) {
+					let name = this.innerText;
+					let code = this.value;
+
+					let list = new Map();
+					data.forEach(entry => {
+						if (entry.medium.country !== code) return;
 						entry.list.forEach(pMedium => {
-							if (!list[pMedium.index]) {
-								list[pMedium.index] = { xValue: pMedium.xValue, ySmooth: 0, wSmooth: 0 };
+							if (!list.has(pMedium.index)) {
+								list.set(pMedium.index, { xValue: pMedium.xValue, ySmooth: 0, wSmooth: 0 })
 							}
 							if (pMedium.wSmooth < 1e-3) return;
-							let pCountry = list[pMedium.index];
+							let pCountry = list.get(pMedium.index);
 							pCountry.ySmooth += pMedium.wSmooth * pMedium.ySmooth;
 							pCountry.wSmooth += pMedium.wSmooth;
 						})
 					})
+					list = Array.from(list.values());
 					list.forEach(p => p.ySmooth /= p.wSmooth);
 					list = list.filter(p => p.wSmooth >= 1);
-					data1.push({ name, color: '#000', opacity: 1, list })
-					drawLines('#linechartCountry', data1);
-				}
-
-				function drawLines(query, lines) {
-
-					const margin = { top: 10, right: 180, bottom: 30, left: 40 };
-					const ratio = 0.618;
-					const wrapper = d3.select(query);
-					let offsetWidth = Math.min(wrapper.node().offsetWidth, window.innerHeight * 0.8 / ratio);
-
-					let scale = 1;
-					if (offsetWidth < 700) {
-						scale = offsetWidth / 700;
-						offsetWidth = 700;
-					}
-					const width = Math.round(offsetWidth - margin.left - margin.right);
-					const canvasWidth = Math.round(width + margin.left + margin.right);
-					const canvasHeight = Math.round(canvasWidth * 0.618);
-					const height = Math.round(canvasHeight - margin.top - margin.bottom);
-
-					wrapper
-						.style('height', Math.round(scale * canvasHeight) + 'px')
-						.style('overflow', 'hidden')
-						.style('text-align', 'center')
-
-					wrapper.select('svg').remove();
-
-					let svg = wrapper.append('svg')
-						.attr('xmlns', 'http://www.w3.org/2000/svg')
-						.attr('width', canvasWidth * scale)
-						.attr('viewBox', [0, 0, canvasWidth, canvasHeight].join(' '))
-						.attr('preserveAspectRatio', 'xMidYMid meet');
-
-					// Add X axis --> it is a date format
-					let x = d3.scaleLinear()
-						.domain([dateMin, dateMax])
-						.range([0, width]);
-
-					// add Y axis
-					let y = d3.scaleLinear()
-						.domain([0, 4])
-						.range([height, 0]);
-
-					svg.append('g')
-						.attr('transform', `translate(${margin.left},${canvasHeight - margin.bottom})`)
-						.call(d3.axisBottom(x).tickFormat(d3.timeFormat('%e %b')));
-
-					svg.append('g')
-						.attr('transform', `translate(${margin.left},${margin.top})`)
-						.call(d3.axisLeft(y).ticks(3, '%'))
-						.append('line')
-						.attr('x1', 0)
-						.attr('y1', y(1))
-						.attr('x2', width)
-						.attr('y2', y(1))
-						.attr('stroke', '#000')
-						.attr('opacity', 0.2)
-						.attr('stroke-dasharray', '2 4')
-
-
-					let canvas = svg
-						.append('g')
-						.attr('transform', `translate(${margin.left},${margin.top})`)
-
-					lines.forEach(line => {
-						line.list.sort((a, b) => a.xValue - b.xValue);
-
-						line.dotData = line.list.filter(p => isFinite(p.yValue));
-						line.curveData = line.list.filter(p => p.wSmooth >= 0.1);
-
-						let lastPoint = line.curveData[line.curveData.length - 1];
-						line.lastY = y(lastPoint.ySmooth);
-						line.legendY = line.lastY;
-					})
-
-					console.log(lines[12]);
-
-					fixLegendLabelY(lines, 'legendY', 15);
-
-					// Draw the line
-					lines.forEach(line => {
-						line.path = d3.line()
-							.curve(d3.curveBasis)
-							.x(d => x(d.xValue))
-							.y(d => y(d.ySmooth))
-							(line.curveData);
-
-						line.wrapper = canvas.append('g')
-							.on('mouseover', () => {
-								line.curve.attr('opacity', 1);
-								line.annotations.attr('opacity', 1)
-							})
-							.on('mouseout', () => {
-								line.curve.attr('opacity', line.opacity);
-								line.annotations.attr('opacity', 0)
-							})
-
-						line.wrapper.append('path')
-							.attr('fill', 'none')
-							.attr('stroke', '#f00')
-							.attr('opacity', 0)
-							.attr('stroke-width', 12)
-							.attr('d', line.path)
-
-						line.curve = line.wrapper.append('g')
-							.attr('opacity', line.opacity)
-
-						line.curve.append('path')
-							.attr('fill', 'none')
-							.attr('stroke', line.color)
-							.attr('stroke-width', 1.5)
-							.attr('d', line.path)
-
-						line.curve.append('text')
-							.attr('fill', line.color)
-							.attr('x', width + 20)
-							.attr('y', line.legendY)
-							.attr('dy', '0.5em')
-							.attr('text-anchor', 'start')
-							.attr('font-size', 12)
-							.attr('font-family', 'sans-serif')
-
-							.text(line.name)
-
-						line.annotations = canvas
-							.append('g')
-							.attr('opacity', 0);
-
-						let dx = 20;
-						let dy = line.legendY - line.lastY;
-						let f = 5 / Math.sqrt(dx * dx + dy * dy);
-
-						line.annotations.append('line')
-							.attr('x1', width + dx * f)
-							.attr('x2', width + dx - dx * f)
-							.attr('y1', line.lastY + dy * f)
-							.attr('y2', line.legendY - dy * f)
-							.attr('stroke-dasharray', '1.5')
-							.attr('stroke', line.color)
-
-						if (line.dots) {
-							line.annotations.selectAll('dot')
-								.data(line.dotData)
-								.enter()
-								.append('circle')
-								.attr('cx', d => x(d.xValue))
-								.attr('cy', d => y(d.yValue))
-								.attr('r', 1.5)
-								.attr('fill', line.color)
-								.attr('stroke', 'none');
-						}
-					})
-				}
-
-				function fixLegendLabelY(list, key, minDistance) {
-					let entries = list.map(e => ({ y0: e[key], entry: e }));
-
-					entries.sort((a, b) => a.y0 - b.y0);
-
-					let y = null;
-					entries.forEach(e => e.y1 = y = Math.max(e.y0, (y ?? -10e10) + minDistance))
-
-					entries.reverse();
-					y = null;
-					entries.forEach(e => e.y2 = y = Math.min(e.y0, (y ?? 10e10) - minDistance))
-
-					entries.forEach(e => e.entry[key] = (e.y1 + e.y2) / 2)
-				}
+					countries.push({ name, color: '#000', opacity: 0.3, list })
+				});
+				drawLines('#linechartCountries', countries);
 			}
-		</script>
-	</body>
+
+			function drawCountry(name, cc) {
+				let data1 = data
+					.filter(e => e.medium.country === cc)
+					.map(e => Object.assign({}, e, { name: e.medium.name, dots: true, opacity: 0.15, color: '#0069b4' }))
+				let list = [];
+				data1.forEach(entry => {
+					entry.list.forEach(pMedium => {
+						if (!list[pMedium.index]) {
+							list[pMedium.index] = { xValue: pMedium.xValue, ySmooth: 0, wSmooth: 0 };
+						}
+						if (pMedium.wSmooth < 1e-3) return;
+						let pCountry = list[pMedium.index];
+						pCountry.ySmooth += pMedium.wSmooth * pMedium.ySmooth;
+						pCountry.wSmooth += pMedium.wSmooth;
+					})
+				})
+				list.forEach(p => p.ySmooth /= p.wSmooth);
+				list = list.filter(p => p.wSmooth >= 1);
+				data1.push({ name, color: '#000', opacity: 1, list })
+				drawLines('#linechartCountry', data1);
+			}
+
+			function drawLines(query, lines) {
+
+				const margin = { top: 10, right: 180, bottom: 30, left: 40 };
+				const ratio = 0.618;
+				const wrapper = d3.select(query);
+				let offsetWidth = Math.min(wrapper.node().offsetWidth, window.innerHeight * 0.8 / ratio);
+
+				let scale = 1;
+				if (offsetWidth < 700) {
+					scale = offsetWidth / 700;
+					offsetWidth = 700;
+				}
+				const width = Math.round(offsetWidth - margin.left - margin.right);
+				const canvasWidth = Math.round(width + margin.left + margin.right);
+				const canvasHeight = Math.round(canvasWidth * 0.618);
+				const height = Math.round(canvasHeight - margin.top - margin.bottom);
+
+				wrapper
+					.style('height', Math.round(scale * canvasHeight) + 'px')
+					.style('overflow', 'hidden')
+					.style('text-align', 'center')
+
+				wrapper.select('svg').remove();
+
+				let svg = wrapper.append('svg')
+					.attr('xmlns', 'http://www.w3.org/2000/svg')
+					.attr('width', canvasWidth * scale)
+					.attr('viewBox', [0, 0, canvasWidth, canvasHeight].join(' '))
+					.attr('preserveAspectRatio', 'xMidYMid meet');
+
+				// Add X axis --> it is a date format
+				let x = d3.scaleLinear()
+					.domain([dateMin, dateMax])
+					.range([0, width]);
+
+				// add Y axis
+				let y = d3.scaleLinear()
+					.domain([0, 4])
+					.range([height, 0]);
+
+				svg.append('g')
+					.attr('transform', `translate(${margin.left},${canvasHeight - margin.bottom})`)
+					.call(d3.axisBottom(x).tickFormat(d3.timeFormat('%e %b')));
+
+				svg.append('g')
+					.attr('transform', `translate(${margin.left},${margin.top})`)
+					.call(d3.axisLeft(y).ticks(3, '%'))
+					.append('line')
+					.attr('x1', 0)
+					.attr('y1', y(1))
+					.attr('x2', width)
+					.attr('y2', y(1))
+					.attr('stroke', '#000')
+					.attr('opacity', 0.2)
+					.attr('stroke-dasharray', '2 4')
+
+
+				let canvas = svg
+					.append('g')
+					.attr('transform', `translate(${margin.left},${margin.top})`)
+
+				lines.forEach(line => {
+					line.list.sort((a, b) => a.xValue - b.xValue);
+
+					line.dotData = line.list.filter(p => isFinite(p.yValue));
+					line.curveData = line.list.filter(p => p.wSmooth >= 0.1);
+
+					let lastPoint = line.curveData[line.curveData.length - 1];
+					line.lastY = y(lastPoint.ySmooth);
+					line.legendY = line.lastY;
+				})
+
+				console.log(lines[12]);
+
+				fixLegendLabelY(lines, 'legendY', 15);
+
+				// Draw the line
+				lines.forEach(line => {
+					line.path = d3.line()
+						.curve(d3.curveBasis)
+						.x(d => x(d.xValue))
+						.y(d => y(d.ySmooth))
+						(line.curveData);
+
+					line.wrapper = canvas.append('g')
+						.on('mouseover', () => {
+							line.curve.attr('opacity', 1);
+							line.annotations.attr('opacity', 1)
+						})
+						.on('mouseout', () => {
+							line.curve.attr('opacity', line.opacity);
+							line.annotations.attr('opacity', 0)
+						})
+
+					line.wrapper.append('path')
+						.attr('fill', 'none')
+						.attr('stroke', '#f00')
+						.attr('opacity', 0)
+						.attr('stroke-width', 12)
+						.attr('d', line.path)
+
+					line.curve = line.wrapper.append('g')
+						.attr('opacity', line.opacity)
+
+					line.curve.append('path')
+						.attr('fill', 'none')
+						.attr('stroke', line.color)
+						.attr('stroke-width', 1.5)
+						.attr('d', line.path)
+
+					line.curve.append('text')
+						.attr('fill', line.color)
+						.attr('x', width + 20)
+						.attr('y', line.legendY)
+						.attr('dy', '0.5em')
+						.attr('text-anchor', 'start')
+						.attr('font-size', 12)
+						.attr('font-family', 'sans-serif')
+
+						.text(line.name)
+
+					line.annotations = canvas
+						.append('g')
+						.attr('opacity', 0);
+
+					let dx = 20;
+					let dy = line.legendY - line.lastY;
+					let f = 5 / Math.sqrt(dx * dx + dy * dy);
+
+					line.annotations.append('line')
+						.attr('x1', width + dx * f)
+						.attr('x2', width + dx - dx * f)
+						.attr('y1', line.lastY + dy * f)
+						.attr('y2', line.legendY - dy * f)
+						.attr('stroke-dasharray', '1.5')
+						.attr('stroke', line.color)
+
+					if (line.dots) {
+						line.annotations.selectAll('dot')
+							.data(line.dotData)
+							.enter()
+							.append('circle')
+							.attr('cx', d => x(d.xValue))
+							.attr('cy', d => y(d.yValue))
+							.attr('r', 1.5)
+							.attr('fill', line.color)
+							.attr('stroke', 'none');
+					}
+				})
+			}
+
+			function fixLegendLabelY(list, key, minDistance) {
+				let entries = list.map(e => ({ y0: e[key], entry: e }));
+
+				entries.sort((a, b) => a.y0 - b.y0);
+
+				let y = null;
+				entries.forEach(e => e.y1 = y = Math.max(e.y0, (y ?? -10e10) + minDistance))
+
+				entries.reverse();
+				y = null;
+				entries.forEach(e => e.y2 = y = Math.min(e.y0, (y ?? 10e10) - minDistance))
+
+				entries.forEach(e => e.entry[key] = (e.y1 + e.y2) / 2)
+			}
+		}
+	</script>
+</body>
 
 </html>
