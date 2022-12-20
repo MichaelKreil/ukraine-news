@@ -37,10 +37,8 @@ async function start() {
 			try {
 				({ count, wordCount } = await db.get(key));
 			} catch (e) {
-				if (!text) {
-					text = getText();
-					wordCount = text.split(' ').length;
-				}
+				if (!text) text = getText();
+				wordCount = text.split(' ').length;
 				count = countResults(text.matchAll(word[lang]));
 				await db.put(key, { count, wordCount });
 			}
