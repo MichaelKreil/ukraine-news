@@ -103,8 +103,10 @@
 
 			let dateMin = Date.now(), dateMax = false;
 			data.forEach(e => {
-				e.list = e.list.filter(e => e.value);
-
+				e.dates = e.dates.split(',');
+				e.values = e.values.split(',').map(v => parseInt(v, 10));
+				e.list = e.values.map((value, i) => ({ value, date: e.dates[i] }))
+				
 				let avg = e.list.reduce((s, e) => s += e.value ?? 0, 0);
 				avg /= e.list.length;
 
