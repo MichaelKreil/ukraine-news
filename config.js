@@ -98,11 +98,11 @@ const config = {
 		// Begriffe
 		{ name:'War', en:/\bwar\b/gi, de:/\bkrieg/gi, fr:/\bguerre/gi, pl:/\bwojna/gi, ru:/война/gi, fi:/\bsota/gi, uk:/війна/gi },
 		{ name:'Invasion', en:/\binvasion/gi, pl:/\binwazja/gi, ru:/вторжение/gi, fi:/invaasion/gi, uk:/вторгнення/gi },
-		{ name:'Tank', en:/\btank/gi, de:/\bpanzer/gi, fr:/\bchar\b/gi, pl:/\bczołg/gi, fi:/panssarivaunu/gi, ru:/танк/gi, uk:/танк/gi },
+		{ name:'Tank', en:/\btank/gi, de:/panzer\b/gi, fr:/\bchar\b/gi, pl:/\bczołg/gi, fi:/panssarivaunu/gi, ru:/танк/gi, uk:/танк/gi },
 		// Orte
 		{ name:'Ukraine', en:/\bukrain/gi, ru:/украин/gi, uk:false },
 		{ name:'Kyiv', en:/\bkyiv/gi, de:/\bkiew/gi, fr:/\bkiev/gi, pl:/\bkij[oó]w/gi, ru:/киев/gi, fi:/\bkiova/gi, uk:false },
-		{ name:'Odessa', en:/\bodessa/gi, pl:/\bodess[ay]/gi, ru:/одесса/gi, uk:false },
+		{ name:'Odesa', en:/\bodesa/gi, de:/\bodessa/gi, fr:/\bodessa/gi, fi:/\bodessa/gi, pl:/\bodess[ay]/gi, ru:/одесса/gi, uk:false },
 		{ name:'Kharkiv', en:/\bkharkiv/gi, de:/\bcharkiw/gi, pl:/\bchark[oó]w/gi, ru:/харьков/gi, fi:/\bharkova/gi, uk:false },
 		{ name:'Kherson', en:/\bkherson/gi, de:/\bcherson/gi, pl:/\bcherso[nń]/gi, ru:/херсон/gi, fi:/\bh.erson/gi, uk:false },
 		{ name:'Mariupol', en:/\bmariupol/gi, fr:/\bmarioupol/gi, ru:/мариуполь/gi, uk:false },
