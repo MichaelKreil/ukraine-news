@@ -33,11 +33,11 @@ async function start() {
 			if (apiResult && apiResult.status.startsWith('20') && apiResult.available) break;
 			fs.unlinkSync(cacheFilenameApi)
 
-			if (j >= 2) {
+			if (j >= 3) {
 				skip = true;
 				break;
 			}
-			
+
 			process.stderr.write(`\n   …retry ${j}`);
 			await wait(3*60*1000); // 3 minutes
 		}
