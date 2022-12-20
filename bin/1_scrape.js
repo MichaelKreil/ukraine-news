@@ -20,7 +20,7 @@ async function start() {
 		const timestamp = date.replaceAll('-','');
 		const apiUrl = `https://web.archive.org/wayback/available?url=${medium.url}&timestamp=${timestamp}1200`;
 
-		let apiResponse, apiResult;
+		let apiResponse, apiResult, skip = false;
 		for (let j = 1; j <= 5; j++) {
 			try {
 				apiResponse = await fetchCached(apiUrl, cacheFilenameApi);
@@ -32,10 +32,15 @@ async function start() {
 			apiResult = apiResponse.archived_snapshots.closest;
 			if (apiResult && apiResult.status.startsWith('20') && apiResult.available) break;
 			fs.unlinkSync(cacheFilenameApi)
+
 			process.stderr.write(`\n   …retry ${j}`);
-			await wait(5*60*1000); // 5 minutes
-			if (j >= 5) process.exit(1);
+			await wait(3*60*1000); // 3 minutes
+			if (j >= 2) {
+				skip = true;
+				break;
+			}
 		}
+		if (skip) continue;
 
 		if (!apiResult.timestamp.startsWith(timestamp)) {
 			if (age > 60) continue;
