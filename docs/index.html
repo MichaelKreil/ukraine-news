@@ -204,7 +204,7 @@
 					.filter(e => e.medium.country === countryCode)
 					.map(e => Object.assign({}, e, { name: e.medium.name, dots: true, opacity: 0.15, color: '#0069b4' }));
 				let list = averageMedia(countryMedia);
-				countryMedia.push({ name:countryName, color: '#000', opacity: 1, list })
+				countryMedia.push({ name: countryName, color: '#000', opacity: 1, list })
 				drawLines('#linechartCountry', countryMedia);
 			}
 
@@ -296,7 +296,7 @@
 					line.legendY = line.lastY;
 				})
 
-				fixLegendLabelY(lines, 'legendY', 15);
+				fixLegendLabelY(lines, 'legendY', 15, height - 10);
 
 				//console.table(lines.map((l, index) => ({ name: l.name, index })));
 				//console.table(lines[8].curveData.map(d => ({ x: x(d.date), y: y(d.ySmooth) })));
@@ -376,19 +376,31 @@
 				})
 			}
 
-			function fixLegendLabelY(list, key, minDistance) {
-				let entries = list.map(e => ({ y0: e[key], entry: e }));
+			function fixLegendLabelY(list, key, minDistance, maxHeight) {
+				let entries = list.map(e => ({ y: e[key], y0: e[key], entry: e }));
 
 				entries.sort((a, b) => a.y0 - b.y0);
 
-				let y = null;
-				entries.forEach(e => e.y1 = y = Math.max(e.y0, (y ?? -10e10) + minDistance))
+				let forceSum;
+				do {
+					forceSum = 0;
+					for (let i = 0; i < entries.length; i++) {
+						let entry = entries[i];
+						entry.fy = (entry.y0 - entry.y) *0;
+						if (entry.y > maxHeight) entry.fy += maxHeight - entry.y;
+						if (i > 0) entry.fy += repulsionForce(entry.y - entries[i - 1].y);
+						if (i < entries.length - 1) entry.fy -= repulsionForce(entries[i + 1].y - entry.y);
+						forceSum += Math.abs(entry.fy);
+					}
+					entries.forEach(entry => entry.y += entry.fy);
+				} while (forceSum > 1);
 
-				entries.reverse();
-				y = null;
-				entries.forEach(e => e.y2 = y = Math.min(e.y0, (y ?? 10e10) - minDistance))
+				entries.forEach(e => e.entry[key] = e.y)
+				//console.table(entries);
 
-				entries.forEach(e => e.entry[key] = (e.y1 + e.y2) / 2)
+				function repulsionForce(v) {
+					return Math.max(0, minDistance - v) / 2;
+				}
 			}
 		}
 	</script>
