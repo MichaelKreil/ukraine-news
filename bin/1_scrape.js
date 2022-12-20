@@ -47,7 +47,7 @@ async function start() {
 			process.stderr.write(` - wrong timestamp`)
 			if (Math.random() < 0.03) {
 				fs.unlinkSync(cacheFilenameApi)
-				process.stderr.write(`\n   …random retry`)
+				process.stderr.write(`, random retry`)
 				i--;
 			}
 			continue;
