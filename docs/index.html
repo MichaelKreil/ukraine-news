@@ -386,7 +386,7 @@
 					forceSum = 0;
 					for (let i = 0; i < entries.length; i++) {
 						let entry = entries[i];
-						entry.fy = (entry.y0 - entry.y) *0;
+						entry.fy = (entry.y0 - entry.y) * 0;
 						if (entry.y > maxHeight) entry.fy += maxHeight - entry.y;
 						if (i > 0) entry.fy += repulsionForce(entry.y - entries[i - 1].y);
 						if (i < entries.length - 1) entry.fy -= repulsionForce(entries[i + 1].y - entry.y);

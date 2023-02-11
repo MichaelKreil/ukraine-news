@@ -17,7 +17,7 @@ async function start() {
 		const { age, medium, date, cacheFilenameApi, cacheFilenameHtml } = todos[i];
 		process.stderr.write(`\n${i}/${todos.length} - ${medium.slug} - ${date}`);
 
-		const timestamp = date.replaceAll('-','');
+		const timestamp = date.replaceAll('-', '');
 		const apiUrl = `https://web.archive.org/wayback/available?url=${medium.url}&timestamp=${timestamp}1200`;
 
 		let apiResponse, apiResult, skip = false;
@@ -39,7 +39,7 @@ async function start() {
 			}
 
 			process.stderr.write(`\n   …retry ${j}`);
-			await wait(3*60*1000); // 3 minutes
+			await wait(3 * 60 * 1000); // 3 minutes
 		}
 		if (skip) continue;
 

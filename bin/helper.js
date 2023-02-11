@@ -16,7 +16,7 @@ function fetch(url, slowdown = true) {
 	return new Promise(async (resolve, reject) => {
 		let protocol = url.startsWith('https') ? https : http;
 
-		if (slowdown) await wait(10*1000); // 10 seconds
+		if (slowdown) await wait(10 * 1000); // 10 seconds
 
 		let request = protocol.get(url, async response => {
 			if (response.statusCode === 302) {
@@ -50,7 +50,7 @@ async function fetchCached(url, filename, slowdown = true) {
 	}
 
 	let buffer = await fetch(url, slowdown);
-	fs.writeFileSync(filename, zlib.brotliCompressSync(buffer, {params:{[zlib.constants.BROTLI_PARAM_QUALITY]:zlib.constants.BROTLI_MAX_QUALITY}}));
+	fs.writeFileSync(filename, zlib.brotliCompressSync(buffer, { params: { [zlib.constants.BROTLI_PARAM_QUALITY]: zlib.constants.BROTLI_MAX_QUALITY } }));
 	return buffer;
 }
 

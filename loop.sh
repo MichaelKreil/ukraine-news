@@ -1,6 +1,6 @@
 #!/bin/sh
 
-cd ${0%/*};
+cd ${0%/*}
 
 while true; do
 	git pull
