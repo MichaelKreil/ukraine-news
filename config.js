@@ -62,7 +62,7 @@ const config = {
 		{ country:'ru', name:'Moskowski Komsomolez', slug:'mk',           url:'https://www.mk.ru/', $page:'.wraper__content' },
 		{ country:'ru', name:'Komsomolskaja Prawda', slug:'kp',           url:'https://www.kp.ru/', $page:'#app' },
 		{ country:'ru', name:'Trud',                 slug:'trud',         url:'https://www.trud.ru/', $page:'.off-canvas-content', convert:buf => new Iconv('CP1251', 'UTF-8').convert(buf) },
-		{ country:'ru', name:'Rossijskaja Gaseta',   slug:'rg',           url:'https://rg.ru/', $page:'.l-page__body' },
+		{ country:'ru', name:'Rossijskaja Gaseta',   slug:'rg',           url:'https://rg.ru/', $page:'.l-page__body', ignoreRedirectError:true },
 		{ country:'ru', name:'Nesawissimaja Gaseta', slug:'ng',           url:'https://www.ng.ru/', $page:'#mainpage' },
 
 		{ country:'fi', name:'Helsingin Sanomat',  slug:'hs',                url:'https://www.hs.fi/', $page:'main' },

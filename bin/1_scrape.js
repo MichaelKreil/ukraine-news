@@ -37,9 +37,10 @@ async function start() {
 			continue;
 		}
 
-		items = items.filter(i => i[1] === 200);
-		let n2 = items.length;
-		if ((n1 > 10) && (n2 / n1 < 0.5)) {
+		items = items.filter(i => i[1] !== 302);
+		if ((n1 > 10) && (items.length / n1 < 0.5)) {
+			if (medium.ignoreRedirectError) continue;
+			
 			console.log('too many redirects');
 
 			let t = apiResponse.items;
@@ -51,7 +52,9 @@ async function start() {
 			throw Error();
 		}
 
-		if (n2 === 0) {
+		items = items.filter(i => i[1] === 200);
+
+		if (items.length === 0) {
 			process.stderr.write(' - no results');
 			continue;
 		}
