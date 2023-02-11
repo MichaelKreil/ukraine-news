@@ -10,7 +10,7 @@ async function start() {
 	let todos = config.todos.filter(todo => {
 		if (!fs.existsSync(todo.cacheFilenameHtml)) return true;
 		if (!fs.existsSync(todo.cacheFilenameApi)) {
-			//if (1/todo.age > Math.random()) return true;
+			//if (7/todo.age > Math.random()) return true;
 		};
 		return false;
 	});

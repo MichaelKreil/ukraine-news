@@ -20,8 +20,6 @@ function fetch(url, slowdown = true) {
 
 		let request = protocol.get(url, async response => {
 			if (response.statusCode === 302) {
-				console.log(`redirect to "${response.headers.location}"`);
-				throw Error();
 				resolve(await fetch(response.headers.location, slowdown));
 				return;
 			}
