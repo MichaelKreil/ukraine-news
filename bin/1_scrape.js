@@ -8,7 +8,7 @@ start()
 
 async function start() {
 	let todos = config.todos.filter(todo => {
-		//if (fs.existsSync(todo.cacheFilenameHtml)) return false;
+		if (fs.existsSync(todo.cacheFilenameHtml)) return false;
 		//if (fs.existsSync(todo.cacheFilenameApi)) return false;
 		return true;
 	});
