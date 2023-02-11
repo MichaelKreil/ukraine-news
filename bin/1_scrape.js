@@ -7,55 +7,69 @@ const { fetchCached, wait } = require('./helper.js');
 start()
 
 async function start() {
-	let todos = config.todos.filter(todo => {
-		if (!fs.existsSync(todo.cacheFilenameApi )) return true;
-		if (!fs.existsSync(todo.cacheFilenameHtml)) return true;
-		return false;
-	})
+	let todos = config.todos.filter(todo => !fs.existsSync(todo.cacheFilenameHtml));
 
 	for (let i = 0; i < todos.length; i++) {
 		const { age, medium, date, cacheFilenameApi, cacheFilenameHtml } = todos[i];
 		process.stderr.write(`\n${i}/${todos.length} - ${medium.slug} - ${date}`);
 
-		const timestamp = date.replaceAll('-', '');
-		const apiUrl = `https://web.archive.org/wayback/available?url=${medium.url}&timestamp=${timestamp}1200`;
+		const datestamp = date.replaceAll('-', '');
+		const apiUrl = `https://web.archive.org/__wb/calendarcaptures/2?url=${encodeURIComponent(medium.url)}&date=${datestamp}`;
 
-		let apiResponse, apiResult, skip = false;
-		for (let j = 1; j <= 5; j++) {
-			try {
-				apiResponse = await fetchCached(apiUrl, cacheFilenameApi);
-			} catch (e) {
-				console.log(e);
-				continue;
-			}
-			apiResponse = JSON.parse(apiResponse);
-			apiResult = apiResponse.archived_snapshots.closest;
-			if (apiResult && apiResult.status.startsWith('20') && apiResult.available) break;
-			fs.unlinkSync(cacheFilenameApi)
-
-			if (j >= 3) {
-				skip = true;
-				break;
-			}
-
-			process.stderr.write(`\n   …retry ${j}`);
-			await wait(3 * 60 * 1000); // 3 minutes
-		}
-		if (skip) continue;
-
-		if (!apiResult.timestamp.startsWith(timestamp)) {
-			if (age > 60) continue;
-			process.stderr.write(` - wrong timestamp`)
-			if (Math.random() < 0.03) {
-				fs.unlinkSync(cacheFilenameApi)
-				process.stderr.write(`, random retry`)
-				i--;
-			}
+		let apiResponse;
+		try {
+			apiResponse = await fetchCached(apiUrl, cacheFilenameApi);
+		} catch (e) {
+			process.stderr.write(' - error:' + e);
 			continue;
 		}
 
+		apiResponse = JSON.parse(apiResponse);
+		if (!apiResponse.items) continue;
+
+		let items = apiResponse.items;
+
+		items = items.filter(i => i[1] !== 307);
+
+		let n1 = items.length;
+		if (n1 === 0) {
+			process.stderr.write(' - no results');
+			continue;
+		}
+
+		items = items.filter(i => i[1] === 200);
+		let n2 = items.length;
+		if ((n1 > 10) && (n2 / n1 < 0.5)) {
+			console.log('too many redirects');
+
+			let t = apiResponse.items;
+			t = t[Math.floor(t.length / 2)][0];
+			t = ("000000" + t).slice(-6);
+			let htmlUrl = `https://web.archive.org/web/${datestamp}${t}/${medium.url}`;
+			console.log({ apiUrl, htmlUrl })
+
+			throw Error();
+		}
+
+		if (n2 === 0) {
+			process.stderr.write(' - no results');
+			continue;
+		}
+
+		items = items.map(i => {
+			let string = ("000000" + i[0]).slice(-6);
+			let seconds = parseInt(string.slice(-2), 10) + parseInt(string.slice(-4, -2), 10) * 60 + parseInt(string.slice(-6, -4), 10) * 3600;
+			return [string, Math.abs(seconds - 43200)]
+		})
+		items.sort((a, b) => a[1] - b[1]);
+
+		let timestamp = items[0][0];
+
+		let htmlUrl = `https://web.archive.org/web/${datestamp}${timestamp}/${medium.url}`;
+		//console.log({ htmlUrl });
+
 		try {
-			await fetchCached(apiResult.url, cacheFilenameHtml);
+			await fetchCached(htmlUrl, cacheFilenameHtml);
 			process.stderr.write(' - OK');
 		} catch (e) {
 			console.log(e);
