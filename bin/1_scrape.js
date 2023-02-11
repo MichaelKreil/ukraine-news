@@ -33,32 +33,7 @@ async function start() {
 		apiResponse = JSON.parse(apiResponse);
 		if (!apiResponse.items) continue;
 
-		let items = apiResponse.items;
-
-		items = items.filter(i => i[1] !== 307);
-
-		let n1 = items.length;
-		if (n1 === 0) {
-			process.stderr.write(' - no results');
-			continue;
-		}
-
-		items = items.filter(i => i[1] !== 302);
-		if ((n1 > 10) && (items.length / n1 < 0.5)) {
-			if (medium.ignoreRedirectError) continue;
-			
-			console.log('too many redirects');
-
-			let t = apiResponse.items;
-			t = t[Math.floor(t.length / 2)][0];
-			t = ("000000" + t).slice(-6);
-			let htmlUrl = `https://web.archive.org/web/${datestamp}${t}/${medium.url}`;
-			console.log({ apiUrl, htmlUrl })
-
-			throw Error();
-		}
-
-		items = items.filter(i => i[1] === 200);
+		let items = apiResponse.items.filter(i => i[1] === 200);
 
 		if (items.length === 0) {
 			process.stderr.write(' - no results');
