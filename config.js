@@ -47,7 +47,7 @@ const config = {
 		{ country:'fr', name:'Libération',  slug:'liberation', url:'https://www.liberation.fr/', $page:'#main' },
 		{ country:'fr', name:'Le Parisien', slug:'leparisien', url:'https://www.leparisien.fr/', $page:'#homepage_container' },
 		{ country:'fr', name:'Les Echos',   slug:'lesechos',   url:'https://www.lesechos.fr/', $page:'main' },
-		{ country:'fr', name:'La Croix',    slug:'la-croix',   url:'https://www.la-croix.com', $page:'main' },
+		{ country:'fr', name:'La Croix',    slug:'la-croix',   url:'https://www.la-croix.com/', $page:'main' },
 		{ country:'fr', name:'20 Minutes',  slug:'20minutes',  url:'https://www.20minutes.fr/', $page:'#page-content' },
 		{ country:'fr', name:'Le Progrès',  slug:'leprogres',  url:'https://www.leprogres.fr/', $page:'#wrapper' },
 		{ country:'fr', name:'L\'Express',  slug:'lexpress',   url:'https://www.lexpress.fr/', $page:'#pub-cover' },
