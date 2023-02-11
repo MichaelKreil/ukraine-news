@@ -7,7 +7,11 @@ const { fetchCached, wait } = require('./helper.js');
 start()
 
 async function start() {
-	let todos = config.todos.filter(todo => !fs.existsSync(todo.cacheFilenameHtml));
+	let todos = config.todos.filter(todo => {
+		//if (fs.existsSync(todo.cacheFilenameHtml)) return false;
+		//if (fs.existsSync(todo.cacheFilenameApi)) return false;
+		return true;
+	});
 
 	for (let i = 0; i < todos.length; i++) {
 		const { age, medium, date, cacheFilenameApi, cacheFilenameHtml } = todos[i];
