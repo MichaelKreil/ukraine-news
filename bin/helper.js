@@ -23,6 +23,12 @@ function fetch(url, slowdown = true) {
 				resolve(await fetch(response.headers.location, slowdown));
 				return;
 			}
+
+			if (response.statusCode === 429) {
+				request.destroy();
+				return reject(response.statusCode);
+			}
+
 			if (response.statusCode !== 200) {
 				console.log('url', url);
 				console.log('headers', response.headers);

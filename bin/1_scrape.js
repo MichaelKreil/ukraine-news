@@ -54,8 +54,11 @@ async function start() {
 			continue;
 		}
 
-		await fetchCached(apiResult.url, cacheFilenameHtml);
-
-		process.stderr.write(' - OK');
+		try {
+			await fetchCached(apiResult.url, cacheFilenameHtml);
+			process.stderr.write(' - OK');
+		} catch (e) {
+			console.log(e);
+		}
 	}
 }
